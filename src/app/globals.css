@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+/* Druk XCond Super Trial – Título principal */
+@font-face {
+  font-family: "Druk XCond Super Trial";
+  src: url("/fonts/DrukXCond-Super-Trial.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mango Grotesque Thin – Año "2026" */
+@font-face {
+  font-family: "Mango Grotesque Thin";
+  src: url("/fonts/MangoGrotesque-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gotham Pro – Nombres de oradores */
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("/fonts/Gotham-Ultra.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montserrat – Subtítulos */
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variables CSS con colores del congreso */
+:root {
+  --color-fondo: #000000;
+  --color-fondo-gradient-fin: #332B1A;
+  --color-blanco: #FFFFFF;
+  --color-dorado: #D4AF37;
+  --color-dorado-oscuro: #B2975B;
+  --color-dorado-claro: #EADDA6;
+  --color-dorado-bronce: #A0875C;
+  --color-dorado-ocre: #C19E5D;
+}
+
+/* Tema Tailwind v4 */
+@theme {
+  --font-druk: "Druk XCond Super Trial", sans-serif;
+  --font-mango: "Mango Grotesque Thin", sans-serif;
+  --font-gotham: "Gotham Pro", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  --color-fondo: #000000;
+  --color-fondo-fin: #332B1A;
+  --color-dorado: #D4AF37;
+  --color-dorado-oscuro: #B2975B;
+  --color-dorado-claro: #EADDA6;
+  --color-dorado-bronce: #A0875C;
+  --color-dorado-ocre: #C19E5D;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: linear-gradient(180deg, var(--color-fondo) 0%, var(--color-fondo-fin) 100%);
+  min-height: 100vh;
+  color: var(--color-blanco);
+  font-family: var(--font-montserrat);
+}
+
+/* Utilidades */
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-dorado-claro) 0%, var(--color-dorado) 50%, var(--color-dorado-oscuro) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
