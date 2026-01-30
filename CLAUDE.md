@@ -77,3 +77,25 @@ Formato: `tipo(scope): descripción`
 Nivel del usuario: 🌿 Intermedio
 
 El usuario conoce lo básico. Puedes ser más directo pero explica decisiones arquitectónicas.
+
+## Session Update
+
+**Date:** 2026-01-30 (Update 3)
+**Goal:** Crear un flujo para extraer especificaciones de diseno desde imagenes y generar tokens reutilizables.
+**Completed:** 
+- ✅ Nueva skill `design-extraction` creada
+- ✅ Tokens base en `data/design-tokens.json` (colores, fuentes, estilos)
+- ✅ Specs iniciales para hero y oradores en JSON
+- ✅ Componente `HeroExact.tsx` implementado con posiciones exactas
+- ✅ Hero integrado en `page.tsx` reemplazando el anterior
+- ✅ **Cambio importante:** Reemplazados todos los textos del hero por la imagen `composicion-titulo.png` para fidelidad 100% al diseño gráfico
+- ✅ Build exitoso sin errores
+**Status:** Hero implementado usando la imagen de composición exacta del diseñador. Mantiene el SVG dorado, logo CCE, texto de organización y línea decorativa. El título principal ahora es una imagen PNG con transparencia para máxima fidelidad tipográfica.
+**Next:** 
+- Ajustar tamaño y posición de la imagen de composición si es necesario
+- Implementar sección de Oradores (`SpeakersSection`) basada en `data/design-spec-speakers.json`
+- Agregar responsive design para móvil
+**Decisions:** 
+- Usar imagen PNG con transparencia para el título en lugar de texto renderizado (fidelidad 100% al diseño)
+- Mantener elementos interactivos (logo, organización) como SVG/texto
+- Usar porcentajes relativos al artboard para posicionamiento

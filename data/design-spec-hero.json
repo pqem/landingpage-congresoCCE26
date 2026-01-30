@@ -1,0 +1,86 @@
+{
+  "id": "hero",
+  "source": "data/reference/b.jpg",
+  "artboard": { "width": 3404, "height": 2219, "unit": "px" },
+  "precision": "approx",
+  "layers": [
+    {
+      "id": "bg-gradient",
+      "type": "rect",
+      "framePct": { "x": 0, "y": 0, "w": 100, "h": 100 },
+      "fill": "gradient:heroBackground"
+    },
+    {
+      "id": "gold-swirl",
+      "type": "svg",
+      "asset": "public/images/hero/formas-doradas.svg",
+      "framePct": { "x": -16, "y": 6, "w": 74, "h": 92 },
+      "style": { "stroke": "#E7BB70" }
+    },
+    {
+      "id": "logo-cce",
+      "type": "image",
+      "asset": "public/images/logo/logo-cce-color.svg",
+      "framePct": { "x": 90.2, "y": 12.4, "w": 5.4, "h": 7.4 }
+    },
+    {
+      "id": "title-congreso",
+      "type": "text",
+      "content": "CONGRESO",
+      "style": "heroTitle",
+      "framePct": { "x": 33.0, "y": 22.5, "w": 31.0, "h": 20.5 },
+      "align": "left"
+    },
+    {
+      "id": "title-cce",
+      "type": "text",
+      "content": "CCE ARG.",
+      "style": "heroTitle",
+      "framePct": { "x": 33.0, "y": 44.0, "w": 32.0, "h": 22.0 },
+      "align": "left"
+    },
+    {
+      "id": "year-2026",
+      "type": "text",
+      "content": "2026",
+      "style": "heroYear",
+      "framePct": { "x": 64.5, "y": 44.5, "w": 14.0, "h": 28.0 },
+      "align": "left"
+    },
+    {
+      "id": "date",
+      "type": "text",
+      "content": "MARZO\n20 AL 23",
+      "style": "heroDate",
+      "framePct": { "x": 65.0, "y": 33.5, "w": 12.0, "h": 8.0 },
+      "align": "left"
+    },
+    {
+      "id": "tagline",
+      "type": "text",
+      "content": "EXPANSION\nSOBRENATURAL",
+      "style": "heroTagline",
+      "framePct": { "x": 49.5, "y": 67.0, "w": 20.0, "h": 7.0 },
+      "align": "center"
+    },
+    {
+      "id": "org",
+      "type": "text",
+      "content": "CENTRO\nCRISTIANO\nESPERANZA",
+      "style": "microLabel",
+      "framePct": { "x": 4.0, "y": 83.0, "w": 10.0, "h": 7.0 },
+      "align": "left"
+    },
+    {
+      "id": "accent-line",
+      "type": "line",
+      "framePct": { "x": 90.5, "y": 90.5, "w": 3.0, "h": 0.4 },
+      "style": { "color": "#D4AF37" }
+    }
+  ],
+  "notes": [
+    "Valores aproximados. Ajustar con medicion directa en Figma/Photopea.",
+    "El trazo dorado usa el SVG existente para mantener fidelidad.",
+    "El tamanio de tipografia se controla con typeStyles en data/design-tokens.json."
+  ]
+}

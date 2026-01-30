@@ -31,6 +31,7 @@ Formato: `tipo(scope): descripción`
 - [context-recovery](skills/context-recovery/SKILL.md) - Recuperación de contexto después de compactación de memoria del LLM. Lee CONTEXT-RECOVERY.md. (tools: read, write) (scope: root)
 - [deployment](skills/deployment/SKILL.md) - Guía de deployment para Vercel/Netlify. Build, preview y producción. (tools: bash, read) (scope: root)
 - [design](skills/design/SKILL.md) - Guía de diseño visual del Congreso CCE 2026. Colores, tipografía, espaciado y componentes. (tools: read, write) (scope: root)
+- [design-extraction](skills/design-extraction/SKILL.md) - Flujo para convertir imagenes de referencia en especificaciones medibles (layout, tipografia, color, SVG) y tokens reutilizables. (tools: read, write) (scope: root)
 - [docs](skills/docs/SKILL.md) - Crear y mantener documentación. Usa cuando escribas README, docs, o comentarios. (tools: read, write) (scope: root)
 - [pr](skills/pr/SKILL.md) - Crear Pull Requests con formato consistente. Usa cuando prepares un PR. (tools: bash, read) (scope: root)
 
@@ -44,16 +45,22 @@ Formato: `tipo(scope): descripción`
 | componentes | `design` |
 | contexto perdido | `context-recovery` |
 | deploy | `deployment` |
+| design tokens | `design-extraction` |
 | diseño | `design` |
 | docs | `docs` |
 | documentación | `docs` |
 | efecto | `animation` |
 | entrada épica | `animation` |
+| especificaciones | `design-extraction` |
+| extraer | `design-extraction` |
+| fidelidad | `design-extraction` |
 | framer | `animation` |
 | gh pr create | `pr` |
 | git commit | `commits` |
 | hosting | `deployment` |
+| imagen | `design-extraction` |
 | layout | `design` |
+| layout | `design-extraction` |
 | mensaje de commit | `commits` |
 | motion | `animation` |
 | netlify | `deployment` |
@@ -66,6 +73,7 @@ Formato: `tipo(scope): descripción`
 | README | `docs` |
 | summary unavailable | `context-recovery` |
 | tipografía | `design` |
+| tokens | `design-extraction` |
 | transición | `animation` |
 | UI | `design` |
 | vercel | `deployment` |

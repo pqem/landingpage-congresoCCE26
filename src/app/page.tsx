@@ -1,11 +1,11 @@
 import { MENSAJE, PONENTES } from '@/data/congreso-data'
-import HeroEpic from '@/components/HeroEpic'
+import HeroExact from '@/components/HeroExact'
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Hero Épico con animación Big Bang */}
-      <HeroEpic />
+      {/* Hero con diseño exacto basado en imagen de referencia */}
+      <HeroExact />
 
       {/* Cita Section */}
       <section className="py-20 px-4 text-center">
