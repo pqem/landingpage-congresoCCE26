@@ -1,0 +1,50 @@
+{
+  "congreso": {
+    "nombre": "CONGRESO CCE ARG. 2026",
+    "tituloPrincipal": "CONGRESO",
+    "tituloSecundario": "CCE ARG.",
+    "año": "2026",
+    "fechas": "MARZO 20 AL 23",
+    "tema": "EXPANSIÓN SOBRENATURAL",
+    "temporada": "TEMPORADA DE EXPANSIÓN SOBRENATURAL",
+    "añosTemporada": "2026 - 2030"
+  },
+  "organizador": {
+    "nombre": "CENTRO CRISTIANO ESPERANZA"
+  },
+  "mensaje": {
+    "cita": "No por el poder ni por la fuerza sino por Mi Espíritu",
+    "referencia": "ZACARÍAS 4.6"
+  },
+  "contacto": {
+    "web": "https://www.ccesperanza.org",
+    "webDisplay": "WWW.CCESPERANZA.ORG",
+    "hashtag": "#EXPANSIÓN SOBRENATURAL",
+    "redes": "@CCEPlottier",
+    "redesSociales": ["Facebook", "Instagram", "YouTube", "X (Twitter)", "WhatsApp"]
+  },
+  "ponentes": [
+    { "titulo": "Aps.", "nombre": "Daniel Cattaneo" },
+    { "titulo": "Aps.", "nombre": "Patricia Cattaneo" },
+    { "titulo": "Prs.", "nombre": "Ale Chamorro" },
+    { "titulo": "Prs.", "nombre": "Maria Chamorro" },
+    { "titulo": "Aps.", "nombre": "Daniel Chamorro" },
+    { "titulo": "Aps.", "nombre": "Rosita Chamorro" },
+    { "titulo": "Prs.", "nombre": "Sergio Belart" },
+    { "titulo": "Prs.", "nombre": "Alejandro Rodriguez" }
+  ],
+  "colores": {
+    "fondo": "#000000",
+    "fondoGradienteFin": "#332B1A",
+    "blanco": "#FFFFFF",
+    "dorado": "#D4AF37",
+    "doradoOscuro": "#B2975B",
+    "doradoClaro": "#EADDA6"
+  },
+  "fuentes": {
+    "tituloPrincipal": "Druk XCond Super Trial",
+    "año": "Mango Grotesque Thin",
+    "subtitulos": "Montserrat",
+    "oradores": "Gotham Pro"
+  }
+}

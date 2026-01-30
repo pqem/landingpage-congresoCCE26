@@ -1,0 +1,59 @@
+/**
+ * Fuentes del Congreso CCE ARG. 2026
+ * Archivos en public/fonts/ (.otf y .ttf).
+ *
+ * Uso: instancia privada/demo para mostrar el diseño.
+ * Producción: revisar licencias (ONG/iglesia suele tener opciones NPO).
+ */
+
+/* Druk XCond Super Trial – Título principal ("CONGRESO CCE ARG.") */
+@font-face {
+  font-family: "Druk XCond Super Trial";
+  src: url("/fonts/DrukXCond-Super-Trial.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Mango Grotesque Thin – Año "2026" */
+@font-face {
+  font-family: "Mango Grotesque Thin";
+  src: url("/fonts/MangoGrotesque-Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Gotham Pro – Nombres de oradores (Gotham Ultra como peso fuerte) */
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("/fonts/Gotham-Ultra.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gotham Pro";
+  src: url("/fonts/Gotham-Ultra.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montserrat – Subtítulos (EXPANSIÓN SOBRENATURAL, fechas, lema) */
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
