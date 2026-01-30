@@ -1,40 +1,19 @@
-import { CONGRESO, MENSAJE, PONENTES } from '@/data/congreso-data'
+import { MENSAJE, PONENTES } from '@/data/congreso-data'
+import HeroEpic from '@/components/HeroEpic'
 
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-4 text-center">
-        {/* Título principal */}
-        <h1 className="font-[family-name:var(--font-druk)] text-6xl md:text-8xl lg:text-9xl text-white tracking-tight">
-          {CONGRESO.tituloPrincipal}
-          <br />
-          <span className="text-gradient-gold">{CONGRESO.tituloSecundario}</span>
-        </h1>
-
-        {/* Año */}
-        <p className="font-[family-name:var(--font-mango)] text-4xl md:text-6xl lg:text-7xl text-white/90 mt-2">
-          {CONGRESO.año}
-        </p>
-
-        {/* Tema */}
-        <p className="font-[family-name:var(--font-montserrat)] text-xl md:text-2xl text-[var(--color-dorado)] mt-8 tracking-[0.3em] uppercase">
-          {CONGRESO.tema}
-        </p>
-
-        {/* Fechas */}
-        <p className="font-[family-name:var(--font-montserrat)] text-lg md:text-xl text-white/80 mt-4">
-          {CONGRESO.fechas}
-        </p>
-      </section>
+      {/* Hero Épico con animación Big Bang */}
+      <HeroEpic />
 
       {/* Cita Section */}
       <section className="py-20 px-4 text-center">
         <blockquote className="max-w-3xl mx-auto">
           <p className="font-[family-name:var(--font-montserrat)] text-2xl md:text-3xl text-white/90 italic">
-            "{MENSAJE.cita}"
+            &ldquo;{MENSAJE.cita}&rdquo;
           </p>
-          <cite className="block mt-4 text-[var(--color-dorado)] not-italic">
+          <cite className="block mt-4 text-[var(--color-dorado)] not-italic font-semibold">
             {MENSAJE.referencia}
           </cite>
         </blockquote>

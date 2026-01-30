@@ -1,6 +1,6 @@
 # Context Recovery - Estado Actual
 
-**Última actualización:** 2026-01-30 21:00 UTC
+**Última actualización:** 2026-01-30 21:30 UTC
 
 ## 🎯 Proyecto Activo
 
@@ -12,41 +12,42 @@
 
 **Branch:** main
 **Remote:** https://github.com/pqem/landingpage-congresoCCE26
-**Working tree:** clean
+**Working tree:** con cambios pendientes (entrada épica)
 
 ## ✅ Última Tarea Completada
 
-**Inicialización del proyecto web**
+**Entrada épica animada (Big Bang + partículas)**
 
-- Next.js 15.1 + TypeScript + App Router
-- Tailwind CSS 4 con tema personalizado
-- Framer Motion 11 instalado
-- Fuentes configuradas (Druk, Mango, Gotham, Montserrat)
-- Página inicial con hero, cita y ponentes
-- 6 skills sincronizadas (commits, pr, docs, design, animation, deployment)
+- Componente `HeroEpic.tsx` con Framer Motion
+- 16 partículas doradas/blancas animadas
+- Gradiente radial animado (expansión desde centro)
+- Secuencia de revelación: fondo → partículas → título → subtítulos
+- Soporte `prefers-reduced-motion` (accesibilidad)
+- 7 skills sincronizadas (+ context-recovery)
 
 ## 🔜 Próximo Paso
 
 Opciones pendientes:
-1. Implementar entrada épica animada (Framer Motion)
-2. Agregar imágenes de ponentes con componentes
-3. Crear footer con redes sociales
+1. Agregar imágenes de ponentes con componentes
+2. Crear footer con redes sociales
+3. Forma dorada SVG decorativa
 
 ## 📝 Decisiones Recientes
 
 **2026-01-30:**
-- Stack: Next.js 15 + Tailwind 4 + Framer Motion 11
-- Sistema agent-automatizado integrado con skill-sync
-- Paleta: Negro + Dorado (colores del diseño gráfico)
+- Entrada épica: Opción A+C (gradiente expandible + partículas)
+- Timing: 1.5s delay para contenido, partículas desde 0.5s
+- Partículas: 16 en desktop (reducir en móvil si hay lag)
+- Reducción de animaciones respetada con `useReducedMotion`
 
 ## 🐛 Issues Conocidos
 
-Ninguno actualmente.
+- Warning: @next/swc version mismatch (no afecta build)
 
 ## 💡 Notas
 
+- Componente hero en `src/components/HeroEpic.tsx`
 - Datos del congreso en `data/congreso-data.ts`
-- Assets en `public/images/` y `public/fonts/`
 - Especificación de diseño en `docs/diseno-recursos-y-entrada-epica.md`
 
 ---
