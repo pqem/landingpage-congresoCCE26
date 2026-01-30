@@ -6,7 +6,9 @@ Landing page para el Congreso CCE Argentina 2026 - Expansión Sobrenatural
 single
 
 ## Stack Tecnológico
-Por definir (sugerido: Next.js + Tailwind + Framer Motion)
+- Next.js 15.1 (App Router, TypeScript)
+- Tailwind CSS 4
+- Framer Motion 11
 
 ## Convenciones
 
