@@ -1,12 +1,12 @@
 # landingpage_congresoCCE26
 
-Proyecto unknown
+Landing page para el Congreso CCE Argentina 2026 - Expansión Sobrenatural
 
 ## Estructura del Proyecto
 single
 
 ## Stack Tecnológico
-Stack por definir
+Por definir (sugerido: Next.js + Tailwind + Framer Motion)
 
 ## Convenciones
 
@@ -21,26 +21,29 @@ Formato: `tipo(scope): descripción`
 - Nombres en kebab-case para archivos
 - PascalCase para componentes
 
-## Skills Disponibles
+## Skills Reference
+<!-- SKILL-SYNC:START -->
+## Skills Reference
+- [commits](skills/commits/SKILL.md) - Formato de commits convencionales. Usa cuando hagas commits o prepares cambios para commit. (tools: bash) (scope: root)
+- [docs](skills/docs/SKILL.md) - Crear y mantener documentación. Usa cuando escribas README, docs, o comentarios. (tools: read, write) (scope: root)
+- [pr](skills/pr/SKILL.md) - Crear Pull Requests con formato consistente. Usa cuando prepares un PR. (tools: bash, read) (scope: root)
 
-- `commits`
-- `pr`
-- `docs`
-
-### Auto-invocación de Skills
-Cuando trabajes en este proyecto:
-- **Commits**: Usa la skill `commits` para formatear mensajes
-- **Pull Requests**: Usa la skill `pr` para crear PRs consistentes
-- **Documentación**: Usa la skill `docs` para mantener docs actualizados
+## Auto-invoke Skills
+| Acción | Skill |
+|--------|-------|
+| commits | `commits` |
+| docs | `docs` |
+| documentación | `docs` |
+| gh pr create | `pr` |
+| git commit | `commits` |
+| mensaje de commit | `commits` |
+| PR | `pr` |
+| pull request | `pr` |
+| README | `docs` |
+<!-- SKILL-SYNC:END -->
 
 ## Contexto para el Agente
 
 Nivel del usuario: 🌿 Intermedio
 
-
-
-
 El usuario conoce lo básico. Puedes ser más directo pero explica decisiones arquitectónicas.
-
-
-
