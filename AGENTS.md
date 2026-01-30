@@ -28,6 +28,7 @@ Formato: `tipo(scope): descripción`
 ## Skills Reference
 - [animation](skills/animation/SKILL.md) - Guía de animaciones con Framer Motion para el Congreso CCE 2026. Entrada épica, transiciones y micro-interacciones. (tools: read, write) (scope: root)
 - [commits](skills/commits/SKILL.md) - Formato de commits convencionales. Usa cuando hagas commits o prepares cambios para commit. (tools: bash) (scope: root)
+- [context-recovery](skills/context-recovery/SKILL.md) - Recuperación de contexto después de compactación de memoria del LLM. Lee CONTEXT-RECOVERY.md. (tools: read, write) (scope: root)
 - [deployment](skills/deployment/SKILL.md) - Guía de deployment para Vercel/Netlify. Build, preview y producción. (tools: bash, read) (scope: root)
 - [design](skills/design/SKILL.md) - Guía de diseño visual del Congreso CCE 2026. Colores, tipografía, espaciado y componentes. (tools: read, write) (scope: root)
 - [docs](skills/docs/SKILL.md) - Crear y mantener documentación. Usa cuando escribas README, docs, o comentarios. (tools: read, write) (scope: root)
@@ -39,7 +40,9 @@ Formato: `tipo(scope): descripción`
 | animación | `animation` |
 | colores | `design` |
 | commits | `commits` |
+| compactación | `context-recovery` |
 | componentes | `design` |
+| contexto perdido | `context-recovery` |
 | deploy | `deployment` |
 | diseño | `design` |
 | docs | `docs` |
@@ -54,11 +57,14 @@ Formato: `tipo(scope): descripción`
 | mensaje de commit | `commits` |
 | motion | `animation` |
 | netlify | `deployment` |
+| perdió memoria | `context-recovery` |
 | PR | `pr` |
 | producción | `deployment` |
 | publicar | `deployment` |
 | pull request | `pr` |
+| qué estábamos haciendo | `context-recovery` |
 | README | `docs` |
+| summary unavailable | `context-recovery` |
 | tipografía | `design` |
 | transición | `animation` |
 | UI | `design` |
