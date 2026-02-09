@@ -1,39 +1,50 @@
-import { MENSAJE, PONENTES } from '@/data/congreso-data'
-import HeroExact from '@/components/HeroExact'
+"use client";
+
+import { Header } from "@/components/header";
+import { FixedBackground } from "@/components/fixed-background";
+import { FloatingParticles } from "@/components/floating-particles";
+import { Hero } from "@/components/hero";
+import { HeroContent } from "@/components/hero-content";
+import { SobreEvento } from "@/components/sobre-evento";
+import { OradoresPuzzle } from "@/components/oradores-puzzle";
+import { Programa } from "@/components/programa";
+import { Ubicacion } from "@/components/ubicacion";
+import { Inscripcion } from "@/components/inscripcion";
+import { RedesSociales } from "@/components/redes-sociales";
+import { Footer } from "@/components/footer";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      {/* Hero con diseño exacto basado en imagen de referencia */}
-      <HeroExact />
+    <>
+      {/* Layer 1: Fixed background (z-0) - always visible */}
+      <FixedBackground />
 
-      {/* Cita Section */}
-      <section className="py-20 px-4 text-center">
-        <blockquote className="max-w-3xl mx-auto">
-          <p className="font-[family-name:var(--font-montserrat)] text-2xl md:text-3xl text-white/90 italic">
-            &ldquo;{MENSAJE.cita}&rdquo;
-          </p>
-          <cite className="block mt-4 text-[var(--color-dorado)] not-italic font-semibold">
-            {MENSAJE.referencia}
-          </cite>
-        </blockquote>
-      </section>
+      {/* Floating particles (z-10) */}
+      <FloatingParticles />
 
-      {/* Ponentes Section */}
-      <section className="py-20 px-4">
-        <h2 className="font-[family-name:var(--font-druk)] text-4xl md:text-5xl text-center text-white mb-12">
-          PONENTES
-        </h2>
-        <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
-          {PONENTES.map((ponente) => (
-            <div key={ponente.nombre} className="text-center">
-              <p className="font-[family-name:var(--font-gotham)] text-lg text-white">
-                {ponente.titulo} {ponente.nombre}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-    </main>
-  )
+      {/* Layer 2: Scrollable content (z-20) */}
+      <div className="relative z-20">
+        {/* Hero: just title PNG, transparent bg → fondo shows through */}
+        <Hero />
+
+        {/* Verse + Countdown + CTA + Oradores juntos: transparent bg */}
+        <HeroContent />
+
+        {/* Sections with opaque backgrounds to cover the fixed bg */}
+        <SobreEvento />
+        <OradoresPuzzle />
+        <Programa />
+        <Ubicacion />
+        <Inscripcion />
+        <RedesSociales />
+        <Footer />
+      </div>
+
+      {/* Header: hidden until scroll past hero */}
+      <Header />
+
+      <WhatsAppButton />
+    </>
+  );
 }

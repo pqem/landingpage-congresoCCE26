@@ -1,93 +1,210 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-/* Druk XCond Super Trial – Título principal */
-@font-face {
-  font-family: "Druk XCond Super Trial";
-  src: url("/fonts/DrukXCond-Super-Trial.otf") format("opentype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+@custom-variant dark (&:is(.dark *));
 
-/* Mango Grotesque Thin – Año "2026" */
-@font-face {
-  font-family: "Mango Grotesque Thin";
-  src: url("/fonts/MangoGrotesque-Thin.ttf") format("truetype");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Gotham Pro – Nombres de oradores */
-@font-face {
-  font-family: "Gotham Pro";
-  src: url("/fonts/Gotham-Ultra.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Montserrat – Subtítulos */
-@font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Montserrat";
-  src: url("/fonts/Montserrat-SemiBold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Variables CSS con colores del congreso */
 :root {
-  --color-fondo: #000000;
-  --color-fondo-gradient-fin: #332B1A;
-  --color-blanco: #FFFFFF;
-  --color-dorado: #D4AF37;
-  --color-dorado-oscuro: #B2975B;
-  --color-dorado-claro: #EADDA6;
-  --color-dorado-bronce: #A0875C;
-  --color-dorado-ocre: #C19E5D;
+  --background: #000000;
+  --foreground: #FFFFFF;
+  --card: #1a1a1a;
+  --card-foreground: #FFFFFF;
+  --popover: #1a1a1a;
+  --popover-foreground: #FFFFFF;
+  --primary: #E7BB70;
+  --primary-foreground: #000000;
+  --secondary: #2a2a2a;
+  --secondary-foreground: #FFFFFF;
+  --muted: #1a1a1a;
+  --muted-foreground: #CCCCCC;
+  --accent: #E7BB70;
+  --accent-foreground: #000000;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #E7BB70;
+  --radius: 0.25rem;
+
+  --dorado: #E7BB70;
+  --dorado-claro: #F0CC88;
+  --dorado-oscuro: #C9A050;
+  --negro-fondo: #000000;
+  --negro-suave: #1a1a1a;
+  --gris-oscuro: #2a2a2a;
+  --gris-texto: #CCCCCC;
+  --blanco: #FFFFFF;
+  --blanco-suave: #F5F5F5;
+  --whatsapp: #25D366;
+
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
-/* Tema Tailwind v4 */
-@theme {
-  --font-druk: "Druk XCond Super Trial", sans-serif;
-  --font-mango: "Mango Grotesque Thin", sans-serif;
-  --font-gotham: "Gotham Pro", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
+@theme inline {
+  --font-sans: var(--font-montserrat), 'Montserrat', sans-serif;
+  --font-serif: var(--font-anton), 'Anton', sans-serif;
+  --font-mono: var(--font-poppins), 'Poppins', sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 6px);
 
-  --color-fondo: #000000;
-  --color-fondo-fin: #332B1A;
-  --color-dorado: #D4AF37;
-  --color-dorado-oscuro: #B2975B;
-  --color-dorado-claro: #EADDA6;
-  --color-dorado-bronce: #A0875C;
-  --color-dorado-ocre: #C19E5D;
+  --color-dorado: var(--dorado);
+  --color-dorado-claro: var(--dorado-claro);
+  --color-dorado-oscuro: var(--dorado-oscuro);
+  --color-negro-fondo: var(--negro-fondo);
+  --color-negro-suave: var(--negro-suave);
+  --color-gris-oscuro: var(--gris-oscuro);
+  --color-gris-texto: var(--gris-texto);
+  --color-whatsapp: var(--whatsapp);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-/* Base */
-html {
-  scroll-behavior: smooth;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-body {
-  background: linear-gradient(180deg, var(--color-fondo) 0%, var(--color-fondo-fin) 100%);
-  min-height: 100vh;
-  color: var(--color-blanco);
-  font-family: var(--font-montserrat);
+/* ===== ANIMATIONS ===== */
+
+@keyframes fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Utilidades */
-.text-gradient-gold {
-  background: linear-gradient(135deg, var(--color-dorado-claro) 0%, var(--color-dorado) 50%, var(--color-dorado-oscuro) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(231, 187, 112, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(231, 187, 112, 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Cursor blink - golden line */
+@keyframes cursor-blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 1s step-end infinite;
+}
+
+/* Floating particle drift */
+@keyframes particle-drift {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-40px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.animate-particle {
+  animation: particle-drift linear infinite;
+}
+
+/* Modal overlay */
+.modal-overlay {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
