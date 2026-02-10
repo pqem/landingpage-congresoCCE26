@@ -17,14 +17,16 @@ export function FixedBackground() {
 
   return (
     <div className="fixed inset-0 z-0">
-      {/* Background image */}
-      <Image
-        src="/images/fondo.jpg"
-        alt=""
-        fill
-        className="object-cover"
-        priority
-        quality={85}
+      {/* Background gradient (replaces fondo.jpg — CSS is instant, 0 bytes) */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: [
+            "radial-gradient(ellipse at 20% 100%, rgba(178,151,91,0.55) 0%, transparent 55%)",
+            "radial-gradient(ellipse at 80% 100%, rgba(178,151,91,0.55) 0%, transparent 55%)",
+            "linear-gradient(to bottom, #000000 45%, #3a3120 90%, #8b7340 100%)",
+          ].join(", "),
+        }}
       />
 
       {/* Logo CCE - top right, preserving original aspect ratio (724x820) */}

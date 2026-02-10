@@ -6,6 +6,7 @@ import { FloatingParticles } from "@/components/floating-particles";
 import { Hero } from "@/components/hero";
 import { HeroContent } from "@/components/hero-content";
 import { SobreEvento } from "@/components/sobre-evento";
+import { Descubrimientos } from "@/components/descubrimientos";
 import { OradoresPuzzle } from "@/components/oradores-puzzle";
 import { Programa } from "@/components/programa";
 import { Ubicacion } from "@/components/ubicacion";
@@ -33,6 +34,7 @@ export default function Home() {
 
         {/* Sections with opaque backgrounds to cover the fixed bg */}
         <SobreEvento />
+        <Descubrimientos />
         <OradoresPuzzle />
         <Programa />
         <Ubicacion />
