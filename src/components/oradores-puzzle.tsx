@@ -12,6 +12,7 @@ const oradores = [
     resena:
       "Pastor principal y apóstol de la Iglesia Redentor (Comunidad Redentor), fundada en 1945 en San Lorenzo, Santa Fe. Lidera una red de 16 templos en la provincia de Santa Fe. Reconocido por su creatividad e innovación ministerial, incluyendo iniciativas como la protesta 'culto-bar' durante la pandemia 2020. Ministerio integral: espiritual, emocional y físico.",
     area: { left: 33.0, top: 16.8, width: 29.0, height: 23.4 },
+    areaMobile: { left: 2, top: 28, width: 46, height: 18 },
   },
   {
     id: "ale-maria",
@@ -20,6 +21,7 @@ const oradores = [
     resena:
       "Pastores del Centro Cristiano Esperanza en Plottier, Neuquén. Sirven en el ministerio pastoral de la iglesia madre del CCE, liderando la congregación local con pasión y entrega.",
     area: { left: 62.8, top: 16.8, width: 18.0, height: 37.5 },
+    areaMobile: { left: 51, top: 25, width: 43, height: 22 },
   },
   {
     id: "daniel-rosita",
@@ -28,6 +30,7 @@ const oradores = [
     resena:
       "Fundadores del Centro Cristiano Esperanza en 1982, Plottier. Red apostólica con presencia en Argentina, España, Italia, EE.UU., India y África. Más de 40 años de ministerio pastoral. Obras pioneras: FM Esperanza (primera radio cristiana FM del país, 1988), instituciones educativas, centros de salud. Conferencistas internacionales.",
     area: { left: 33.0, top: 41.3, width: 29.0, height: 23.3 },
+    areaMobile: { left: 2, top: 49, width: 46, height: 18 },
   },
   {
     id: "belart",
@@ -36,6 +39,7 @@ const oradores = [
     resena:
       "Pastor de la Iglesia Cristiana 'Cita con la Vida' en Córdoba. Abogado (UNC). Director del Congreso Internacional de Jóvenes (Semana Santa, Córdoba, desde 1994). Lidera 'Jóvenes con Propósito' (5.000+ jóvenes). Conferencista internacional en más de 20 países. Autor de 'El Pastor de Jóvenes' y 'Generación de Relevo'.",
     area: { left: 62.8, top: 55.5, width: 18.0, height: 37.5 },
+    areaMobile: { left: 27, top: 70, width: 36, height: 20 },
   },
   {
     id: "rodriguez",
@@ -44,6 +48,7 @@ const oradores = [
     resena:
       "Misionero y presidente de JUCUM Argentina (Juventud Con Una Misión), organización presente en 172 países. Junto a su esposa Martha refundó la obra de JUCUM Argentina en 1989. Ha formado y enviado cientos de misioneros transculturales. Conferencista en los 5 continentes. JUCUM Argentina cuenta con más de 700 obreros y múltiples bases.",
     area: { left: 81.9, top: 55.5, width: 18.1, height: 37.5 },
+    areaMobile: { left: 66, top: 70, width: 30, height: 22 },
   },
 ];
 
@@ -135,8 +140,9 @@ export function OradoresPuzzle() {
         className="relative py-20 md:py-32"
       >
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          {/* Desktop puzzle */}
           <motion.div
-            className="relative w-full"
+            className="relative hidden w-full md:block"
             style={{ aspectRatio: "2438 / 1886", opacity, y }}
           >
             <Image
@@ -147,8 +153,6 @@ export function OradoresPuzzle() {
               className="h-auto w-full"
               priority
             />
-
-            {/* Invisible clickable areas over each speaker */}
             {oradores.map((orador) => (
               <button
                 key={orador.id}
@@ -165,8 +169,37 @@ export function OradoresPuzzle() {
             ))}
           </motion.div>
 
+          {/* Mobile puzzle */}
+          <motion.div
+            className="relative w-full md:hidden"
+            style={{ aspectRatio: "1638 / 2442", opacity, y }}
+          >
+            <Image
+              src="/images/puzzle-movil.png"
+              alt="Oradores del Congreso CCE 2026"
+              width={1638}
+              height={2442}
+              className="h-auto w-full"
+              priority
+            />
+            {oradores.map((orador) => (
+              <button
+                key={orador.id}
+                onClick={() => setSelectedOrador(orador)}
+                className="absolute z-10 cursor-pointer min-w-[44px] min-h-[44px]"
+                style={{
+                  left: `${orador.areaMobile.left}%`,
+                  top: `${orador.areaMobile.top}%`,
+                  width: `${orador.areaMobile.width}%`,
+                  height: `${orador.areaMobile.height}%`,
+                }}
+                aria-label={`Ver reseña de ${orador.nombre}`}
+              />
+            ))}
+          </motion.div>
+
           <p className="mt-6 text-center font-mono text-sm font-light text-gris-texto/60 sm:text-xs">
-            Hacé clic en cada orador para conocer más
+            Tocá cada orador para conocer más
           </p>
         </div>
       </section>
