@@ -90,7 +90,7 @@ export function Descubrimientos() {
           transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="font-serif text-4xl text-dorado md:text-6xl">
-            DESCUBRIMIENTOS
+            LA EXPERIENCIA
           </h2>
           <div
             className="mt-4 h-px w-24"
