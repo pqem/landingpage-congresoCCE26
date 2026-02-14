@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useCallback, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 
 const oradores = [
   {
@@ -122,6 +122,7 @@ export function OradoresPuzzle() {
   >(null);
   const handleClose = useCallback(() => setSelectedOrador(null), []);
   const sectionRef = useRef<HTMLElement>(null);
+  const curveRef = useRef<SVGPathElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -130,7 +131,13 @@ export function OradoresPuzzle() {
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
-  const curvePathLength = useTransform(scrollYProgress, [0.25, 0.6], [0, 1]);
+  const curveDashoffset = useTransform(scrollYProgress, [0.25, 0.6], [60000, 0]);
+
+  useMotionValueEvent(curveDashoffset, "change", (latest) => {
+    if (curveRef.current) {
+      curveRef.current.setAttribute("stroke-dashoffset", String(latest));
+    }
+  });
 
   return (
     <>
@@ -147,15 +154,16 @@ export function OradoresPuzzle() {
             preserveAspectRatio="xMinYMin meet"
             aria-hidden="true"
           >
-            <motion.path
+            <path
+              ref={curveRef}
               d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
               fill="none"
               stroke="#E7BB70"
               strokeWidth="1270"
               strokeMiterlimit="22.9256"
               strokeLinecap="round"
-              pathLength="1"
-              style={{ pathLength: curvePathLength }}
+              strokeDasharray="60000"
+              strokeDashoffset="60000"
             />
           </svg>
         </div>
