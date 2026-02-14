@@ -25,7 +25,7 @@ export function Countdown() {
   ];
 
   return (
-    <div className="w-full border-y border-dorado/30 px-6 py-5 sm:px-10 sm:py-6">
+    <div className="w-full border-y-[3px] border-dorado px-6 py-5 sm:px-10 sm:py-6">
       <p className="mb-4 text-center font-sans text-xs font-bold tracking-[0.3em] text-dorado">FALTAN</p>
       <div className="flex flex-row items-center justify-center gap-3 sm:gap-4">
         {blocks.map((b, i) => (
