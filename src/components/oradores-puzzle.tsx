@@ -137,7 +137,7 @@ export function OradoresPuzzle() {
       <section
         id="oradores"
         ref={sectionRef}
-        className="relative overflow-hidden py-20 md:py-32"
+        className="relative overflow-x-clip py-20 md:py-32"
       >
         {/* Golden decorative curve */}
         <div className="absolute -left-[30%] top-[58%] z-[1] h-[100%] pointer-events-none sm:top-[15%] md:top-[10%] sm:-left-[25%] md:-left-[10%]">
