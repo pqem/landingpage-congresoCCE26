@@ -31,7 +31,7 @@ export function HeroContent() {
         {/* Bible verse - prominent with staggered entrance */}
         <div className="text-center">
           <p
-            className={`font-mono text-lg font-light italic leading-snug text-white transition-all duration-1000 ease-out sm:text-2xl md:text-4xl ${
+            className={`font-mono text-xl font-light italic leading-relaxed text-white transition-all duration-1000 ease-out sm:text-2xl md:text-4xl md:leading-snug ${
               visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
