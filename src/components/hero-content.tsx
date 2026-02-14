@@ -35,8 +35,10 @@ export function HeroContent() {
               visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
-            &quot;No por el poder, ni por la fuerza,
-            <br className="hidden sm:block" />
+            &quot;No por el poder,
+            <br />
+            ni por la fuerza,
+            <br />
             sino por{" "}
             <span
               className={`font-serif font-bold not-italic text-dorado transition-all duration-1000 delay-700 ease-out ${
