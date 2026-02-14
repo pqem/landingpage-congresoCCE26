@@ -37,9 +37,9 @@ export function HeroContent() {
           >
             &quot;No por el poder,
             <br />
-            ni por la fuerza,
+            ni por la fuerza, sino
             <br />
-            sino por{" "}
+            por{" "}
             <span
               className={`font-serif font-bold not-italic text-dorado transition-all duration-1000 delay-700 ease-out ${
                 visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
