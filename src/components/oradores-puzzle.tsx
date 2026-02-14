@@ -138,7 +138,7 @@ export function OradoresPuzzle() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          timeout = setTimeout(() => setCurveVisible(true), 3000);
+          timeout = setTimeout(() => setCurveVisible(true), 1500);
         }
       },
       { threshold: 0.3 }
