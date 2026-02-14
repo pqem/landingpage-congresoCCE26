@@ -53,29 +53,6 @@ export function SobreEvento() {
             reúnen en Plottier, Neuquén, para declarar que no es por el poder ni
             por la fuerza, sino por Su Espíritu.
           </p>
-          <p className="font-mono text-base font-light leading-relaxed text-foreground md:text-lg">
-            Cuatro días que van a cambiar tu vida. ¿Estás listo para la
-            expansión?
-          </p>
-        </div>
-
-        {/* Info cards */}
-        <div className="mt-12 grid grid-cols-3 gap-3 sm:gap-6">
-          {[
-            { value: "4", label: "DÍAS DE EVENTO" },
-            { value: "8+", label: "ORADORES" },
-            { value: "∞", label: "EXPECTATIVA DE DIOS" },
-          ].map((item) => (
-            <div
-              key={item.label}
-              className="flex flex-col items-center border border-gris-oscuro p-3 text-center sm:p-6 transition-colors hover:border-dorado/40"
-            >
-              <p className="font-serif text-3xl text-dorado">{item.value}</p>
-              <p className="mt-1 font-mono text-[10px] leading-tight text-gris-texto sm:text-sm">
-                {item.label}
-              </p>
-            </div>
-          ))}
         </div>
       </div>
     </section>
