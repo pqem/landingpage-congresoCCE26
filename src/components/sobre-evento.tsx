@@ -68,10 +68,10 @@ export function SobreEvento() {
           ].map((item) => (
             <div
               key={item.label}
-              className="flex flex-col items-center justify-center border border-gris-oscuro p-3 text-center sm:p-6 transition-colors hover:border-dorado/40"
+              className="flex flex-col items-center border border-gris-oscuro p-3 text-center sm:p-6 transition-colors hover:border-dorado/40"
             >
               <p className="font-serif text-3xl text-dorado">{item.value}</p>
-              <p className="mt-1 font-mono text-[10px] text-gris-texto sm:text-sm">
+              <p className="mt-1 font-mono text-[10px] leading-tight text-gris-texto sm:text-sm">
                 {item.label}
               </p>
             </div>
