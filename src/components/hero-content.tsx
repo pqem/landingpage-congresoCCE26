@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { Countdown } from "./countdown";
+
 
 export function HeroContent() {
   const ref = useRef<HTMLDivElement>(null);
@@ -61,11 +61,6 @@ export function HeroContent() {
           >
             ZACARÍAS 4:6
           </p>
-        </div>
-
-        {/* Countdown */}
-        <div className="mt-10 flex justify-center">
-          <Countdown />
         </div>
 
         {/* CTA Button */}

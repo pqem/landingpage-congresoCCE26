@@ -7,6 +7,7 @@ import { FloatingParticles } from "@/components/floating-particles";
 import { Hero } from "@/components/hero";
 import { HeroContent } from "@/components/hero-content";
 import { SobreEvento } from "@/components/sobre-evento";
+import { Countdown } from "@/components/countdown";
 import { Descubrimientos } from "@/components/descubrimientos";
 import { OradoresPuzzle } from "@/components/oradores-puzzle";
 import { Programa } from "@/components/programa";
@@ -66,6 +67,9 @@ export default function Home() {
 
         {/* Sections with opaque backgrounds to cover the fixed bg */}
         <SobreEvento />
+        <div className="flex justify-center bg-negro-fondo py-12 md:py-16">
+          <Countdown />
+        </div>
         <Descubrimientos />
         <OradoresPuzzle />
         <Programa />
