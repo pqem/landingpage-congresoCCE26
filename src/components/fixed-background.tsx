@@ -5,6 +5,14 @@ import Image from "next/image";
 
 export function FixedBackground() {
   const [textVisible, setTextVisible] = useState(true);
+  const [logoVisible, setLogoVisible] = useState(false);
+
+  // Logo appears after hero title animation
+  useEffect(() => {
+    const timer = setTimeout(() => setLogoVisible(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   // "Centro Cristiano Esperanza" fade cycle every ~30s
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,8 +36,11 @@ export function FixedBackground() {
         }}
       />
 
-      {/* Logo CCE - top right, preserving original aspect ratio (724x820) */}
-      <div className="absolute right-6 top-6 z-10 md:right-12 md:top-10">
+      {/* Logo CCE - top right, appears after hero title */}
+      <div
+        className="absolute right-6 top-6 z-10 opacity-0 transition-opacity duration-700 ease-out md:right-12 md:top-10"
+        style={{ transitionDelay: "1.4s", opacity: logoVisible ? 1 : 0 }}
+      >
         <Image
           src="/images/logo-cce-color.png"
           alt="CCE"
