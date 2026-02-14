@@ -166,7 +166,7 @@ export default function InscripcionPage() {
                   type="number"
                   required
                   min={1}
-                  max={120}
+                  max={99}
                   placeholder="Edad"
                   className={inputClassName}
                   value={edad}
@@ -278,17 +278,19 @@ export default function InscripcionPage() {
                   {familiares.map((familiar, idx) => (
                     <div
                       key={familiar.id}
-                      className="relative border border-gris-oscuro bg-negro-fondo/50 p-4"
+                      className="relative border-l-2 border-dorado/40 bg-negro-fondo/60 p-5"
                     >
-                      <p className="mb-3 font-mono text-xs text-dorado/60">Familiar {idx + 1}</p>
-                      <button
-                        type="button"
-                        aria-label="Eliminar familiar"
-                        onClick={() => removeFamiliar(familiar.id)}
-                        className="absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center font-sans text-xs font-bold text-gris-texto transition-colors hover:text-dorado"
-                      >
-                        X
-                      </button>
+                      <div className="mb-4 flex items-center justify-between">
+                        <p className="font-sans text-xs font-bold tracking-wider text-dorado/70">FAMILIAR {idx + 1}</p>
+                        <button
+                          type="button"
+                          aria-label="Eliminar familiar"
+                          onClick={() => removeFamiliar(familiar.id)}
+                          className="inline-flex h-11 w-11 items-center justify-center font-sans text-xs font-bold text-gris-texto transition-colors hover:text-red-400"
+                        >
+                          ✕
+                        </button>
+                      </div>
 
                       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
                         <div>
@@ -312,7 +314,7 @@ export default function InscripcionPage() {
                           <input
                             type="number"
                             min={1}
-                            max={120}
+                            max={99}
                             placeholder="Edad"
                             className={inputClassName}
                             value={familiar.edad}
