@@ -152,13 +152,12 @@ export function OradoresPuzzle() {
         className="relative overflow-hidden py-20 md:py-32"
       >
         {/* Golden decorative curve */}
-        <div className="absolute -right-[30%] top-[10%] z-[1] h-[100%] pointer-events-none sm:-right-[25%] md:-right-[10%]">
+        <div className="absolute -left-[30%] top-[10%] z-[1] h-[100%] pointer-events-none sm:-left-[25%] md:-left-[10%]">
           <svg
             viewBox="0 0 18718 28729.7"
             className="h-[55%] w-auto opacity-90 sm:h-[100%] md:h-[120%]"
-            preserveAspectRatio="xMaxYMin meet"
+            preserveAspectRatio="xMinYMin meet"
             aria-hidden="true"
-            style={{ transform: "scaleX(-1)" }}
           >
             <path
               d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
