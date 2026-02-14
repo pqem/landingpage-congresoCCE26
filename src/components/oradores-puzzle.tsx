@@ -130,7 +130,7 @@ export function OradoresPuzzle() {
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
-  const curveDashoffset = useTransform(scrollYProgress, [0.25, 0.55], [60000, 0]);
+  const curvePathLength = useTransform(scrollYProgress, [0.25, 0.6], [0, 1]);
 
   return (
     <>
@@ -154,8 +154,8 @@ export function OradoresPuzzle() {
               strokeWidth="1270"
               strokeMiterlimit="22.9256"
               strokeLinecap="round"
-              strokeDasharray="60000"
-              style={{ strokeDashoffset: curveDashoffset }}
+              pathLength="1"
+              style={{ pathLength: curvePathLength }}
             />
           </svg>
         </div>
