@@ -35,7 +35,7 @@ export default function Home() {
       {/* Layer 2: Scrollable content (z-20) */}
       <div className="relative z-20 overflow-x-hidden">
         {/* Golden decorative curve - anchored to hero, proportional on all screens */}
-        <div className="absolute -left-[30%] top-0 z-[5] h-[100svh] pointer-events-none sm:-left-[25%] md:-left-[10%]">
+        <div className="absolute -left-[30%] top-[120px] z-[5] h-[100svh] pointer-events-none sm:top-0 sm:-left-[25%] md:-left-[10%]">
           <svg
             viewBox="0 0 18718 28729.7"
             className="h-[55%] w-auto opacity-90 sm:h-[130%] md:h-[156%]"
