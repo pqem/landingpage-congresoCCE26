@@ -66,7 +66,7 @@ export function RedesSociales() {
           Mantenete conectado con toda la info del congreso
         </p>
 
-        <div className="mt-12 grid grid-cols-1 gap-4 min-[400px]:grid-cols-2 md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
           {redes.map((red) => (
             <a
               key={red.nombre}
