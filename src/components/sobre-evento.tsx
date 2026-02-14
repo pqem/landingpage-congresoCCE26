@@ -18,7 +18,7 @@ export function SobreEvento() {
   }, []);
 
   return (
-    <section id="evento" className="bg-negro-fondo py-20 md:py-32">
+    <section id="evento" className="bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div
         ref={ref}
         className={`mx-auto max-w-4xl px-4 lg:px-8 ${
@@ -26,7 +26,7 @@ export function SobreEvento() {
         }`}
       >
         {/* Section title */}
-        <h2 className="font-serif text-4xl text-dorado md:text-6xl">
+        <h2 className="font-serif text-3xl text-dorado sm:text-4xl md:text-5xl lg:text-6xl">
           SOBRE EL EVENTO
         </h2>
         <div

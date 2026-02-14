@@ -31,12 +31,12 @@ export function HeroContent() {
         {/* Bible verse - prominent with staggered entrance */}
         <div className="text-center">
           <p
-            className={`font-mono text-2xl font-light italic leading-snug text-white transition-all duration-1000 ease-out md:text-4xl ${
+            className={`font-mono text-lg font-light italic leading-snug text-white transition-all duration-1000 ease-out sm:text-2xl md:text-4xl ${
               visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
             }`}
           >
             &quot;No por el poder, ni por la fuerza,
-            <br />
+            <br className="hidden sm:block" />
             sino por{" "}
             <span
               className={`font-serif font-bold not-italic text-dorado transition-all duration-1000 delay-700 ease-out ${
@@ -70,7 +70,7 @@ export function HeroContent() {
         <div className="mt-8 text-center">
           <a
             href="#inscripcion"
-            className="animate-pulse-glow inline-block bg-dorado px-10 py-4 font-sans text-sm font-bold tracking-widest text-black transition-all hover:bg-dorado-claro md:text-base"
+            className="animate-pulse-glow inline-block bg-dorado px-6 py-3 font-sans text-sm font-bold tracking-widest text-black transition-all hover:bg-dorado-claro md:px-10 md:py-4 md:text-base"
           >
             INSCRIBITE AHORA
           </a>
@@ -85,7 +85,7 @@ export function HeroContent() {
             alt="Oradores del Congreso CCE Argentina 2026"
             width={1600}
             height={400}
-            className="h-auto w-full"
+            className="h-auto w-full max-h-[180px] sm:max-h-[250px] md:max-h-none object-contain"
           />
         </div>
         <div className="h-[5px] w-full bg-dorado" />

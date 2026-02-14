@@ -66,14 +66,14 @@ export function RedesSociales() {
           Mantenete conectado con toda la info del congreso
         </p>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-1 gap-4 min-[400px]:grid-cols-2 md:grid-cols-4">
           {redes.map((red) => (
             <a
               key={red.nombre}
               href={red.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3 border border-gris-oscuro p-6 transition-all hover:border-dorado/50 hover:bg-dorado/5"
+              className="group flex flex-col items-center gap-3 border border-gris-oscuro p-4 transition-all hover:border-dorado/50 hover:bg-dorado/5 sm:p-6"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export function RedesSociales() {
               <span className="font-sans text-xs font-bold text-foreground">
                 {red.nombre}
               </span>
-              <span className="font-mono text-[10px] text-gris-texto">
+              <span className="font-mono text-xs text-gris-texto">
                 {red.usuario}
               </span>
             </a>

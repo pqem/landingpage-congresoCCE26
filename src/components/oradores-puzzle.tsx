@@ -71,8 +71,8 @@ function OradorModal({
       className="modal-overlay fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-black/80 p-4"
       onClick={onClose}
     >
-      <div className="animate-fade-in-up w-full max-w-lg border border-dorado/30 bg-negro-suave p-6 md:p-8">
-        <div className="mx-auto w-full max-w-sm">
+      <div className="animate-fade-in-up w-full max-w-lg max-h-[90vh] overflow-y-auto border border-dorado/30 bg-negro-suave p-4 sm:p-6 md:p-8" onClick={(e) => e.stopPropagation()}>
+        <div className="mx-auto w-full max-w-[280px] sm:max-w-sm">
           <Image
             src={orador.imagen}
             alt={orador.nombre}
@@ -84,7 +84,7 @@ function OradorModal({
           <div className="h-[5px] w-full bg-dorado" />
         </div>
 
-        <h3 className="mt-6 font-serif text-2xl text-dorado md:text-3xl">
+        <h3 className="mt-6 font-serif text-xl text-dorado sm:text-2xl md:text-3xl">
           {orador.nombre}
         </h3>
 
@@ -145,7 +145,7 @@ export function OradoresPuzzle() {
               <button
                 key={orador.id}
                 onClick={() => setSelectedOrador(orador)}
-                className="absolute z-10 cursor-pointer"
+                className="absolute z-10 cursor-pointer min-w-[44px] min-h-[44px]"
                 style={{
                   left: `${orador.area.left}%`,
                   top: `${orador.area.top}%`,
@@ -157,7 +157,7 @@ export function OradoresPuzzle() {
             ))}
           </motion.div>
 
-          <p className="mt-6 text-center font-mono text-xs font-light text-gris-texto/60">
+          <p className="mt-6 text-center font-mono text-sm font-light text-gris-texto/60 sm:text-xs">
             Hacé clic en cada orador para conocer más
           </p>
         </div>

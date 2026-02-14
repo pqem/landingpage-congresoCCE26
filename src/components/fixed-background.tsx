@@ -45,7 +45,7 @@ export function FixedBackground() {
           textVisible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="font-sans text-[10px] font-extrabold uppercase leading-tight tracking-[0.2em] text-white md:text-xs">
+        <p className="font-sans text-xs font-extrabold uppercase leading-tight tracking-[0.2em] text-white">
           Centro
           <br />
           Cristiano

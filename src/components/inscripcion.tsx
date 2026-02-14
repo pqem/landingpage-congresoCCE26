@@ -2,49 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const planes = [
-  {
-    nombre: "INDIVIDUAL",
-    precio: "$15.000",
-    periodo: "por persona",
-    beneficios: [
-      "Acceso a las 4 jornadas completas",
-      "Material del congreso",
-      "Certificado de asistencia",
-      "Acceso a talleres",
-    ],
-    destacado: false,
-  },
-  {
-    nombre: "GRUPAL",
-    precio: "$12.000",
-    periodo: "por persona (5+ personas)",
-    beneficios: [
-      "Acceso a las 4 jornadas completas",
-      "Material del congreso",
-      "Certificado de asistencia",
-      "Acceso a talleres",
-      "Ubicación preferencial",
-      "Almuerzo de confraternidad incluido",
-    ],
-    destacado: true,
-  },
-  {
-    nombre: "LÍDER / PASTOR",
-    precio: "$10.000",
-    periodo: "por persona",
-    beneficios: [
-      "Acceso a las 4 jornadas completas",
-      "Material del congreso",
-      "Certificado de asistencia",
-      "Acceso a talleres",
-      "Desayuno de líderes (Sábado)",
-      "Meet & greet con oradores",
-    ],
-    destacado: false,
-  },
-];
-
 export function Inscripcion() {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -61,7 +18,7 @@ export function Inscripcion() {
   }, []);
 
   return (
-    <section id="inscripcion" className="bg-negro-fondo py-20 md:py-32">
+    <section id="inscripcion" className="bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div
         ref={ref}
         className={`mx-auto max-w-5xl px-4 lg:px-8 transition-all duration-1000 ease-out ${
@@ -69,7 +26,7 @@ export function Inscripcion() {
         }`}
       >
         <div className="text-center">
-          <h2 className="font-serif text-4xl text-dorado md:text-6xl">
+          <h2 className="font-serif text-3xl text-dorado sm:text-4xl md:text-5xl lg:text-6xl">
             INSCRIPCIÓN
           </h2>
           <div
@@ -79,78 +36,22 @@ export function Inscripcion() {
                 "linear-gradient(90deg, transparent 0%, #E7BB70 50%, transparent 100%)",
             }}
           />
-          <p className="mt-4 font-mono text-sm font-light text-gris-texto">
-            Asegurá tu lugar — Cupos limitados
+
+          <p className="mx-auto mt-8 max-w-xl font-mono text-base font-light leading-relaxed text-gris-texto">
+            Completá el formulario y asegurá tu lugar en el
+            Congreso CCE Argentina 2026.
+            La inscripción es{" "}
+            <span className="font-semibold text-dorado">totalmente gratuita</span>.
           </p>
-        </div>
 
-        {/* Pricing cards */}
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {planes.map((plan) => (
-            <div
-              key={plan.nombre}
-              className={`relative flex flex-col border p-6 transition-all hover:border-dorado/60 md:p-8 ${
-                plan.destacado
-                  ? "border-dorado bg-dorado/5"
-                  : "border-gris-oscuro"
-              }`}
-            >
-              {plan.destacado && (
-                <span className="absolute -top-3 left-6 bg-dorado px-3 py-1 font-sans text-[10px] font-bold tracking-wider text-black">
-                  RECOMENDADO
-                </span>
-              )}
+          <a
+            href="/inscripcion"
+            className="animate-pulse-glow mt-10 inline-block bg-dorado px-6 py-3 font-sans text-sm font-bold tracking-widest text-black transition-all hover:bg-dorado-claro md:px-10 md:py-4 md:text-base"
+          >
+            INSCRIBIRME AHORA
+          </a>
 
-              <h3 className="font-sans text-sm font-bold tracking-wider text-foreground">
-                {plan.nombre}
-              </h3>
-
-              <div className="mt-4">
-                <span className="font-serif text-4xl text-dorado">
-                  {plan.precio}
-                </span>
-                <span className="ml-2 font-mono text-xs text-gris-texto">
-                  {plan.periodo}
-                </span>
-              </div>
-
-              <ul className="mt-6 flex-1 space-y-3">
-                {plan.beneficios.map((b) => (
-                  <li
-                    key={b}
-                    className="flex items-start gap-2 font-mono text-xs text-gris-texto"
-                  >
-                    <span className="mt-0.5 text-dorado">&#10003;</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="https://wa.me/5492994000000?text=Hola!%20Quiero%20inscribirme%20al%20Congreso%20CCE%202026%20-%20Plan%20"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`mt-8 block py-3 text-center font-sans text-sm font-bold tracking-wider transition-all ${
-                  plan.destacado
-                    ? "bg-dorado text-black hover:bg-dorado-claro"
-                    : "border border-dorado text-dorado hover:bg-dorado hover:text-black"
-                }`}
-              >
-                INSCRIBIRME
-              </a>
-            </div>
-          ))}
-        </div>
-
-        {/* Payment info */}
-        <div className="mt-12 border border-gris-oscuro p-6 text-center">
-          <p className="font-sans text-sm font-semibold text-foreground">
-            Medios de pago
-          </p>
-          <p className="mt-2 font-mono text-xs text-gris-texto">
-            Transferencia bancaria · Mercado Pago · Efectivo en la iglesia
-          </p>
-          <p className="mt-3 font-mono text-xs text-dorado/60">
+          <p className="mt-8 font-mono text-xs text-dorado/60">
             Consultas: plottier@ccesperanza.org · Tel: +54 9 299 504-6674
           </p>
         </div>

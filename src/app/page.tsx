@@ -35,7 +35,7 @@ export default function Home() {
       {/* Layer 2: Scrollable content (z-20) */}
       <div className="relative z-20">
         {/* Golden decorative curve - anchored to hero, visible on scroll */}
-        <div className="absolute -left-[10%] top-0 z-[5] h-screen pointer-events-none">
+        <div className="absolute -left-[10%] top-0 z-[5] h-[100svh] pointer-events-none">
           <svg
             viewBox="0 0 18718 28729.7"
             className="h-[156%] w-auto opacity-90"

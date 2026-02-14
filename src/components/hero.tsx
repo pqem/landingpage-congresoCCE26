@@ -34,7 +34,7 @@ export function Hero() {
   return (
     <section
       id="inicio"
-      className="relative flex h-screen items-center justify-center"
+className="relative flex h-[100svh] min-h-[500px] items-center justify-center"
     >
       <div className="relative z-10 w-full max-w-3xl px-6 lg:px-8">
         <svg

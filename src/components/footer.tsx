@@ -2,9 +2,9 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="border-t border-dorado/10 bg-negro-fondo py-12">
+    <footer className="border-t border-dorado/10 bg-negro-fondo py-8 md:py-12">
       <div className="mx-auto max-w-5xl px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
           {/* Brand */}
           <div className="flex flex-col items-start gap-4">
             <Image
@@ -72,10 +72,10 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 flex flex-col items-center gap-2 border-t border-gris-oscuro/50 pt-6 md:flex-row md:justify-between">
-          <p className="font-mono text-[10px] text-gris-texto/60">
+          <p className="font-mono text-xs text-gris-texto/60">
             © 2026 Centro Cristiano Esperanza. Todos los derechos reservados.
           </p>
-          <p className="font-mono text-[10px] text-gris-texto/40">
+          <p className="font-mono text-xs text-gris-texto/40">
             Congreso CCE Argentina 2026 — Expansión Sobrenatural
           </p>
         </div>

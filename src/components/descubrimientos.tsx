@@ -82,7 +82,7 @@ export function Descubrimientos() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="bg-negro-fondo py-20 md:py-32">
+    <section className="bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div ref={ref} className="mx-auto max-w-5xl px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}

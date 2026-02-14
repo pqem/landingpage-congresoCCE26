@@ -36,14 +36,14 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="font-mono text-sm font-medium tracking-wide text-gris-texto transition-colors hover:text-dorado"
+              className="py-2 font-mono text-sm font-medium tracking-wide text-gris-texto transition-colors hover:text-dorado"
             >
               {link.label.toUpperCase()}
             </a>
           ))}
           <a
             href="#inscripcion"
-            className="bg-dorado px-6 py-2 font-sans text-sm font-bold tracking-wider text-negro-fondo transition-all hover:bg-dorado-claro"
+            className="bg-dorado px-6 py-2.5 font-sans text-sm font-bold tracking-wider text-negro-fondo transition-all hover:bg-dorado-claro"
           >
             INSCRIBITE
           </a>
