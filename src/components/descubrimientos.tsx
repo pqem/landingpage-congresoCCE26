@@ -55,25 +55,29 @@ const descubrimientos: {
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.18, delayChildren: 0.2 },
-  },
-};
+function Card({ item }: { item: (typeof descubrimientos)[0] }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(cardRef, { once: true, amount: 0.3 });
+  const Icon = item.icon;
 
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    x: -80,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, x: -80 }}
+      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="border border-gris-oscuro p-6 transition-colors hover:border-dorado/40"
+    >
+      <Icon size={28} className="text-dorado" />
+      <h3 className="mt-4 font-serif text-xl text-foreground">
+        {item.title}
+      </h3>
+      <p className="mt-3 font-mono text-sm font-light leading-relaxed text-gris-texto">
+        {item.description}
+      </p>
+    </motion.div>
+  );
+}
 
 export function Descubrimientos() {
   const ref = useRef<HTMLDivElement>(null);
@@ -101,31 +105,11 @@ export function Descubrimientos() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-        >
-          {descubrimientos.map((item) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.title}
-                variants={cardVariants}
-                className="border border-gris-oscuro p-6 transition-colors hover:border-dorado/40"
-              >
-                <Icon size={28} className="text-dorado" />
-                <h3 className="mt-4 font-serif text-xl text-foreground">
-                  {item.title}
-                </h3>
-                <p className="mt-3 font-mono text-sm font-light leading-relaxed text-gris-texto">
-                  {item.description}
-                </p>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {descubrimientos.map((item) => (
+            <Card key={item.title} item={item} />
+          ))}
+        </div>
       </div>
     </section>
   );
