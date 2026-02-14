@@ -266,14 +266,6 @@ export default function InscripcionPage() {
                 <p className="mt-2 font-mono text-xs text-gris-texto">
                   Agregá a tu familia si vienen con vos (opcional)
                 </p>
-                <button
-                  type="button"
-                  onClick={addFamiliar}
-                  className="mt-4 min-h-11 border border-dorado px-4 py-2.5 font-sans text-xs font-bold tracking-wider text-dorado transition-all hover:bg-dorado hover:text-black"
-                >
-                  + Agregar familiar
-                </button>
-
                 <div className="mt-4 space-y-6">
                   {familiares.map((familiar, idx) => (
                     <div
@@ -347,6 +339,14 @@ export default function InscripcionPage() {
                     </div>
                   ))}
                 </div>
+
+                <button
+                  type="button"
+                  onClick={addFamiliar}
+                  className="mt-4 min-h-11 border border-dorado px-4 py-2.5 font-sans text-xs font-bold tracking-wider text-dorado transition-all hover:bg-dorado hover:text-black"
+                >
+                  + Agregar familiar
+                </button>
               </div>
 
               {submitError ? (
