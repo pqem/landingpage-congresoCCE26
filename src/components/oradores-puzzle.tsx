@@ -134,14 +134,20 @@ export function OradoresPuzzle() {
   const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setCurveVisible(true);
+        if (entry.isIntersecting) {
+          timeout = setTimeout(() => setCurveVisible(true), 1500);
+        }
       },
-      { threshold: 0.15 }
+      { threshold: 0.3 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, []);
 
   return (
