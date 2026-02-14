@@ -29,7 +29,21 @@ export function Header() {
           : "-translate-y-full opacity-0"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-center px-4 py-3 lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:justify-center lg:px-8">
+        {/* Mobile hamburger - top left */}
+        <button
+          type="button"
+          className="flex h-11 w-11 items-center justify-center text-foreground md:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+        >
+          {mobileOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
+
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
@@ -48,20 +62,6 @@ export function Header() {
             INSCRIBITE
           </a>
         </nav>
-
-        {/* Mobile hamburger */}
-        <button
-          type="button"
-          className="text-foreground md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
-        >
-          {mobileOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
       </div>
 
       {/* Mobile menu */}

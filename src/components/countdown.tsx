@@ -25,13 +25,18 @@ export function Countdown() {
   ];
 
   return (
-    <div className="mt-8 flex gap-2 sm:gap-4">
-      {blocks.map((b) => (
-        <div key={b.label} className="text-center">
-          <span className="block font-mono text-2xl font-bold text-dorado sm:text-3xl md:text-5xl">
-            {String(b.value).padStart(2, "0")}
-          </span>
-          <span className="text-[11px] tracking-widest text-foreground/50 sm:text-xs">{b.label}</span>
+    <div className="mt-8 flex flex-row items-center gap-3 sm:gap-4">
+      {blocks.map((b, i) => (
+        <div key={b.label} className="flex flex-row items-center gap-3 sm:gap-4">
+          <div className="text-center">
+            <span className="block font-mono text-2xl font-bold text-dorado sm:text-3xl md:text-5xl">
+              {String(b.value).padStart(2, "0")}
+            </span>
+            <span className="text-[11px] tracking-widest text-foreground/50 sm:text-xs">{b.label}</span>
+          </div>
+          {i < blocks.length - 1 && (
+            <span className="font-mono text-lg text-dorado/40 sm:text-2xl md:text-4xl">:</span>
+          )}
         </div>
       ))}
     </div>
