@@ -25,20 +25,23 @@ export function Countdown() {
   ];
 
   return (
-    <div className="mt-8 flex flex-row items-center gap-3 sm:gap-4">
-      {blocks.map((b, i) => (
-        <div key={b.label} className="flex flex-row items-center gap-3 sm:gap-4">
-          <div className="text-center">
-            <span className="block font-mono text-2xl font-bold text-dorado sm:text-3xl md:text-5xl">
-              {String(b.value).padStart(2, "0")}
-            </span>
-            <span className="text-[11px] tracking-widest text-foreground/50 sm:text-xs">{b.label}</span>
+    <div className="border border-dorado/30 px-6 py-5 sm:px-10 sm:py-6">
+      <p className="mb-4 text-center font-sans text-xs font-bold tracking-[0.3em] text-dorado">FALTAN</p>
+      <div className="flex flex-row items-center justify-center gap-3 sm:gap-4">
+        {blocks.map((b, i) => (
+          <div key={b.label} className="flex flex-row items-center gap-3 sm:gap-4">
+            <div className="text-center">
+              <span className="block font-mono text-2xl font-bold text-dorado sm:text-3xl md:text-5xl">
+                {String(b.value).padStart(2, "0")}
+              </span>
+              <span className="text-[11px] tracking-widest text-foreground/50 sm:text-xs">{b.label}</span>
+            </div>
+            {i < blocks.length - 1 && (
+              <span className="font-mono text-lg text-dorado/40 sm:text-2xl md:text-4xl">:</span>
+            )}
           </div>
-          {i < blocks.length - 1 && (
-            <span className="font-mono text-lg text-dorado/40 sm:text-2xl md:text-4xl">:</span>
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
