@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Header } from "@/components/header";
 import { FixedBackground } from "@/components/fixed-background";
 import { FloatingParticles } from "@/components/floating-particles";
@@ -16,6 +17,13 @@ import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
 export default function Home() {
+  const [curveVisible, setCurveVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setCurveVisible(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       {/* Layer 1: Fixed background (z-0) - always visible */}
@@ -26,6 +34,30 @@ export default function Home() {
 
       {/* Layer 2: Scrollable content (z-20) */}
       <div className="relative z-20">
+        {/* Golden decorative curve - anchored to hero, visible on scroll */}
+        <div className="absolute -left-[10%] top-0 z-[5] h-screen pointer-events-none">
+          <svg
+            viewBox="0 0 18718 28729.7"
+            className="h-[156%] w-auto opacity-90"
+            preserveAspectRatio="xMinYMin meet"
+            aria-hidden="true"
+          >
+            <path
+              d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
+              fill="none"
+              stroke="#E7BB70"
+              strokeWidth="1270"
+              strokeMiterlimit="22.9256"
+              strokeLinecap="round"
+              strokeDasharray="60000"
+              strokeDashoffset={curveVisible ? "0" : "60000"}
+              style={{
+                transition: "stroke-dashoffset 0.75s ease-in-out",
+              }}
+            />
+          </svg>
+        </div>
+
         {/* Hero: just title PNG, transparent bg → fondo shows through */}
         <Hero />
 

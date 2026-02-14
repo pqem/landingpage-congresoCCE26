@@ -5,7 +5,6 @@ import Image from "next/image";
 
 export function FixedBackground() {
   const [textVisible, setTextVisible] = useState(true);
-
   // "Centro Cristiano Esperanza" fade cycle every ~30s
   useEffect(() => {
     const interval = setInterval(() => {

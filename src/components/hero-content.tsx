@@ -88,7 +88,7 @@ export function HeroContent() {
             className="h-auto w-full"
           />
         </div>
-        <div className="h-[3px] w-full bg-dorado" />
+        <div className="h-[5px] w-full bg-dorado" />
       </div>
     </section>
   );

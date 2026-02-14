@@ -1,53 +1,49 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const oradores = [
   {
     id: "cattaneo",
     nombre: "Aps. Daniel y Patricia Cattaneo",
     imagen: "/images/oradores/cattaneo.png",
-    pareja: true,
     resena:
       "Pastor principal y apóstol de la Iglesia Redentor (Comunidad Redentor), fundada en 1945 en San Lorenzo, Santa Fe. Lidera una red de 16 templos en la provincia de Santa Fe. Reconocido por su creatividad e innovación ministerial, incluyendo iniciativas como la protesta 'culto-bar' durante la pandemia 2020. Ministerio integral: espiritual, emocional y físico.",
-    area: { left: 22, top: 8, width: 30, height: 37 },
+    area: { left: 33.0, top: 16.8, width: 29.0, height: 23.4 },
   },
   {
     id: "ale-maria",
     nombre: "Prs. Ale y María Chamorro",
     imagen: "/images/oradores/ale-maria.png",
-    pareja: true,
     resena:
       "Pastores del Centro Cristiano Esperanza en Plottier, Neuquén. Sirven en el ministerio pastoral de la iglesia madre del CCE, liderando la congregación local con pasión y entrega.",
-    area: { left: 58, top: 5, width: 27, height: 38 },
+    area: { left: 62.8, top: 16.8, width: 18.0, height: 37.5 },
   },
   {
     id: "daniel-rosita",
     nombre: "Aps. Daniel y Rosita Chamorro",
     imagen: "/images/oradores/daniel-rosita.png",
-    pareja: true,
     resena:
       "Fundadores del Centro Cristiano Esperanza en 1982, Plottier. Red apostólica con presencia en Argentina, España, Italia, EE.UU., India y África. Más de 40 años de ministerio pastoral. Obras pioneras: FM Esperanza (primera radio cristiana FM del país, 1988), instituciones educativas, centros de salud. Conferencistas internacionales.",
-    area: { left: 18, top: 42, width: 32, height: 35 },
+    area: { left: 33.0, top: 41.3, width: 29.0, height: 23.3 },
   },
   {
     id: "belart",
     nombre: "Pr. Sergio Belart",
     imagen: "/images/oradores/belart.png",
-    pareja: false,
     resena:
       "Pastor de la Iglesia Cristiana 'Cita con la Vida' en Córdoba. Abogado (UNC). Director del Congreso Internacional de Jóvenes (Semana Santa, Córdoba, desde 1994). Lidera 'Jóvenes con Propósito' (5.000+ jóvenes). Conferencista internacional en más de 20 países. Autor de 'El Pastor de Jóvenes' y 'Generación de Relevo'.",
-    area: { left: 48, top: 55, width: 22, height: 38 },
+    area: { left: 62.8, top: 55.5, width: 18.0, height: 37.5 },
   },
   {
     id: "rodriguez",
     nombre: "Pr. Alejandro Rodríguez",
     imagen: "/images/oradores/rodriguez.png",
-    pareja: false,
     resena:
       "Misionero y presidente de JUCUM Argentina (Juventud Con Una Misión), organización presente en 172 países. Junto a su esposa Martha refundó la obra de JUCUM Argentina en 1989. Ha formado y enviado cientos de misioneros transculturales. Conferencista en los 5 continentes. JUCUM Argentina cuenta con más de 700 obreros y múltiples bases.",
-    area: { left: 74, top: 58, width: 20, height: 35 },
+    area: { left: 81.9, top: 55.5, width: 18.1, height: 37.5 },
   },
 ];
 
@@ -76,15 +72,16 @@ function OradorModal({
       onClick={onClose}
     >
       <div className="animate-fade-in-up w-full max-w-lg border border-dorado/30 bg-negro-suave p-6 md:p-8">
-        <div className={`relative mx-auto w-full max-w-sm overflow-hidden border-2 border-dorado/40 ${
-          orador.pareja ? "aspect-[4/3]" : "aspect-[3/4]"
-        }`}>
+        <div className="mx-auto w-full max-w-sm">
           <Image
             src={orador.imagen}
             alt={orador.nombre}
-            fill
-            className="object-cover object-center"
+            width={600}
+            height={600}
+            className="h-auto w-full"
           />
+          {/* Golden line below photo */}
+          <div className="h-[5px] w-full bg-dorado" />
         </div>
 
         <h3 className="mt-6 font-serif text-2xl text-dorado md:text-3xl">
@@ -112,19 +109,35 @@ export function OradoresPuzzle() {
   >(null);
 
   const handleClose = useCallback(() => setSelectedOrador(null), []);
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
+  const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
 
   return (
     <>
-      <section id="oradores" className="relative py-20 md:py-32">
+      <section
+        id="oradores"
+        ref={sectionRef}
+        className="relative py-20 md:py-32"
+      >
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
-          {/* Puzzle image with clickable overlays */}
-          <div className="relative w-full">
+          <motion.div
+            className="relative w-full"
+            style={{ aspectRatio: "2438 / 1886", opacity, y }}
+          >
             <Image
-              src="/images/puzzle-oradores.png"
+              src="/images/puzzle1.png"
               alt="Oradores del Congreso CCE 2026"
-              width={1200}
-              height={900}
+              width={2438}
+              height={1886}
               className="h-auto w-full"
+              priority
             />
 
             {/* Invisible clickable areas over each speaker */}
@@ -132,7 +145,7 @@ export function OradoresPuzzle() {
               <button
                 key={orador.id}
                 onClick={() => setSelectedOrador(orador)}
-                className="absolute cursor-pointer"
+                className="absolute z-10 cursor-pointer"
                 style={{
                   left: `${orador.area.left}%`,
                   top: `${orador.area.top}%`,
@@ -142,7 +155,7 @@ export function OradoresPuzzle() {
                 aria-label={`Ver reseña de ${orador.nombre}`}
               />
             ))}
-          </div>
+          </motion.div>
 
           <p className="mt-6 text-center font-mono text-xs font-light text-gris-texto/60">
             Hacé clic en cada orador para conocer más
