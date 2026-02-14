@@ -274,12 +274,13 @@ export default function InscripcionPage() {
                   + Agregar familiar
                 </button>
 
-                <div className="mt-4 space-y-4">
-                  {familiares.map((familiar) => (
+                <div className="mt-4 space-y-6">
+                  {familiares.map((familiar, idx) => (
                     <div
                       key={familiar.id}
-                      className="relative border border-gris-oscuro p-4"
+                      className="relative border border-gris-oscuro bg-negro-fondo/50 p-4"
                     >
+                      <p className="mb-3 font-mono text-xs text-dorado/60">Familiar {idx + 1}</p>
                       <button
                         type="button"
                         aria-label="Eliminar familiar"
