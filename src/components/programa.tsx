@@ -82,9 +82,6 @@ export function Programa() {
             background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
           }}
         />
-        <p className="mt-4 font-mono text-sm font-light text-gris-texto">
-          Cuatro días de transformación — 20 al 23 de Marzo 2026
-        </p>
 
         {/* Day selector tabs */}
         <div className="mt-10 grid grid-cols-4 gap-2">
