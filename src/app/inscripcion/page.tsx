@@ -292,7 +292,7 @@ export default function InscripcionPage() {
                         </button>
                       </div>
 
-                      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                      <div className="space-y-3">
                         <div>
                           <label className={labelClassName}>Nombre y Apellido</label>
                           <input
@@ -309,37 +309,39 @@ export default function InscripcionPage() {
                             }
                           />
                         </div>
-                        <div>
-                          <label className={labelClassName}>Edad</label>
-                          <input
-                            type="number"
-                            min={1}
-                            max={99}
-                            placeholder="Edad"
-                            className={inputClassName}
-                            value={familiar.edad}
-                            onChange={(event) =>
-                              updateFamiliar(familiar.id, "edad", event.target.value)
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className={labelClassName}>Parentesco</label>
-                          <select
-                            className={inputClassName}
-                            value={familiar.parentesco}
-                            onChange={(event) =>
-                              updateFamiliar(
-                                familiar.id,
-                                "parentesco",
-                                event.target.value,
-                              )
-                            }
-                          >
-                            <option value="Esposo/a">Esposo/a</option>
-                            <option value="Hijo/a">Hijo/a</option>
-                            <option value="Otro">Otro</option>
-                          </select>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className={labelClassName}>Edad</label>
+                            <input
+                              type="number"
+                              min={1}
+                              max={99}
+                              placeholder="Edad"
+                              className={inputClassName}
+                              value={familiar.edad}
+                              onChange={(event) =>
+                                updateFamiliar(familiar.id, "edad", event.target.value)
+                              }
+                            />
+                          </div>
+                          <div>
+                            <label className={labelClassName}>Parentesco</label>
+                            <select
+                              className={inputClassName}
+                              value={familiar.parentesco}
+                              onChange={(event) =>
+                                updateFamiliar(
+                                  familiar.id,
+                                  "parentesco",
+                                  event.target.value,
+                                )
+                              }
+                            >
+                              <option value="Esposo/a">Esposo/a</option>
+                              <option value="Hijo/a">Hijo/a</option>
+                              <option value="Otro">Otro</option>
+                            </select>
+                          </div>
                         </div>
                       </div>
                     </div>
