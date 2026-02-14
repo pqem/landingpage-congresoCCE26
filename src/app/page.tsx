@@ -14,7 +14,7 @@ import { Ubicacion } from "@/components/ubicacion";
 import { Inscripcion } from "@/components/inscripcion";
 import { RedesSociales } from "@/components/redes-sociales";
 import { Footer } from "@/components/footer";
-import { WhatsAppButton } from "@/components/whatsapp-button";
+
 
 export default function Home() {
   const [curveVisible, setCurveVisible] = useState(false);
@@ -78,7 +78,6 @@ export default function Home() {
       {/* Header: hidden until scroll past hero */}
       <Header />
 
-      <WhatsAppButton />
     </>
   );
 }
