@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 const oradores = [
@@ -120,8 +120,6 @@ export function OradoresPuzzle() {
   const [selectedOrador, setSelectedOrador] = useState<
     (typeof oradores)[0] | null
   >(null);
-  const [curveVisible, setCurveVisible] = useState(false);
-
   const handleClose = useCallback(() => setSelectedOrador(null), []);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -132,23 +130,7 @@ export function OradoresPuzzle() {
 
   const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          timeout = setTimeout(() => setCurveVisible(true), 1500);
-        }
-      },
-      { threshold: 0.3 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      clearTimeout(timeout);
-      observer.disconnect();
-    };
-  }, []);
+  const curveDashoffset = useTransform(scrollYProgress, [0.25, 0.55], [60000, 0]);
 
   return (
     <>
@@ -165,7 +147,7 @@ export function OradoresPuzzle() {
             preserveAspectRatio="xMinYMin meet"
             aria-hidden="true"
           >
-            <path
+            <motion.path
               d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
               fill="none"
               stroke="#E7BB70"
@@ -173,10 +155,7 @@ export function OradoresPuzzle() {
               strokeMiterlimit="22.9256"
               strokeLinecap="round"
               strokeDasharray="60000"
-              strokeDashoffset={curveVisible ? "0" : "60000"}
-              style={{
-                transition: "stroke-dashoffset 1s ease-in-out",
-              }}
+              style={{ strokeDashoffset: curveDashoffset }}
             />
           </svg>
         </div>
