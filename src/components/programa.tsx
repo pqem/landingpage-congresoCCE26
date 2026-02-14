@@ -87,12 +87,12 @@ export function Programa() {
         </p>
 
         {/* Day selector tabs */}
-        <div className="mt-10 flex flex-nowrap gap-2 overflow-x-auto scrollbar-hide">
+        <div className="mt-10 grid grid-cols-4 gap-2">
           {dias.map((d, i) => (
             <button
               key={d.dia}
               onClick={() => setDiaActivo(i)}
-              className={`shrink-0 border px-3 py-2.5 font-sans text-xs font-bold tracking-wider transition-all sm:px-5 sm:py-3 md:text-sm ${
+              className={`border px-1 py-2.5 font-sans text-[10px] font-bold tracking-wider transition-all sm:px-5 sm:py-3 sm:text-xs md:text-sm ${
                 diaActivo === i
                   ? "border-dorado bg-dorado text-black"
                   : "border-gris-oscuro text-gris-texto hover:border-dorado/50 hover:text-dorado"
