@@ -63,15 +63,6 @@ export function HeroContent() {
           </p>
         </div>
 
-        {/* CTA Button */}
-        <div className="mt-8 text-center">
-          <a
-            href="#inscripcion"
-            className="animate-pulse-glow inline-block bg-dorado px-6 py-3 font-sans text-sm font-bold tracking-widest text-black transition-all hover:bg-dorado-claro md:px-10 md:py-4 md:text-base"
-          >
-            INSCRIBITE AHORA
-          </a>
-        </div>
       </div>
 
       {/* Speakers group photo - transparent, no bg, fondo shows through */}
