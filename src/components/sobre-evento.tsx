@@ -60,7 +60,7 @@ export function SobreEvento() {
         </div>
 
         {/* Info cards */}
-        <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid grid-cols-3 gap-3 sm:gap-6">
           {[
             { value: "4", label: "DÍAS DE EVENTO" },
             { value: "8+", label: "ORADORES" },
@@ -68,7 +68,7 @@ export function SobreEvento() {
           ].map((item) => (
             <div
               key={item.label}
-              className="border border-gris-oscuro p-6 transition-colors hover:border-dorado/40"
+              className="border border-gris-oscuro p-3 sm:p-6 transition-colors hover:border-dorado/40"
             >
               <p className="font-serif text-3xl text-dorado">{item.value}</p>
               <p className="mt-1 font-mono text-sm text-gris-texto">
