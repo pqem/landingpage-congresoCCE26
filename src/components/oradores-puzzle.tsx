@@ -120,9 +120,10 @@ export function OradoresPuzzle() {
   const [selectedOrador, setSelectedOrador] = useState<
     (typeof oradores)[0] | null
   >(null);
+  const [curveVisible, setCurveVisible] = useState(false);
 
   const handleClose = useCallback(() => setSelectedOrador(null), []);
-  const sectionRef = useRef(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -132,13 +133,48 @@ export function OradoresPuzzle() {
   const opacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0.1, 0.3], [60, 0]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setCurveVisible(true);
+      },
+      { threshold: 0.15 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
       <section
         id="oradores"
         ref={sectionRef}
-        className="relative py-20 md:py-32"
+        className="relative overflow-hidden py-20 md:py-32"
       >
+        {/* Golden decorative curve */}
+        <div className="absolute -right-[30%] top-[10%] z-[1] h-[100%] pointer-events-none sm:-right-[25%] md:-right-[10%]">
+          <svg
+            viewBox="0 0 18718 28729.7"
+            className="h-[55%] w-auto opacity-90 sm:h-[100%] md:h-[120%]"
+            preserveAspectRatio="xMaxYMin meet"
+            aria-hidden="true"
+            style={{ transform: "scaleX(-1)" }}
+          >
+            <path
+              d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
+              fill="none"
+              stroke="#E7BB70"
+              strokeWidth="1270"
+              strokeMiterlimit="22.9256"
+              strokeLinecap="round"
+              strokeDasharray="60000"
+              strokeDashoffset={curveVisible ? "0" : "60000"}
+              style={{
+                transition: "stroke-dashoffset 1s ease-in-out",
+              }}
+            />
+          </svg>
+        </div>
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           {/* Desktop puzzle */}
           <motion.div
