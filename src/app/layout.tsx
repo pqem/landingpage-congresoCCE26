@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import SessionProvider from "@/components/SessionProvider";
 
 export const metadata: Metadata = {
   title: 'Congreso CCE ARG. 2026 | Expansión Sobrenatural',
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="antialiased">
-        {children}
+        <SessionProvider>{children}</SessionProvider>
       </body>
     </html>
   )
