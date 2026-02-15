@@ -199,7 +199,8 @@ export default function AdminDashboard() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-black">
         <div className="flex flex-col items-center gap-3">
-          <Image src="/Logo_cce_color_svg.svg" alt="Logo CCE" width={48} height={48} className="animate-pulse" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Logo_cce_color_svg.svg" alt="Logo CCE" style={{ width: '56px', height: '56px', minWidth: '56px' }} className="animate-pulse" />
           <p className="text-[#E7BB70]">Cargando...</p>
         </div>
       </div>
@@ -214,7 +215,8 @@ export default function AdminDashboard() {
       <header className="bg-[#1a1a1a] border-b border-[#2a2a2a] px-4 sm:px-6 py-3">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Image src="/Logo_cce_color_svg.svg" alt="Logo CCE" width={36} height={36} className="sm:w-10 sm:h-10" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Logo_cce_color_svg.svg" alt="Logo CCE" style={{ width: '48px', height: '48px', minWidth: '48px' }} />
             <div className="hidden sm:block">
               <h1 className="text-lg sm:text-xl font-bold">Congreso CCE 2026</h1>
               <p className="text-[#E7BB70] text-xs">Expansión Sobrenatural</p>

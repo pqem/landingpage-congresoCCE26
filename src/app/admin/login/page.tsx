@@ -55,11 +55,11 @@ export default function AdminLogin() {
     <div className="min-h-screen flex items-center justify-center bg-[#000000] px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/Logo_cce_color_svg.svg"
             alt="Logo Congreso CCE"
-            width={80}
-            height={80}
+            style={{ width: '100px', height: '100px', minWidth: '100px' }}
             className="mx-auto mb-4"
           />
           <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
