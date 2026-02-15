@@ -30,6 +30,7 @@ export default function InscripcionPage() {
   const [submitError, setSubmitError] = useState("");
   const [alojamientoError, setAlojamientoError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   const canSubmit = useMemo(() => !isSubmitting, [isSubmitting]);
 
@@ -75,16 +76,18 @@ export default function InscripcionPage() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/inscripcion", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+      const response = await fetch(`${apiUrl}/api/inscripcion`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombre: nombre.trim(),
+          nombre_apellido: nombre.trim(),
           edad: Number(edad),
           telefono: telefono.trim(),
           ciudad: ciudad.trim(),
           iglesia: iglesia.trim(),
-          alojamiento,
+          necesita_alojamiento: alojamiento === "si",
+          _honeypot: honeypot,
           familiares: familiares
             .filter(
               (familiar) =>
@@ -93,16 +96,22 @@ export default function InscripcionPage() {
                 familiar.parentesco,
             )
             .map((familiar) => ({
-              nombre: familiar.nombre.trim(),
+              nombre_apellido: familiar.nombre.trim(),
               edad: familiar.edad ? Number(familiar.edad) : null,
               parentesco: familiar.parentesco,
             })),
         }),
       });
 
-      const data = (await response.json()) as { error?: string };
-      if (!response.ok) {
-        throw new Error(data.error ?? "No se pudo enviar la inscripción.");
+      if (response.status === 429) {
+        throw new Error("Demasiadas solicitudes, intentá más tarde.");
+      }
+
+      const data = (await response.json()) as { success?: boolean; error?: string; message?: string; detalles?: string[] };
+      
+      if (!response.ok || !data.success) {
+        const errorMsg = data.detalles?.join(", ") || data.error || "No se pudo enviar la inscripción.";
+        throw new Error(errorMsg);
       }
 
       setSuccess(true);
@@ -140,6 +149,18 @@ export default function InscripcionPage() {
             </header>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+              {/* Honeypot anti-bot - invisible para humanos */}
+              <div className="absolute left-[-9999px]" aria-hidden="true">
+                <input
+                  type="text"
+                  name="_honeypot"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
+
               <div>
                 <label htmlFor="nombre" className={labelClassName}>
                   Nombre y Apellido
