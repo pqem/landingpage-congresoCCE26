@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -44,21 +45,29 @@ export default function AdminLogin() {
 
   if (status === "loading") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-950">
+      <div className="min-h-screen flex items-center justify-center bg-[#000000]">
         <p className="text-white">Cargando...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-950 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-[#000000] px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
+          <Image
+            src="/Logo_cce_color_svg.svg"
+            alt="Logo Congreso CCE"
+            width={80}
+            height={80}
+            className="mx-auto mb-4"
+          />
           <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
-          <p className="text-gray-400 mt-2">Congreso CCE 2026</p>
+          <p className="text-[#E7BB70] mt-2">Expansión Sobrenatural</p>
+          <p className="text-[#CCCCCC] mt-1">Congreso CCE Argentina 2026</p>
         </div>
 
-        <div className="bg-gray-900 rounded-xl p-8 shadow-2xl border border-gray-800">
+        <div className="bg-[#1a1a1a] rounded-xl p-8 shadow-[0_0_40px_rgba(231,187,112,0.08)] border border-[#2a2a2a]">
           <button
             onClick={handleGoogleLogin}
             className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
@@ -73,35 +82,35 @@ export default function AdminLogin() {
           </button>
 
           <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-gray-700"></div>
-            <span className="px-4 text-gray-500 text-sm">o con credenciales</span>
-            <div className="flex-1 border-t border-gray-700"></div>
+            <div className="flex-1 border-t border-[#2a2a2a]"></div>
+            <span className="px-4 text-[#CCCCCC] text-sm">o con credenciales</span>
+            <div className="flex-1 border-t border-[#2a2a2a]"></div>
           </div>
 
           <form onSubmit={handleCredentialsLogin} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-[#CCCCCC] mb-1">
                 Email
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#E7BB70] focus:border-[#E7BB70]"
                 placeholder="tu@email.com"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1">
+              <label className="block text-sm font-medium text-[#CCCCCC] mb-1">
                 Contraseña
               </label>
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#E7BB70] focus:border-[#E7BB70]"
                 placeholder="••••••••"
                 required
               />
@@ -116,14 +125,14 @@ export default function AdminLogin() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-blue-600 text-white font-medium py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-[#E7BB70] text-black font-semibold py-3 px-4 rounded-lg hover:bg-[#F0CC88] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? "Verificando..." : "Iniciar sesión"}
             </button>
           </form>
         </div>
 
-        <p className="text-center text-gray-600 text-xs mt-4">
+        <p className="text-center text-[#4a4a4a] text-xs mt-4">
           Solo personal autorizado del congreso
         </p>
       </div>
