@@ -55,7 +55,13 @@ const descubrimientos: {
   },
 ];
 
-function Card({ item }: { item: (typeof descubrimientos)[0] }) {
+function Card({
+  item,
+  index,
+}: {
+  item: (typeof descubrimientos)[0];
+  index: number;
+}) {
   const cardRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(cardRef, { once: true, amount: 0.3 });
   const Icon = item.icon;
@@ -63,9 +69,17 @@ function Card({ item }: { item: (typeof descubrimientos)[0] }) {
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, x: -80 }}
-      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -80 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      initial={{ opacity: 0, x: -100, rotate: -3 }}
+      animate={
+        isInView ? { opacity: 1, x: 0, rotate: 0 } : { opacity: 0, x: -100, rotate: -3 }
+      }
+      transition={{
+        duration: 0.6,
+        type: "spring",
+        stiffness: 100,
+        damping: 14,
+        delay: index * 0.08,
+      }}
       className="border border-gris-oscuro p-6 transition-colors hover:border-dorado/40"
     >
       <Icon size={28} className="text-dorado" />
@@ -87,9 +101,13 @@ export function Descubrimientos() {
     <section className="bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div ref={ref} className="mx-auto max-w-5xl px-4 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 60, scale: 0.9 }}
+          animate={
+            isInView
+              ? { opacity: 1, y: 0, scale: 1 }
+              : { opacity: 0, y: 60, scale: 0.9 }
+          }
+          transition={{ duration: 0.8, type: "spring", stiffness: 80, damping: 12 }}
         >
           <h2 className="font-serif text-4xl text-dorado md:text-6xl">
             LA EXPERIENCIA
@@ -106,8 +124,8 @@ export function Descubrimientos() {
         </motion.div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {descubrimientos.map((item) => (
-            <Card key={item.title} item={item} />
+          {descubrimientos.map((item, index) => (
+            <Card key={item.title} item={item} index={index} />
           ))}
         </div>
       </div>

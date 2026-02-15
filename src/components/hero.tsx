@@ -2,32 +2,56 @@
 
 import { motion } from "framer-motion";
 
-// 1: Título — entrada grandiosa, offset alto, easing fuerte
+// 1: Título — ENTRADA EXPLOSIVA: viene de abajo con scale y spring
 const titleAnim = {
-  initial: { y: 50, opacity: 0 },
-  animate: { y: 0, opacity: 1 },
-  transition: { duration: 0.7, delay: 0.2, ease: [0.33, 1, 0.68, 1] as const },
-};
-
-// 2: Año — slide + sutil scale, easing suave
-const yearAnim = {
-  initial: { y: 40, opacity: 0, scale: 0.95 },
+  initial: { y: 120, opacity: 0, scale: 0.75 },
   animate: { y: 0, opacity: 1, scale: 1 },
-  transition: { duration: 0.6, delay: 0.55, ease: [0.61, 1, 0.88, 1] as const },
+  transition: {
+    duration: 1,
+    delay: 0.1,
+    type: "spring" as const,
+    stiffness: 80,
+    damping: 12,
+  },
 };
 
-// 3: Fecha — offset medio, easing suave
+// 2: Año — SCALE PUNCH desde pequeño con rebote
+const yearAnim = {
+  initial: { y: 80, opacity: 0, scale: 0.5 },
+  animate: { y: 0, opacity: 1, scale: 1 },
+  transition: {
+    duration: 0.9,
+    delay: 0.4,
+    type: "spring" as const,
+    stiffness: 100,
+    damping: 14,
+  },
+};
+
+// 3: Fecha — SLIDE RÁPIDO desde la derecha
 const dateAnim = {
-  initial: { y: 30, opacity: 0 },
-  animate: { y: 0, opacity: 1 },
-  transition: { duration: 0.5, delay: 0.9, ease: [0.61, 1, 0.88, 1] as const },
+  initial: { x: 200, opacity: 0 },
+  animate: { x: 0, opacity: 1 },
+  transition: {
+    duration: 0.6,
+    delay: 0.7,
+    type: "spring" as const,
+    stiffness: 120,
+    damping: 15,
+  },
 };
 
-// 4: Lema — entrada rápida y decidida
+// 4: Lema — EXPAND IN desde scale grande, se contrae al tamaño real
 const taglineAnim = {
-  initial: { y: 20, opacity: 0 },
-  animate: { y: 0, opacity: 1 },
-  transition: { duration: 0.4, delay: 1.1, ease: "easeOut" as const },
+  initial: { scale: 1.5, opacity: 0, y: -30 },
+  animate: { scale: 1, opacity: 1, y: 0 },
+  transition: {
+    duration: 0.7,
+    delay: 1.0,
+    type: "spring" as const,
+    stiffness: 90,
+    damping: 10,
+  },
 };
 
 export function Hero() {

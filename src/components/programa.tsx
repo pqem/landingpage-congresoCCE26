@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const dias = [
   {
@@ -73,14 +74,22 @@ export function Programa() {
           visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
-        <h2 className="font-serif text-4xl text-dorado md:text-6xl">
+        <motion.h2
+          className="font-serif text-4xl text-dorado md:text-6xl"
+          initial={{ opacity: 0, y: 70, scale: 0.85 }}
+          animate={visible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 70, scale: 0.85 }}
+          transition={{ duration: 0.9, type: "spring", stiffness: 80, damping: 12 }}
+        >
           PROGRAMA
-        </h2>
-        <div
+        </motion.h2>
+        <motion.div
           className="mt-4 h-px w-24"
           style={{
             background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
           }}
+          initial={{ scaleX: 0, originX: 0 }}
+          animate={visible ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         />
 
         {/* Day selector tabs */}

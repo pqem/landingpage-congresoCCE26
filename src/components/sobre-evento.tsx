@@ -1,43 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 export function SobreEvento() {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
     <section id="evento" className="bg-negro-fondo py-16 sm:py-20 md:py-32">
-      <div
-        ref={ref}
-        className={`mx-auto max-w-4xl px-4 lg:px-8 ${
-          visible ? "animate-fade-in-up" : "opacity-0"
-        }`}
-      >
+      <div ref={ref} className="mx-auto max-w-4xl px-4 lg:px-8">
         {/* Section title */}
-        <h2 className="font-serif text-3xl text-dorado sm:text-4xl md:text-5xl lg:text-6xl">
+        <motion.h2
+          className="font-serif text-3xl text-dorado sm:text-4xl md:text-5xl lg:text-6xl"
+          initial={{ opacity: 0, y: 80, scale: 0.85 }}
+          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.85 }}
+          transition={{ duration: 0.9, type: "spring", stiffness: 80, damping: 12 }}
+        >
           SOBRE EL EVENTO
-        </h2>
-        <div
+        </motion.h2>
+        <motion.div
           className="mt-4 h-px w-24"
           style={{
             background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
           }}
+          initial={{ scaleX: 0, originX: 0 }}
+          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
         />
 
         {/* Content */}
-        <div className="mt-10 flex flex-col gap-6">
+        <motion.div
+          className="mt-10 flex flex-col gap-6"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+        >
           <p className="font-mono text-base font-light leading-relaxed text-gris-texto md:text-lg">
             El Congreso CCE Argentina 2026 es un encuentro de cuatro días donde
             la presencia de Dios transforma vidas. Bajo el lema{" "}
@@ -53,7 +51,7 @@ export function SobreEvento() {
             reúnen en Plottier, Neuquén, para declarar que no es por el poder ni
             por la fuerza, sino por Su Espíritu.
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
