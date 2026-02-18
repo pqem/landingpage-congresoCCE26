@@ -29,10 +29,7 @@ export function Ubicacion() {
           UBICACIÓN
         </h2>
         <div
-          className="mt-4 h-px w-24"
-          style={{
-            background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
-          }}
+          className="gradient-line-dorado mt-4 h-px w-24"
         />
 
         <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">

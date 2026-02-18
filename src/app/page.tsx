@@ -46,7 +46,7 @@ export default function Home() {
             <path
               d="M3190.54 7829.2c5862.87,-2682.06 7942.95,-2561.9 8262.79,-2037.11 464.71,762.45 -3075.18,3341.58 -6537.99,7434.03 7626.8,-2329.01 11235.37,-4774.93 12305.66,-2218.89 1539.6,3676.86 -10353.84,9592.05 -15866.51,12241.84"
               fill="none"
-              stroke="#E7BB70"
+              stroke="var(--color-dorado)"
               strokeWidth="1270"
               strokeMiterlimit="22.9256"
               strokeLinecap="round"

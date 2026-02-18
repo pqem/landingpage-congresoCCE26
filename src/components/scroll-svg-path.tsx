@@ -17,7 +17,7 @@ interface ScrollSVGPathProps {
 export default function ScrollSVGPath({
   d,
   pathLength,
-  stroke = "#E7BB70",
+  stroke = "var(--color-dorado)",
   strokeWidth = 1270,
   viewBox = "0 0 18718 28729.7",
   scrollRange = [0.25, 0.6],
