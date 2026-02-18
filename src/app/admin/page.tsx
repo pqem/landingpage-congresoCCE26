@@ -110,7 +110,7 @@ export default function AdminDashboard() {
         <div className="flex flex-col items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/Logo_cce_color_svg.svg" alt="CCE" style={{ height: '56px', width: 'auto' }} className="animate-pulse" />
-          <p className="text-[#E7BB70]">Cargando...</p>
+          <p className="text-dorado">Cargando...</p>
         </div>
       </div>
     );
@@ -132,7 +132,7 @@ export default function AdminDashboard() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   activeTab === tab
-                    ? "bg-[#E7BB70] text-black font-semibold"
+                    ? "bg-dorado text-black font-semibold"
                     : "bg-[#1a1a1a] text-[#CCCCCC] border border-[#2a2a2a] hover:bg-[#2a2a2a]"
                 }`}
               >
@@ -179,7 +179,7 @@ export default function AdminDashboard() {
 
             {loading ? (
               <div className="flex items-center justify-center py-12">
-                <svg className="animate-spin h-6 w-6 text-[#E7BB70]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="animate-spin h-6 w-6 text-dorado" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>

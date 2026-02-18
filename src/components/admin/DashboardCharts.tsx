@@ -16,8 +16,8 @@ import {
 } from "recharts";
 import type { Stats } from "./types";
 
-const GOLD = "#E7BB70";
-const GOLD_DARK = "#C9A050";
+const GOLD = "var(--color-dorado)";
+const GOLD_DARK = "var(--color-dorado-oscuro)";
 const PIE_COLORS = [GOLD, "#444444"];
 
 function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: { value: number }[]; label?: string }) {
@@ -25,7 +25,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
     return (
       <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-lg px-3 py-2 shadow-lg">
         <p className="text-[#CCCCCC] text-xs">{label}</p>
-        <p className="text-[#E7BB70] font-semibold">{payload[0].value}</p>
+        <p className="text-dorado font-semibold">{payload[0].value}</p>
       </div>
     );
   }
@@ -53,7 +53,7 @@ export function DashboardCharts({ stats }: DashboardChartsProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Pie Chart - Alojamiento */}
         <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-[#E7BB70] font-semibold mb-4">Alojamiento</h3>
+          <h3 className="text-dorado font-semibold mb-4">Alojamiento</h3>
           {stats.total_inscriptos === 0 ? (
             <p className="text-[#666666] text-center py-8">Sin datos aún</p>
           ) : (
@@ -79,7 +79,7 @@ export function DashboardCharts({ stats }: DashboardChartsProps) {
               </ResponsiveContainer>
               <div className="flex justify-center gap-6 -mt-2">
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#E7BB70]"></div>
+                  <div className="w-3 h-3 rounded-full bg-dorado"></div>
                   <span className="text-[#CCCCCC] text-xs">Sí ({pieData[0]?.value})</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -93,7 +93,7 @@ export function DashboardCharts({ stats }: DashboardChartsProps) {
 
         {/* Area Chart - Inscripciones por día */}
         <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-[#E7BB70] font-semibold mb-4">Tendencia de inscripciones</h3>
+          <h3 className="text-dorado font-semibold mb-4">Tendencia de inscripciones</h3>
           {diaData.length === 0 ? (
             <p className="text-[#666666] text-center py-8">Sin datos aún</p>
           ) : (
@@ -122,7 +122,7 @@ export function DashboardCharts({ stats }: DashboardChartsProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Bar Chart - Por ciudad */}
         <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-[#E7BB70] font-semibold mb-4">Por ciudad</h3>
+          <h3 className="text-dorado font-semibold mb-4">Por ciudad</h3>
           {stats.por_ciudad.length === 0 ? (
             <p className="text-[#666666] text-center py-8">Sin datos aún</p>
           ) : (
@@ -142,7 +142,7 @@ export function DashboardCharts({ stats }: DashboardChartsProps) {
 
         {/* Bar Chart - Por iglesia */}
         <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-[#E7BB70] font-semibold mb-4">Por iglesia</h3>
+          <h3 className="text-dorado font-semibold mb-4">Por iglesia</h3>
           {stats.por_iglesia.length === 0 ? (
             <p className="text-[#666666] text-center py-8">Sin datos aún</p>
           ) : (

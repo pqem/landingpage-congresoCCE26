@@ -40,7 +40,7 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                 <td className="py-3 px-4 text-[#CCCCCC]">{i.iglesia}</td>
                 <td className="py-3 px-4">
                   {i.necesita_alojamiento ? (
-                    <span className="text-[#E7BB70]">Sí</span>
+                    <span className="text-dorado">Sí</span>
                   ) : (
                     <span className="text-[#666666]">No</span>
                   )}

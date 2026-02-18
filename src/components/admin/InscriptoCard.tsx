@@ -40,7 +40,7 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: In
         <div>
           <span className="text-[#666666]">Aloj: </span>
           {i.necesita_alojamiento ? (
-            <span className="text-[#E7BB70]">Sí</span>
+            <span className="text-dorado">Sí</span>
           ) : (
             <span className="text-[#666666]">No</span>
           )}

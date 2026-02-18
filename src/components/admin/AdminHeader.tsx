@@ -20,10 +20,10 @@ export function AdminHeader({ session, stats, mobileMenuOpen, setMobileMenuOpen 
           <img src="/Logo_cce_color_svg.svg" alt="CCE" style={{ height: '48px', width: 'auto' }} />
           <div className="hidden sm:block">
             <h1 className="text-lg sm:text-xl font-bold">Congreso CCE 2026</h1>
-            <p className="text-[#E7BB70] text-xs">Expansión Sobrenatural</p>
+            <p className="text-dorado text-xs">Expansión Sobrenatural</p>
           </div>
           {stats && (
-            <span className="ml-2 bg-[#E7BB70]/15 text-[#E7BB70] text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="ml-2 bg-dorado/15 text-dorado text-xs font-semibold px-2.5 py-1 rounded-full">
               {stats.total_personas} personas
             </span>
           )}

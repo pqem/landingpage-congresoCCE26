@@ -20,9 +20,9 @@ export function StatCards({ stats }: StatCardsProps) {
           className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5 animate-admin-fade-in"
           style={{ animationDelay: `${idx * 100}ms` }}
         >
-          <div className="h-0.5 bg-[#E7BB70] rounded-t-xl -mx-5 -mt-5 mb-4"></div>
+          <div className="h-0.5 bg-dorado rounded-t-xl -mx-5 -mt-5 mb-4"></div>
           <p className="text-[#999999] text-sm">{card.label}</p>
-          <p className={`text-3xl font-bold mt-1 ${card.gold ? "text-[#E7BB70]" : "text-white"}`}>
+          <p className={`text-3xl font-bold mt-1 ${card.gold ? "text-dorado" : "text-white"}`}>
             {card.value}
           </p>
           {card.sub && <p className="text-[#666666] text-xs mt-1">{card.sub}</p>}
