@@ -20,10 +20,7 @@ export function SobreEvento() {
           SOBRE EL EVENTO
         </motion.h2>
         <motion.div
-          className="mt-4 h-px w-24"
-          style={{
-            background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
-          }}
+          className="gradient-line-dorado mt-4 h-px w-24"
           initial={{ scaleX: 0, originX: 0 }}
           animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
           transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}

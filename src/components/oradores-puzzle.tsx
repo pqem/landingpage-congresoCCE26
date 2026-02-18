@@ -103,10 +103,7 @@ function OradorModal({
         </h3>
 
         <div
-          className="mt-3 h-px w-16"
-          style={{
-            background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
-          }}
+          className="gradient-line-dorado mt-3 h-px w-16"
         />
 
         <p className="mt-4 font-mono text-sm font-light leading-relaxed text-gris-texto md:text-base">

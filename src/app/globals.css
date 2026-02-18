@@ -221,6 +221,14 @@
   opacity: 0;
 }
 
+/* Decorative gradient lines */
+.gradient-line-dorado {
+  background: linear-gradient(90deg, var(--color-dorado) 0%, transparent 100%);
+}
+.gradient-line-dorado-center {
+  background: linear-gradient(90deg, transparent 0%, var(--color-dorado) 50%, transparent 100%);
+}
+
 /* Modal overlay */
 .modal-overlay {
   backdrop-filter: blur(8px);

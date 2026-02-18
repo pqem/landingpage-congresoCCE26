@@ -56,11 +56,7 @@ export function RedesSociales() {
           SEGUINOS
         </h2>
         <div
-          className="mx-auto mt-4 h-px w-24"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent 0%, #E7BB70 50%, transparent 100%)",
-          }}
+          className="gradient-line-dorado-center mx-auto mt-4 h-px w-24"
         />
         <p className="mt-4 font-mono text-sm font-light text-gris-texto">
           Mantenete conectado con toda la info del congreso

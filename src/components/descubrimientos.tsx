@@ -113,10 +113,7 @@ export function Descubrimientos() {
             LA EXPERIENCIA
           </h2>
           <div
-            className="mt-4 h-px w-24"
-            style={{
-              background: "linear-gradient(90deg, #E7BB70 0%, transparent 100%)",
-            }}
+            className="gradient-line-dorado mt-4 h-px w-24"
           />
           <p className="mt-4 font-mono text-sm font-light text-gris-texto">
             LO QUE VAS A VIVIR EN ESTOS 4 DÍAS

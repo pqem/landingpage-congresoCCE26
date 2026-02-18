@@ -30,11 +30,7 @@ export function Inscripcion() {
             INSCRIPCIÓN
           </h2>
           <div
-            className="mx-auto mt-4 h-px w-24"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent 0%, #E7BB70 50%, transparent 100%)",
-            }}
+            className="gradient-line-dorado-center mx-auto mt-4 h-px w-24"
           />
 
           <p className="mx-auto mt-8 max-w-xl font-mono text-base font-light leading-relaxed text-gris-texto">
