@@ -71,11 +71,11 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-10 flex flex-col items-center gap-2 border-t border-gris-oscuro/50 pt-6 md:flex-row md:justify-between">
+        <div className="mt-10 border-t border-gris-oscuro/50 pt-6 text-center md:flex md:items-center md:justify-between md:text-left">
           <p className="font-mono text-xs text-gris-texto/60">
             © 2026 Centro Cristiano Esperanza. Todos los derechos reservados.
           </p>
-          <p className="font-mono text-xs text-gris-texto/40">
+          <p className="mt-1 font-mono text-xs text-gris-texto/40 md:mt-0">
             Congreso CCE Argentina 2026 — Expansión Sobrenatural
           </p>
         </div>
