@@ -1,12 +1,11 @@
-/* Split Tailwind imports: utilities stay UNLAYERED so they beat browser
-   :link/:visited defaults. Official solution per tailwindlabs/tailwindcss#16882 */
-@layer theme, base, components;
-@import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/preflight.css" layer(base);
-@import "tailwindcss/utilities.css";
+@import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
+
+/* Override browser :link/:visited colors for nav links (unlayered to beat UA defaults) */
+nav a, nav a:visited { color: var(--color-gris-texto); }
+nav a:hover { color: var(--color-dorado); }
 
 :root {
   --background: #000000;
