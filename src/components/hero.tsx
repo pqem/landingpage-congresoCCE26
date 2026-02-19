@@ -71,7 +71,7 @@ const LANDSCAPE_OFFSET = "translate(4574.25,-4712.14)";
 
 // Desktop landscape viewBox: 16:9 crop centrado en el area de texto
 // x=-5000 incluye inicio de curva dorada, width=28000 cubre hasta MARZO 20 AL 23
-const DESKTOP_VIEWBOX = "-5000 2000 28000 15750";
+const DESKTOP_VIEWBOX = "3000 2000 28000 15750";
 const PORTRAIT_VIEWBOX = "0 0 21000 29700";
 
 const ARIA_LABEL = "CONGRESO CCE ARG. 2026 - MARZO 20 AL 23 - EXPANSION SOBRENATURAL";
@@ -111,6 +111,7 @@ export function Hero() {
           viewBox={DESKTOP_VIEWBOX}
           className="h-[90%] w-auto max-w-full"
           preserveAspectRatio="xMidYMid meet"
+          overflow="visible"
           aria-label={ARIA_LABEL}
           role="img"
         >
