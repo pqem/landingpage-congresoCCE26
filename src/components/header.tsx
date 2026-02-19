@@ -29,7 +29,7 @@ export function Header() {
           : "-translate-y-full opacity-0"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-xl bg-negro-fondo/80 px-4 py-3 backdrop-blur-md md:justify-center lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:justify-center lg:px-8">
         {/* Mobile hamburger - top left */}
         <button
           type="button"
