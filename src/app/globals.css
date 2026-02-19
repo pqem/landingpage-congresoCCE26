@@ -116,6 +116,14 @@
   }
 }
 
+/* Reset browser default link colors (blue/magenta).
+   Must be outside @layer to override user-agent styles,
+   since Tailwind v4 preflight is inside @layer base and loses to UA defaults. */
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 /* ===== ANIMATIONS ===== */
 
 @keyframes fade-in-up {
