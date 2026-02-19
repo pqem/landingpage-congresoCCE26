@@ -29,7 +29,7 @@ export function Header() {
           : "-translate-y-full opacity-0"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:justify-center lg:px-8">
+      <div className="mx-auto flex max-w-7xl items-center justify-between rounded-xl bg-negro-fondo/80 px-4 py-3 backdrop-blur-md md:justify-center lg:px-8">
         {/* Mobile hamburger - top left */}
         <button
           type="button"
@@ -50,7 +50,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="py-2 font-mono text-sm font-medium tracking-wide text-gris-texto transition-colors hover:text-dorado"
+              className="py-2 font-mono text-sm font-medium tracking-wide text-[#CCCCCC] transition-colors hover:text-dorado"
             >
               {link.label.toUpperCase()}
             </a>
@@ -72,7 +72,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="font-mono text-base font-medium tracking-wide text-gris-texto transition-colors hover:text-dorado"
+              className="font-mono text-base font-medium tracking-wide text-[#CCCCCC] transition-colors hover:text-dorado"
             >
               {link.label.toUpperCase()}
             </a>
