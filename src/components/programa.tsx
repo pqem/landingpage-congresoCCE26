@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 
 const dias = [
   {
@@ -51,50 +51,41 @@ const dias = [
 ];
 
 export function Programa() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, amount: 0.5 });
+  const tabsInView = useInView(tabsRef, { once: true, amount: 0.3 });
   const [diaActivo, setDiaActivo] = useState(0);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="programa" className="bg-negro-fondo py-20 md:py-32">
-      <div
-        ref={ref}
-        className={`mx-auto max-w-5xl px-4 lg:px-8 transition-all duration-1000 ease-out ${
-          visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
-        <motion.h2
-          className="font-serif text-4xl text-dorado md:text-6xl"
-          initial={{ opacity: 0, x: -100 }}
-          animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
-        >
-          PROGRAMA
-        </motion.h2>
-        <motion.div
-          className="gradient-line-dorado mt-4 h-px w-24"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={visible ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-        />
+      <div className="mx-auto max-w-5xl px-4 lg:px-8">
+        <div ref={headingRef}>
+          <motion.h2
+            className="font-serif text-4xl text-dorado md:text-6xl"
+            initial={{ opacity: 0, x: -100 }}
+            animate={headingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
+          >
+            PROGRAMA
+          </motion.h2>
+          <motion.div
+            className="gradient-line-dorado mt-4 h-px w-24"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={headingInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          />
+        </div>
 
         {/* Day selector tabs */}
-        <div className="mt-10 grid grid-cols-4 gap-2">
+        <div ref={tabsRef} className="mt-10 grid grid-cols-4 gap-2">
           {dias.map((d, i) => (
-            <button
+            <motion.button
               key={d.dia}
               onClick={() => setDiaActivo(i)}
+              initial={{ opacity: 0, y: 20 }}
+              animate={tabsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: "easeOut" }}
               className={`border px-1 py-2.5 font-sans text-[10px] font-bold tracking-wider transition-all sm:px-5 sm:py-3 sm:text-xs md:text-sm ${
                 diaActivo === i
                   ? "border-dorado bg-dorado text-black"
@@ -102,19 +93,27 @@ export function Programa() {
               }`}
             >
               {d.dia}
-            </button>
+            </motion.button>
           ))}
         </div>
 
         {/* Schedule */}
-        <div className="mt-8">
+        <motion.div
+          className="mt-8"
+          initial={{ opacity: 0 }}
+          animate={tabsInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
           <p className="mb-6 font-mono text-xs text-dorado/60">
             {dias[diaActivo].fecha}
           </p>
           <div className="space-y-0">
             {dias[diaActivo].actividades.map((act, i) => (
-              <div
-                key={i}
+              <motion.div
+                key={`${diaActivo}-${i}`}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.06 }}
                 className="flex items-baseline gap-6 border-l border-gris-oscuro py-4 pl-6 transition-colors hover:border-dorado/50"
               >
                 <span className="w-12 shrink-0 font-mono text-sm font-bold leading-none text-dorado sm:w-14 md:text-base">
@@ -130,10 +129,10 @@ export function Programa() {
                     </p>
                   )}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
