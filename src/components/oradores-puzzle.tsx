@@ -77,11 +77,11 @@ function OradorModal({
       className="modal-overlay fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-black/80 p-4"
       onClick={onClose}
     >
-      <div className="animate-fade-in-up relative w-full max-w-lg max-h-[90vh] overflow-y-auto border border-dorado/30 bg-negro-suave p-4 sm:p-6 md:p-8" onClick={(e) => e.stopPropagation()}>
+      <div className="animate-fade-in-up relative w-full max-w-lg max-h-[90vh] overflow-y-auto border border-dorado/30 bg-negro-suave p-4 sm:p-6 md:p-8" onClick={(e) => { if (window.innerWidth >= 768) e.stopPropagation(); }}>
         <button
           type="button"
           onClick={onClose}
-          className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center border border-gris-oscuro bg-negro-suave font-sans text-lg text-gris-texto transition-colors hover:border-dorado hover:text-dorado"
+          className="absolute right-3 top-3 z-10 hidden h-10 w-10 items-center justify-center border border-gris-oscuro bg-negro-suave font-sans text-lg text-gris-texto transition-colors hover:border-dorado hover:text-dorado md:flex"
           aria-label="Cerrar"
         >
           ✕
