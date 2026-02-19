@@ -75,7 +75,7 @@ export function Footer() {
           <p className="font-mono text-xs text-gris-texto/60">
             © 2026 Centro Cristiano Esperanza. Todos los derechos reservados.
           </p>
-          <p className="mt-1 font-mono text-xs text-gris-texto/40 md:mt-0">
+          <p className="mt-1 hidden font-mono text-xs text-gris-texto/40 md:mt-0 md:block">
             Congreso CCE Argentina 2026 — Expansión Sobrenatural
           </p>
         </div>
