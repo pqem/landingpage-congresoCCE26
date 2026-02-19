@@ -1,4 +1,9 @@
-@import 'tailwindcss';
+/* Split Tailwind imports: utilities stay UNLAYERED so they beat browser
+   :link/:visited defaults. Official solution per tailwindlabs/tailwindcss#16882 */
+@layer theme, base, components;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
+@import "tailwindcss/utilities.css";
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
