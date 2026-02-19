@@ -116,13 +116,11 @@
   }
 }
 
-/* Force nav link colors outside @layer to beat browser :visited (#C76ED7).
-   Tailwind v4 utilities are inside @layer and lose to UA :visited styles. */
-nav a { color: var(--color-gris-texto); }
-nav a:visited { color: var(--color-gris-texto); }
-nav a:hover { color: var(--color-dorado); }
-nav a.bg-dorado { color: var(--color-negro-fondo); }
-nav a.bg-dorado:visited { color: var(--color-negro-fondo); }
+/* Force nav link colors outside @layer to beat browser :visited.
+   Tailwind v4 utilities are inside @layer and lose to UA styles. */
+nav a { color: var(--color-gris-texto) !important; }
+nav a:hover { color: var(--color-dorado) !important; }
+nav a.bg-dorado { color: var(--color-negro-fondo) !important; background-color: var(--color-dorado) !important; }
 
 /* ===== ANIMATIONS ===== */
 
