@@ -3,11 +3,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Override browser :link/:visited colors for nav links.
-   Hardcoded because Chrome blocks var() in :visited for privacy. */
-nav a, nav a:visited { color: #CCCCCC; }
-nav a:hover { color: #E7BB70; }
-
 :root {
   --background: #000000;
   --foreground: #FFFFFF;
