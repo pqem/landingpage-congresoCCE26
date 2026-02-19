@@ -59,7 +59,10 @@ export function Inscripcion() {
               animate={contentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.4, delay: 0.3 }}
             >
-              Consultas: plottier@ccesperanza.org · Tel: +54 9 299 504-6674
+              Consultas: plottier@ccesperanza.org
+              <br className="md:hidden" />
+              <span className="hidden md:inline"> · </span>
+              Tel: +54 9 299 504-6674
             </motion.p>
           </div>
         </div>
