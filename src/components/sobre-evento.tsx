@@ -13,9 +13,9 @@ export function SobreEvento() {
         {/* Section title */}
         <motion.h2
           className="font-serif text-3xl text-dorado sm:text-4xl md:text-5xl lg:text-6xl"
-          initial={{ opacity: 0, y: 80, scale: 0.85 }}
-          animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.85 }}
-          transition={{ duration: 0.9, type: "spring", stiffness: 80, damping: 12 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
         >
           SOBRE EL EVENTO
         </motion.h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 export function Ubicacion() {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,11 +26,19 @@ export function Ubicacion() {
           visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
         }`}
       >
-        <h2 className="font-serif text-4xl text-dorado md:text-6xl">
+        <motion.h2
+          className="font-serif text-4xl text-dorado md:text-6xl"
+          initial={{ opacity: 0, x: -100 }}
+          animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
+        >
           UBICACIÓN
-        </h2>
-        <div
+        </motion.h2>
+        <motion.div
           className="gradient-line-dorado mt-4 h-px w-24"
+          initial={{ scaleX: 0, originX: 0 }}
+          animate={visible ? { scaleX: 1 } : { scaleX: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
         />
 
         <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">

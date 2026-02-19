@@ -76,9 +76,9 @@ export function Programa() {
       >
         <motion.h2
           className="font-serif text-4xl text-dorado md:text-6xl"
-          initial={{ opacity: 0, y: 70, scale: 0.85 }}
-          animate={visible ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 70, scale: 0.85 }}
-          transition={{ duration: 0.9, type: "spring", stiffness: 80, damping: 12 }}
+          initial={{ opacity: 0, x: -100 }}
+          animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
         >
           PROGRAMA
         </motion.h2>
