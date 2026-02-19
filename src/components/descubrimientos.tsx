@@ -125,15 +125,15 @@ export function Descubrimientos() {
         </motion.p>
 
         <div className="relative mt-10">
-          {/* Línea dorada scroll-driven — entra por izquierda, baja, sale por izquierda */}
+          {/* Línea dorada scroll-driven — entra y sale por derecha */}
           <ScrollSVGPath
-            d="M -500 0 C 1500 500, 3500 900, 2800 1600 S -800 2200, 800 3000 S 4000 3500, 2200 4200 S -1200 5000, 600 5800 S 3500 6400, 1500 7100 C 400 7500, -600 7800, -900 8000"
+            d="M 5500 0 C 4000 400, 2000 700, 2500 1400 S 5200 1800, 5800 2400 C 5400 3000, 3000 3200, 1800 3800 S 4500 4600, 5600 5000 C 5200 5500, 3800 5800, 3200 6200 S 5000 6800, 5500 7400 C 5600 7700, 5800 7900, 6000 8000"
             pathLength={30000}
             stroke="var(--color-dorado)"
             strokeWidth={350}
-            viewBox="0 0 5000 8000"
+            viewBox="0 0 6000 8000"
             scrollRange={[0.15, 0.75]}
-            className="pointer-events-none absolute -left-[50%] top-0 z-0 h-full w-[200%] md:hidden"
+            className="pointer-events-none absolute -right-[30%] top-0 z-0 h-full w-[150%] md:hidden"
             svgClassName="h-full w-full opacity-90"
             preserveAspectRatio="none"
           />
