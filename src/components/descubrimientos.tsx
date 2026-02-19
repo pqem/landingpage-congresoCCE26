@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import ScrollSVGPath from "./scroll-svg-path";
 import {
   Flame,
   BookOpen,
@@ -98,7 +99,7 @@ export function Descubrimientos() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section className="bg-negro-fondo py-16 sm:py-20 md:py-32">
+    <section className="overflow-x-clip bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div ref={ref} className="mx-auto max-w-5xl px-4 lg:px-8">
         <motion.h2
           className="font-serif text-4xl text-dorado md:text-6xl"
@@ -123,10 +124,24 @@ export function Descubrimientos() {
           LO QUE VAS A VIVIR EN ESTOS 4 DÍAS
         </motion.p>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {descubrimientos.map((item, index) => (
-            <Card key={item.title} item={item} index={index} />
-          ))}
+        <div className="relative mt-10">
+          {/* Línea dorada scroll-driven — solo mobile */}
+          <ScrollSVGPath
+            d="M 100 0 C 170 80, 180 180, 120 280 S 30 380, 100 480 S 180 580, 120 680 S 30 780, 100 880 S 170 980, 130 1100 Q 140 1160, 130 1200"
+            pathLength={2000}
+            stroke="var(--color-dorado)"
+            strokeWidth={3}
+            viewBox="0 0 200 1200"
+            scrollRange={[0.15, 0.75]}
+            className="pointer-events-none absolute -right-2 top-0 z-0 h-full w-16 md:hidden"
+            svgClassName="h-full w-full opacity-60"
+            preserveAspectRatio="none"
+          />
+          <div className="relative z-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {descubrimientos.map((item, index) => (
+              <Card key={item.title} item={item} index={index} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
