@@ -116,14 +116,13 @@
   }
 }
 
-/* Reset browser default link colors (blue/magenta).
-   Uses :where() for zero specificity so Tailwind utilities (text-gris-texto,
-   text-dorado, etc.) can override it, while still beating UA defaults
-   by being in the author origin (unlayered but zero-specificity). */
-:where(a) {
-  color: inherit;
-  text-decoration: inherit;
-}
+/* Force nav link colors outside @layer to beat browser :visited (#C76ED7).
+   Tailwind v4 utilities are inside @layer and lose to UA :visited styles. */
+nav a { color: var(--color-gris-texto); }
+nav a:visited { color: var(--color-gris-texto); }
+nav a:hover { color: var(--color-dorado); }
+nav a.bg-dorado { color: var(--color-negro-fondo); }
+nav a.bg-dorado:visited { color: var(--color-negro-fondo); }
 
 /* ===== ANIMATIONS ===== */
 
