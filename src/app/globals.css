@@ -3,6 +3,26 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/*
+  Fix: Chrome bloquea var() en :visited por privacidad (CSS Selectors L4).
+  Tailwind v4 genera color: var(...) que Chrome descarta en contexto :visited,
+  cayendo al UA default (purple/magenta). Usamos valores literales fuera de
+  @layer para que author-unlayered gane al UA default.
+  Ref: https://www.w3.org/TR/selectors-4/#privacy
+*/
+nav a:visited {
+  color: #CCCCCC; /* = --gris-texto */
+}
+nav a:visited:hover {
+  color: #E7BB70; /* = --dorado */
+}
+nav a[href="#inscripcion"]:visited {
+  color: #000000; /* = --negro-fondo (CTA button) */
+}
+nav a[href="#inscripcion"]:visited:hover {
+  color: #000000; /* mantiene negro en hover del CTA */
+}
+
 :root {
   --background: #000000;
   --foreground: #FFFFFF;
