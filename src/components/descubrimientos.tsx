@@ -95,34 +95,36 @@ function Card({
 }
 
 export function Descubrimientos() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const headingRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, amount: 0.5 });
 
   return (
     <section className="overflow-x-clip bg-negro-fondo py-16 sm:py-20 md:py-32">
-      <div ref={ref} className="mx-auto max-w-5xl px-4 lg:px-8">
-        <motion.h2
-          className="font-serif text-4xl text-dorado md:text-6xl"
-          initial={{ opacity: 0, x: -100 }}
-          animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
-        >
-          LA EXPERIENCIA
-        </motion.h2>
-        <motion.div
-          className="gradient-line-dorado mt-4 h-px w-24"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        />
-        <motion.p
-          className="mt-4 font-mono text-sm font-light text-gris-texto"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          LO QUE VAS A VIVIR EN ESTOS 4 DÍAS
-        </motion.p>
+      <div className="mx-auto max-w-5xl px-4 lg:px-8">
+        <div ref={headingRef}>
+          <motion.h2
+            className="font-serif text-4xl text-dorado md:text-6xl"
+            initial={{ opacity: 0, x: -100 }}
+            animate={headingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
+          >
+            LA EXPERIENCIA
+          </motion.h2>
+          <motion.div
+            className="gradient-line-dorado mt-4 h-px w-24"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={headingInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          />
+          <motion.p
+            className="mt-4 font-mono text-sm font-light text-gris-texto"
+            initial={{ opacity: 0 }}
+            animate={headingInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            LO QUE VAS A VIVIR EN ESTOS 4 DÍAS
+          </motion.p>
+        </div>
 
         <div className="relative mt-10">
           {/* Línea dorada scroll-driven — entra y sale por derecha */}
