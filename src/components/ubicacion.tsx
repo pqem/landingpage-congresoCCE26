@@ -1,50 +1,60 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+
+const infoItems = [
+  {
+    icon: "M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z",
+    title: "Aeropuerto más cercano",
+    text: "Aeropuerto Internacional Presidente Perón (NQN) — 15 min en auto",
+  },
+  {
+    icon: "M6 6h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zM6 16v2m12-2v2M7 12h2m6 0h2M4 9h16",
+    title: "Terminal de ómnibus",
+    text: "Terminal Neuquén — 20 min en auto",
+  },
+  {
+    icon: "M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6",
+    title: "Alojamiento",
+    text: "Hoteles y cabañas disponibles en Plottier y Neuquén capital. Consultá por alojamiento grupal.",
+  },
+];
 
 export function Ubicacion() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, amount: 0.5 });
+  const contentInView = useInView(contentRef, { once: true, amount: 0.15 });
 
   return (
     <section id="ubicacion" className="bg-negro-suave py-20 md:py-32">
-      <div
-        ref={ref}
-        className={`mx-auto max-w-5xl px-4 lg:px-8 transition-all duration-1000 ease-out ${
-          visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
-        <motion.h2
-          className="font-serif text-4xl text-dorado md:text-6xl"
-          initial={{ opacity: 0, x: -100 }}
-          animate={visible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-          transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
-        >
-          UBICACIÓN
-        </motion.h2>
-        <motion.div
-          className="gradient-line-dorado mt-4 h-px w-24"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={visible ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        />
+      <div className="mx-auto max-w-5xl px-4 lg:px-8">
+        <div ref={headingRef}>
+          <motion.h2
+            className="font-serif text-4xl text-dorado md:text-6xl"
+            initial={{ opacity: 0, x: -100 }}
+            animate={headingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
+          >
+            UBICACIÓN
+          </motion.h2>
+          <motion.div
+            className="gradient-line-dorado mt-4 h-px w-24"
+            initial={{ scaleX: 0, originX: 0 }}
+            animate={headingInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          />
+        </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+        <div ref={contentRef} className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
           {/* Info */}
           <div className="space-y-6">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={contentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.5, delay: 0 }}
+            >
               <h3 className="font-sans text-lg font-bold text-foreground">
                 Centro Cristiano Esperanza
               </h3>
@@ -55,65 +65,52 @@ export function Ubicacion() {
                 <br />
                 CP 8316
               </p>
-            </div>
+            </motion.div>
 
             <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-5 w-5 shrink-0 text-dorado">
-                  <path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <div>
-                  <p className="font-sans text-sm font-semibold text-foreground">
-                    Aeropuerto más cercano
-                  </p>
-                  <p className="font-mono text-xs text-gris-texto">
-                    Aeropuerto Internacional Presidente Perón (NQN) — 15 min en auto
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-5 w-5 shrink-0 text-dorado">
-                  <path d="M6 6h12a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zM6 16v2m12-2v2M7 12h2m6 0h2M4 9h16" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <div>
-                  <p className="font-sans text-sm font-semibold text-foreground">
-                    Terminal de ómnibus
-                  </p>
-                  <p className="font-mono text-xs text-gris-texto">
-                    Terminal Neuquén — 20 min en auto
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-5 w-5 shrink-0 text-dorado">
-                  <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-                <div>
-                  <p className="font-sans text-sm font-semibold text-foreground">
-                    Alojamiento
-                  </p>
-                  <p className="font-mono text-xs text-gris-texto">
-                    Hoteles y cabañas disponibles en Plottier y Neuquén capital.
-                    Consultá por alojamiento grupal.
-                  </p>
-                </div>
-              </div>
+              {infoItems.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={contentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                  transition={{ duration: 0.4, delay: 0.1 + i * 0.1 }}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="mt-0.5 h-5 w-5 shrink-0 text-dorado">
+                    <path d={item.icon} strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <div>
+                    <p className="font-sans text-sm font-semibold text-foreground">
+                      {item.title}
+                    </p>
+                    <p className="font-mono text-xs text-gris-texto">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <a
+            <motion.a
               href="https://maps.google.com/?q=Centro+Cristiano+Esperanza+Plottier+Neuquen"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block border border-dorado px-6 py-3 font-sans text-xs font-bold tracking-wider text-dorado transition-all hover:bg-dorado hover:text-black"
+              initial={{ opacity: 0, y: 20 }}
+              animate={contentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, delay: 0.5 }}
             >
               VER EN GOOGLE MAPS
-            </a>
+            </motion.a>
           </div>
 
           {/* Map embed */}
-          <div className="overflow-hidden border border-gris-oscuro">
+          <motion.div
+            className="overflow-hidden border border-gris-oscuro"
+            initial={{ opacity: 0, y: 30 }}
+            animate={contentInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <iframe
               src="https://maps.google.com/maps?q=Centro+Cristiano+Esperanza,+Av+San+Martin+440,+Plottier,+Neuquen,+Argentina&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%"
@@ -125,7 +122,7 @@ export function Ubicacion() {
               referrerPolicy="no-referrer-when-downgrade"
               title="Ubicación Centro Cristiano Esperanza"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
