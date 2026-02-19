@@ -117,9 +117,10 @@
 }
 
 /* Reset browser default link colors (blue/magenta).
-   Must be outside @layer to override user-agent styles,
-   since Tailwind v4 preflight is inside @layer base and loses to UA defaults. */
-a {
+   Uses :where() for zero specificity so Tailwind utilities (text-gris-texto,
+   text-dorado, etc.) can override it, while still beating UA defaults
+   by being in the author origin (unlayered but zero-specificity). */
+:where(a) {
   color: inherit;
   text-decoration: inherit;
 }
