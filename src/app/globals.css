@@ -114,6 +114,13 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
   }
+  /* Override browser default link colors (blue/magenta) in nav */
+  nav a {
+    color: inherit;
+  }
+  nav a:visited {
+    color: inherit;
+  }
 }
 
 /* ===== ANIMATIONS ===== */
