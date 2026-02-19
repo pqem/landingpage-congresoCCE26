@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const redes = [
   {
@@ -30,46 +31,50 @@ const redes = [
 ];
 
 export function RedesSociales() {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const headingRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const headingInView = useInView(headingRef, { once: true, amount: 0.5 });
+  const cardsInView = useInView(cardsRef, { once: true, amount: 0.2 });
 
   return (
     <section id="redes" className="bg-negro-suave py-20 md:py-32">
-      <div
-        ref={ref}
-        className={`mx-auto max-w-4xl px-4 text-center lg:px-8 transition-all duration-1000 ease-out ${
-          visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-        }`}
-      >
-        <h2 className="font-serif text-4xl text-dorado md:text-6xl">
-          SEGUINOS
-        </h2>
-        <div
-          className="gradient-line-dorado-center mx-auto mt-4 h-px w-24"
-        />
-        <p className="mt-4 font-mono text-sm font-light text-gris-texto">
-          Mantenete conectado con toda la info del congreso
-        </p>
+      <div className="mx-auto max-w-4xl px-4 text-center lg:px-8">
+        <div ref={headingRef}>
+          <motion.h2
+            className="font-serif text-4xl text-dorado md:text-6xl"
+            initial={{ opacity: 0, x: -100 }}
+            animate={headingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+            transition={{ duration: 0.7, type: "spring", stiffness: 80, damping: 14 }}
+          >
+            SEGUINOS
+          </motion.h2>
+          <motion.div
+            className="gradient-line-dorado-center mx-auto mt-4 h-px w-24"
+            initial={{ scaleX: 0 }}
+            animate={headingInView ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+          />
+          <motion.p
+            className="mt-4 font-mono text-sm font-light text-gris-texto"
+            initial={{ opacity: 0 }}
+            animate={headingInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Mantenete conectado con toda la info del congreso
+          </motion.p>
+        </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
-          {redes.map((red) => (
-            <a
+        <div ref={cardsRef} className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {redes.map((red, i) => (
+            <motion.a
               key={red.nombre}
               href={red.url}
               target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col items-center gap-3 border border-gris-oscuro p-4 transition-all hover:border-dorado/50 hover:bg-dorado/5 sm:p-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -84,14 +89,19 @@ export function RedesSociales() {
               <span className="font-mono text-xs text-gris-texto">
                 {red.usuario}
               </span>
-            </a>
+            </motion.a>
           ))}
         </div>
 
         {/* Hashtag */}
-        <p className="mt-10 font-serif text-2xl text-dorado/40 md:text-3xl">
+        <motion.p
+          className="mt-10 font-serif text-2xl text-dorado/40 md:text-3xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={cardsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
           #ExpansiónSobrenatural
-        </p>
+        </motion.p>
       </div>
     </section>
   );
