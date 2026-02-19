@@ -87,9 +87,21 @@ export function Hero() {
         <svg
           viewBox={PORTRAIT_VIEWBOX}
           className="h-auto w-full"
+          overflow="visible"
           aria-label={ARIA_LABEL}
           role="img"
         >
+          {/* Curva dorada mobile — convertida de landscape a portrait */}
+          <motion.path
+            d={GOLDEN_CURVE_D}
+            fill="none"
+            stroke="var(--color-dorado)"
+            strokeWidth="1270"
+            strokeMiterlimit="22.9256"
+            strokeLinecap="round"
+            transform="translate(-4574.25,4712.14)"
+            {...curveAnim}
+          />
           <motion.g {...titleAnim}>
             <path fill="#FEFEFE" fillRule="nonzero" d={TITLE_D} />
           </motion.g>
