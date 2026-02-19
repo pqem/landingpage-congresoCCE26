@@ -50,8 +50,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="py-2 font-mono text-sm font-medium tracking-wide text-gris-texto visited:text-gris-texto transition-colors hover:text-dorado"
-              style={{ color: 'var(--color-gris-texto)' }}
+              className="py-2 font-mono text-sm font-medium tracking-wide text-[#CCCCCC] transition-colors hover:text-dorado"
             >
               {link.label.toUpperCase()}
             </a>
@@ -73,8 +72,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="font-mono text-base font-medium tracking-wide text-gris-texto visited:text-gris-texto transition-colors hover:text-dorado"
-              style={{ color: 'var(--color-gris-texto)' }}
+              className="font-mono text-base font-medium tracking-wide text-[#CCCCCC] transition-colors hover:text-dorado"
             >
               {link.label.toUpperCase()}
             </a>
