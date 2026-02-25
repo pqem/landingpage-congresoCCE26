@@ -6,46 +6,43 @@ import { motion, useInView } from "framer-motion";
 const dias = [
   {
     dia: "VIERNES 20",
-    fecha: "20 de Marzo",
+    fecha: "Viernes 20 de Marzo",
     actividades: [
-      { hora: "16:00", titulo: "Acreditación y bienvenida" },
-      { hora: "18:00", titulo: "Apertura oficial", detalle: "Aps. Daniel y Rosita Chamorro" },
-      { hora: "19:30", titulo: "Adoración en vivo" },
-      { hora: "20:30", titulo: "Plenaria inaugural", detalle: "Aps. Daniel y Patricia Cattaneo" },
+      { hora: "09:00", titulo: "Retiro de Pastores", detalle: "Merienda · Adoración · Palabra" },
+      { hora: "19:30", titulo: "1º Plenaria" },
+      { hora: "", titulo: "Cena y tiempo libre" },
+      { hora: "", titulo: "Fogón juvenil" },
     ],
   },
   {
     dia: "SÁBADO 21",
-    fecha: "21 de Marzo",
+    fecha: "Sábado 21 de Marzo",
     actividades: [
-      { hora: "09:00", titulo: "Desayuno de líderes" },
-      { hora: "10:30", titulo: "Taller: Estrategias de expansión", detalle: "Pr. Alejandro Rodríguez" },
-      { hora: "14:00", titulo: "Almuerzo libre" },
-      { hora: "16:00", titulo: "Taller: Liderazgo generacional", detalle: "Pr. Sergio Belart" },
-      { hora: "19:00", titulo: "Adoración en vivo" },
-      { hora: "20:00", titulo: "Plenaria de noche", detalle: "Aps. Daniel y Rosita Chamorro" },
+      { hora: "09:30", titulo: "2º Plenaria" },
+      { hora: "", titulo: "Break corto" },
+      { hora: "11:30", titulo: "3º Plenaria" },
+      { hora: "", titulo: "Comida y tiempo libre" },
+      { hora: "16:30", titulo: "4º Plenaria" },
+      { hora: "18:00", titulo: "5º Plenaria" },
+      { hora: "", titulo: "Break corto" },
+      { hora: "19:30", titulo: "6º Plenaria" },
+      { hora: "", titulo: "Cena y tiempo libre" },
+      { hora: "", titulo: "Fogón juvenil" },
     ],
   },
   {
     dia: "DOMINGO 22",
-    fecha: "22 de Marzo",
+    fecha: "Domingo 22 de Marzo",
     actividades: [
-      { hora: "10:00", titulo: "Servicio especial de adoración" },
-      { hora: "11:30", titulo: "Plenaria", detalle: "Prs. Ale y María Chamorro" },
-      { hora: "13:00", titulo: "Almuerzo de confraternidad" },
-      { hora: "17:00", titulo: "Panel de oradores", detalle: "Todos los oradores" },
-      { hora: "19:00", titulo: "Adoración en vivo" },
-      { hora: "20:00", titulo: "Plenaria central", detalle: "Aps. Daniel y Patricia Cattaneo" },
-    ],
-  },
-  {
-    dia: "LUNES 23",
-    fecha: "23 de Marzo",
-    actividades: [
-      { hora: "09:00", titulo: "Oración y consagración" },
-      { hora: "10:30", titulo: "Plenaria de cierre", detalle: "Pr. Sergio Belart" },
-      { hora: "12:00", titulo: "Comisión y envío", detalle: "Aps. Daniel y Rosita Chamorro" },
-      { hora: "13:00", titulo: "Cierre y despedida" },
+      { hora: "09:30", titulo: "7º Plenaria" },
+      { hora: "", titulo: "Break corto" },
+      { hora: "11:30", titulo: "8º Plenaria" },
+      { hora: "", titulo: "Comida y tiempo libre" },
+      { hora: "16:30", titulo: "9º Plenaria" },
+      { hora: "18:00", titulo: "10º Plenaria" },
+      { hora: "", titulo: "Break corto" },
+      { hora: "19:30", titulo: "11º Plenaria" },
+      { hora: "", titulo: "¡Final del Congreso!" },
     ],
   },
 ];
@@ -78,7 +75,7 @@ export function Programa() {
         </div>
 
         {/* Day selector tabs */}
-        <div ref={tabsRef} className="mt-10 grid grid-cols-4 gap-2">
+        <div ref={tabsRef} className="mt-10 grid grid-cols-3 gap-2">
           {dias.map((d, i) => (
             <motion.button
               key={d.dia}
@@ -117,7 +114,7 @@ export function Programa() {
                 className="flex items-baseline gap-6 border-l border-gris-oscuro py-4 pl-6 transition-colors hover:border-dorado/50"
               >
                 <span className="w-12 shrink-0 font-mono text-sm font-bold leading-none text-dorado sm:w-14 md:text-base">
-                  {act.hora}
+                  {act.hora || "—"}
                 </span>
                 <div>
                   <p className="font-sans text-sm font-semibold leading-none text-foreground md:text-base">
