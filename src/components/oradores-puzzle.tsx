@@ -51,6 +51,24 @@ const oradores = [
     area: { left: 81.9, top: 55.5, width: 18.1, height: 37.5 },
     areaMobile: { left: 66, top: 70, width: 30, height: 22 },
   },
+  {
+    id: "debora-pedace",
+    nombre: "Lic. Débora Pedace",
+    imagen: "/images/oradores/debora-pedace.png",
+    resena:
+      "Psicóloga clínica y conferencista, directora del Centro Terapéutico Integral (CTI) en Argentina. Especializada en psicología preventiva, gestión de emociones, ansiedad y salud mental. Autora de 'Yo me cuido' y 'Selfcare Workbook'. Conduce el podcast 'Yo Me Cuido' y colabora en medios como Radio Perfil y Radio La Red. Utiliza plataformas digitales para difundir herramientas prácticas de bienestar emocional con un enfoque pedagógico y accesible.",
+    area: { left: 0, top: 55.5, width: 18.0, height: 37.5 },
+    areaMobile: { left: 2, top: 70, width: 22, height: 22 },
+  },
+  {
+    id: "rafael-pedace",
+    nombre: "Rafael Pedace",
+    imagen: "/images/oradores/rafael-pedace.png",
+    resena:
+      "Empresario y líder espiritual argentino. Fundador de TodoMúsica S.A. (1984), compañía líder en distribución de instrumentos musicales y equipos de sonido profesional, representando a más de 30 marcas internacionales. Contador Público y conferencista en foros de liderazgo y negocios. Integrante de la mesa ejecutiva de la Comunidad PEC (Profesionales y Empresarios Cristianos). Pastor y fundador del ministerio 'Una Vida Mejor' en Buenos Aires. Vicepresidente de Relaciones Externas de ACIERA.",
+    area: { left: 14, top: 16.8, width: 18.0, height: 37.5 },
+    areaMobile: { left: 2, top: 5, width: 46, height: 20 },
+  },
 ];
 
 function OradorModal({
