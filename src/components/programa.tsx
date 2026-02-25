@@ -114,7 +114,7 @@ export function Programa() {
                 className="flex items-baseline gap-6 border-l border-gris-oscuro py-4 pl-6 transition-colors hover:border-dorado/50"
               >
                 <span className="w-12 shrink-0 font-mono text-sm font-bold leading-none text-dorado sm:w-14 md:text-base">
-                  {act.hora || "—"}
+                  {act.hora || ""}
                 </span>
                 <div>
                   <p className="font-sans text-sm font-semibold leading-none text-foreground md:text-base">
