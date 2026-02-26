@@ -12,7 +12,7 @@ const oradores = [
     imagen: "/images/oradores/cattaneo.png",
     resena:
       "Pastor principal y apóstol de la Iglesia Redentor (Comunidad Redentor), fundada en 1945 en San Lorenzo, Santa Fe. Lidera una red de 16 templos en la provincia de Santa Fe. Reconocido por su creatividad e innovación ministerial, incluyendo iniciativas como la protesta 'culto-bar' durante la pandemia 2020. Ministerio integral: espiritual, emocional y físico.",
-    area: { left: 18.7, top: 3.5, width: 27.0, height: 19.1 },
+    area: { left: 18.7, top: 3.4, width: 23.8, height: 18.6 },
     areaMobile: { left: 1.8, top: 24.1, width: 41.5, height: 14.6 },
   },
   {
@@ -21,7 +21,7 @@ const oradores = [
     imagen: "/images/oradores/ale-maria.png",
     resena:
       "Pastores del Centro Cristiano Esperanza en Plottier, Neuquén. Sirven en el ministerio pastoral de la iglesia madre del CCE, liderando la congregación local con pasión y entrega.",
-    area: { left: 47.5, top: 3.5, width: 22.4, height: 19.1 },
+    area: { left: 43.5, top: 3.5, width: 14.7, height: 30.0 },
     areaMobile: { left: 47.0, top: 21.8, width: 42.0, height: 16.5 },
   },
   {
@@ -30,7 +30,7 @@ const oradores = [
     imagen: "/images/oradores/daniel-rosita.png",
     resena:
       "Fundadores del Centro Cristiano Esperanza en 1982, Plottier. Red apostólica con presencia en Argentina, España, Italia, EE.UU., India y África. Más de 40 años de ministerio pastoral. Obras pioneras: FM Esperanza (primera radio cristiana FM del país, 1988), instituciones educativas, centros de salud. Conferencistas internacionales.",
-    area: { left: 18.7, top: 24.5, width: 27.0, height: 19.1 },
+    area: { left: 18.7, top: 23.2, width: 23.8, height: 18.6 },
     areaMobile: { left: 1.8, top: 39.9, width: 41.5, height: 14.5 },
   },
   {
@@ -39,7 +39,7 @@ const oradores = [
     imagen: "/images/oradores/belart.png",
     resena:
       "Pastor de la Iglesia Cristiana 'Cita con la Vida' en Córdoba. Abogado (UNC). Director del Congreso Internacional de Jóvenes (Semana Santa, Córdoba, desde 1994). Lidera 'Jóvenes con Propósito' (5.000+ jóvenes). Conferencista internacional en más de 20 países. Autor de 'El Pastor de Jóvenes' y 'Generación de Relevo'.",
-    area: { left: 36.5, top: 46.1, width: 17.8, height: 21.4 },
+    area: { left: 43.4, top: 34.8, width: 14.7, height: 30.0 },
     areaMobile: { left: 26.6, top: 55.7, width: 24.8, height: 15.8 },
   },
   {
@@ -48,7 +48,7 @@ const oradores = [
     imagen: "/images/oradores/rodriguez.png",
     resena:
       "Misionero y presidente de JUCUM Argentina (Juventud Con Una Misión), organización presente en 172 países. Junto a su esposa Martha refundó la obra de JUCUM Argentina en 1989. Ha formado y enviado cientos de misioneros transculturales. Conferencista en los 5 continentes. JUCUM Argentina cuenta con más de 700 obreros y múltiples bases.",
-    area: { left: 56.2, top: 46.1, width: 16.9, height: 21.4 },
+    area: { left: 59.1, top: 34.8, width: 14.7, height: 30.0 },
     areaMobile: { left: 53.4, top: 55.7, width: 23.7, height: 15.8 },
   },
   {
@@ -57,7 +57,7 @@ const oradores = [
     imagen: "/images/oradores/rafael-pedace.png",
     resena:
       "Empresario y líder espiritual argentino. Fundador de TodoMúsica S.A. (1984), compañía líder en distribución de instrumentos musicales y equipos de sonido profesional, representando a más de 30 marcas internacionales. Contador Público y conferencista en foros de liderazgo y negocios. Integrante de la mesa ejecutiva de la Comunidad PEC (Profesionales y Empresarios Cristianos). Pastor y fundador del ministerio 'Una Vida Mejor' en Buenos Aires. Vicepresidente de Relaciones Externas de ACIERA.",
-    area: { left: 54.8, top: 69.6, width: 16.4, height: 26.3 },
+    area: { left: 59.3, top: 65.8, width: 19.7, height: 30.0 },
     areaMobile: { left: 47.0, top: 72.9, width: 22.7, height: 17.3 },
   },
   {
@@ -66,7 +66,7 @@ const oradores = [
     imagen: "/images/oradores/debora-pedace.png",
     resena:
       "Psicóloga clínica y conferencista, directora del Centro Terapéutico Integral (CTI) en Argentina. Especializada en psicología preventiva, gestión de emociones, ansiedad y salud mental. Autora de 'Yo me cuido' y 'Selfcare Workbook'. Conduce el podcast 'Yo Me Cuido' y colabora en medios como Radio Perfil y Radio La Red. Utiliza plataformas digitales para difundir herramientas prácticas de bienestar emocional con un enfoque pedagógico y accesible.",
-    area: { left: 73.1, top: 69.6, width: 16.4, height: 26.3 },
+    area: { left: 74.8, top: 66.1, width: 14.7, height: 30.0 },
     areaMobile: { left: 71.2, top: 72.9, width: 22.7, height: 18.9 },
   },
 ];
