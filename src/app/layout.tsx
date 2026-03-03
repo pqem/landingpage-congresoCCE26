@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     locale: 'es_AR',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Congreso CCE Argentina 2026 — Expansión Sobrenatural',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Congreso CCE Argentina 2026 — Expansión Sobrenatural',
     description,
-    images: ['/og-image.png'],
+    images: ['/og-image.jpg'],
   },
 }
 
