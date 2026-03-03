@@ -33,3 +33,4 @@ npm-debug.log*
 
 # Claude local settings (keep settings.local.json private)
 .claude/settings.local.json
+.vercel
