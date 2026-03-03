@@ -2,9 +2,11 @@ import type { Metadata } from 'next'
 import './globals.css'
 import SessionProvider from "@/components/SessionProvider";
 
+const description = 'Congreso CCE Argentina 2026 — Expansión Sobrenatural. 20 al 22 de marzo de 2026 en Plottier, Neuquén, Patagonia Argentina. ¡Inscribite!';
+
 export const metadata: Metadata = {
   title: 'Congreso CCE Argentina 2026 — Expansión Sobrenatural',
-  description: '20 al 23 de marzo de 2026 · Plottier, Neuquén, Argentina',
+  description,
   keywords: ['congreso', 'cce', 'esperanza', 'argentina', '2026', 'expansión sobrenatural'],
   metadataBase: new URL('https://congreso.ccesperanza.org'),
   alternates: {
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Congreso CCE Argentina 2026 — Expansión Sobrenatural',
-    description: '20 al 23 de marzo de 2026 · Plottier, Neuquén, Argentina',
+    description,
     url: 'https://congreso.ccesperanza.org',
     siteName: 'Congreso CCE Argentina 2026',
     type: 'website',
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Congreso CCE Argentina 2026 — Expansión Sobrenatural',
-    description: '20 al 23 de marzo de 2026 · Plottier, Neuquén, Argentina',
+    description,
     images: ['/og-image.png'],
   },
 }
