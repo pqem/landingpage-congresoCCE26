@@ -138,8 +138,29 @@ export default function InscripcionPage() {
               </div>
 
               <div>
-                <label htmlFor="iglesia" className={labelClassName}>Iglesia</label>
-                <input id="iglesia" name="iglesia" type="text" required placeholder="Iglesia" className={inputClassName} value={iglesia} onChange={(e) => setIglesia(e.target.value)} />
+                <label htmlFor="iglesia" className={labelClassName}>Localidad de tu iglesia</label>
+                <select
+                  id="iglesia"
+                  name="iglesia"
+                  required
+                  className={`${inputClassName} cursor-pointer`}
+                  value={iglesia}
+                  onChange={(e) => setIglesia(e.target.value)}
+                >
+                  <option value="" disabled>Seleccioná tu localidad</option>
+                  <option value="Plottier">Plottier</option>
+                  <option value="Centenario">Centenario</option>
+                  <option value="Neuquén">Neuquén</option>
+                  <option value="Senillosa">Senillosa</option>
+                  <option value="Viedma">Viedma</option>
+                  <option value="Puerto Madryn">Puerto Madryn</option>
+                  <option value="Trelew">Trelew</option>
+                  <option value="Gaiman">Gaiman</option>
+                  <option value="Esquel">Esquel</option>
+                  <option value="La Plata">La Plata</option>
+                  <option value="Mar del Plata">Mar del Plata</option>
+                  <option value="Otros">Otros</option>
+                </select>
               </div>
 
               <AlojamientoToggle
