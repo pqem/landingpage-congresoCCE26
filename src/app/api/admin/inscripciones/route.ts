@@ -21,6 +21,14 @@ export async function GET(request: NextRequest) {
     }
   );
 
-  const data = await res.json();
-  return NextResponse.json(data, { status: res.status });
+  const data = await res.json() as { inscriptos: unknown[]; total: number; page: number; limit: number; pages: number };
+  return NextResponse.json({
+    data: data.inscriptos ?? [],
+    pagination: {
+      page: data.page,
+      limit: data.limit,
+      total: data.total,
+      total_pages: data.pages,
+    },
+  }, { status: res.status });
 }
