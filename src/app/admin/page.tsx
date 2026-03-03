@@ -164,7 +164,7 @@ export default function AdminDashboard() {
         {activeTab === "dashboard" && stats && (
           <div className="space-y-6">
             <StatCards stats={stats} />
-            <DashboardCharts stats={stats} />
+            <DashboardCharts stats={stats} recentInscriptos={inscriptos?.data ?? []} />
           </div>
         )}
 
