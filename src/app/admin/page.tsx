@@ -11,6 +11,7 @@ import { SearchBar } from "@/components/admin/SearchBar";
 import { InscriptosTable } from "@/components/admin/InscriptosTable";
 import { InscriptoCard } from "@/components/admin/InscriptoCard";
 import { Pagination } from "@/components/admin/Pagination";
+import { AlojamientoTab } from "@/components/admin/AlojamientoTab";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -18,10 +19,11 @@ export default function AdminDashboard() {
 
   const [stats, setStats] = useState<Stats | null>(null);
   const [inscriptos, setInscriptos] = useState<PaginatedResponse | null>(null);
+  const [inscriptosAlojamiento, setInscriptosAlojamiento] = useState<Inscripto[]>([]);
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"dashboard" | "inscriptos">("dashboard");
+  const [activeTab, setActiveTab] = useState<"dashboard" | "inscriptos" | "alojamiento">("dashboard");
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -55,16 +57,39 @@ export default function AdminDashboard() {
     }
   }, [page, search]);
 
+  const fetchAlojamiento = useCallback(async () => {
+    try {
+      const res = await fetch("/api/admin/inscripciones?page=1&limit=500&necesita_alojamiento=1");
+      const data = await res.json() as PaginatedResponse;
+      setInscriptosAlojamiento((data.data ?? []).filter((i) => i.necesita_alojamiento));
+    } catch (err) {
+      console.error("Error cargando alojamiento:", err);
+    }
+  }, []);
+
   const refreshData = useCallback(async () => {
     setRefreshing(true);
-    await Promise.all([fetchStats(), fetchInscriptos()]);
+    await Promise.all([fetchStats(), fetchInscriptos(), fetchAlojamiento()]);
     setLastUpdated(new Date());
     setRefreshing(false);
-  }, [fetchStats, fetchInscriptos]);
+  }, [fetchStats, fetchInscriptos, fetchAlojamiento]);
 
   useEffect(() => {
     if (session) refreshData();
   }, [session, refreshData]);
+
+  const handleEstadoAlojamiento = async (id: number, estado: string) => {
+    try {
+      await fetch(`/api/admin/inscripciones/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ estado }),
+      });
+      fetchInscriptos();
+    } catch (err) {
+      console.error("Error actualizando estado:", err);
+    }
+  };
 
   const handleDelete = async (id: number) => {
     if (!confirm("¿Estás seguro de eliminar esta inscripción?")) return;
@@ -137,8 +162,8 @@ export default function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Tabs + Refresh */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div className="flex gap-3">
-            {(["dashboard", "inscriptos"] as const).map((tab) => (
+          <div className="flex gap-3 flex-wrap">
+            {(["dashboard", "inscriptos", "alojamiento"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -148,7 +173,7 @@ export default function AdminDashboard() {
                     : "bg-[#1a1a1a] text-[#CCCCCC] border border-[#2a2a2a] hover:bg-[#2a2a2a]"
                 }`}
               >
-                {tab === "dashboard" ? "Dashboard" : "Inscriptos"}
+                {tab === "dashboard" ? "Dashboard" : tab === "inscriptos" ? "Inscriptos" : "Alojamiento"}
               </button>
             ))}
           </div>
@@ -178,6 +203,14 @@ export default function AdminDashboard() {
             <StatCards stats={stats} />
             <DashboardCharts stats={stats} recentInscriptos={inscriptos?.data ?? []} />
           </div>
+        )}
+
+        {/* Alojamiento Tab */}
+        {activeTab === "alojamiento" && (
+          <AlojamientoTab
+            inscriptos={inscriptosAlojamiento}
+            onEstadoChange={handleEstadoAlojamiento}
+          />
         )}
 
         {/* Inscriptos Tab */}

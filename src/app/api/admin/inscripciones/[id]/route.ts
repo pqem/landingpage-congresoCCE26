@@ -52,3 +52,32 @@ export async function DELETE(
   const data = await res.json();
   return NextResponse.json(data, { status: res.status });
 }
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  const { id } = await params;
+  const body = await request.json();
+
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/admin/inscripciones/${id}/alojamiento`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        "X-API-Key": process.env.ADMIN_API_KEY!,
+        "X-Admin-Email": session.user.email,
+      },
+      body: JSON.stringify(body),
+    }
+  );
+
+  const data = await res.json();
+  return NextResponse.json(data, { status: res.status });
+}
