@@ -3,7 +3,10 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
-const dias = [
+type Actividad = { hora: string; titulo: string; detalle?: string };
+type Dia = { dia: string; fecha: string; actividades: Actividad[] };
+
+const dias: Dia[] = [
   {
     dia: "VIERNES 20",
     fecha: "Viernes 20 de Marzo",
