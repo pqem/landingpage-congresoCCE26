@@ -219,6 +219,7 @@ export default function AdminDashboard() {
                   expandedId={expandedId}
                   onToggleExpand={(id) => setExpandedId(expandedId === id ? null : id)}
                   onDelete={handleDelete}
+                  userRol={session.user?.rol ?? "observador"}
                 />
 
                 <div className="md:hidden space-y-3">
@@ -229,6 +230,7 @@ export default function AdminDashboard() {
                       expanded={expandedId === i.id}
                       onToggle={() => setExpandedId(expandedId === i.id ? null : i.id)}
                       onDelete={() => handleDelete(i.id)}
+                      userRol={session.user?.rol ?? "observador"}
                     />
                   ))}
                 </div>

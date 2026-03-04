@@ -7,10 +7,23 @@ interface InscriptosTableProps {
   expandedId: number | null;
   onToggleExpand: (id: number) => void;
   onDelete: (id: number) => void;
+  userRol: string;
 }
 
-export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete }: InscriptosTableProps) {
+export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete, userRol }: InscriptosTableProps) {
+  const esEditor = userRol === "editor";
   return (
+    <>
+    {!esEditor && (
+      <div className="flex items-center gap-3 bg-[#1a1a1a] border border-dorado/30 rounded-xl px-4 py-3 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="text-dorado shrink-0">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+        <p className="text-sm text-[#CCCCCC]">
+          Solo <span className="text-dorado font-semibold">giseavit@gmail.com</span> puede eliminar inscriptos.
+        </p>
+      </div>
+    )}
     <div className="hidden md:block overflow-x-auto">
       <table className="w-full">
         <thead>
@@ -50,15 +63,17 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                   {new Date(i.created_at).toLocaleDateString("es-AR")}
                 </td>
                 <td className="py-3 px-4">
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onDelete(i.id);
-                    }}
-                    className="text-red-400 hover:text-red-300 text-sm"
-                  >
-                    Eliminar
-                  </button>
+                  {esEditor && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onDelete(i.id);
+                      }}
+                      className="text-red-400 hover:text-red-300 text-sm"
+                    >
+                      Eliminar
+                    </button>
+                  )}
                 </td>
               </tr>
               {expandedId === i.id && i.familiares && i.familiares.length > 0 && (
@@ -73,5 +88,6 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
         </tbody>
       </table>
     </div>
+    </>
   );
 }

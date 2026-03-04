@@ -6,9 +6,11 @@ interface InscriptoCardProps {
   expanded: boolean;
   onToggle: () => void;
   onDelete: () => void;
+  userRol: string;
 }
 
-export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: InscriptoCardProps) {
+export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete, userRol }: InscriptoCardProps) {
+  const esEditor = userRol === "editor";
   return (
     <div
       className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4"
@@ -54,17 +56,19 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: In
         </div>
       )}
 
-      <div className="flex justify-end mt-3 pt-2 border-t border-[#2a2a2a]/50">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onDelete();
-          }}
-          className="text-red-400 hover:text-red-300 text-xs"
-        >
-          Eliminar
-        </button>
-      </div>
+      {esEditor && (
+        <div className="flex justify-end mt-3 pt-2 border-t border-[#2a2a2a]/50">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onDelete();
+            }}
+            className="text-red-400 hover:text-red-300 text-xs"
+          >
+            Eliminar
+          </button>
+        </div>
+      )}
     </div>
   );
 }

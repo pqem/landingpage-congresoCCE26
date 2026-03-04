@@ -35,6 +35,9 @@ export async function DELETE(
   if (!session?.user?.email) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
+  if (session.user.rol !== "editor") {
+    return NextResponse.json({ error: "Sin permisos para eliminar" }, { status: 403 });
+  }
 
   const { id } = await params;
 
