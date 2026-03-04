@@ -28,7 +28,7 @@ export default function AdminLogin() {
           <img
             src="/Logo_cce_color_svg.svg"
             alt="CCE"
-            style={{ width: "360px", height: "auto" }}
+            style={{ width: "180px", height: "auto" }}
             className="mx-auto mb-4"
           />
           <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
