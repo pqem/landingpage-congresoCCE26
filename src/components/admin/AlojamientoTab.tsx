@@ -104,12 +104,12 @@ export function AlojamientoTab({ inscriptos, onEstadoChange }: Props) {
 
       {/* Toolbar */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 print:hidden">
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-1.5 w-full sm:w-auto">
           {(["todos", "pendiente", "confirmado", "asignado"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFiltro(f)}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors border ${
+              className={`flex-1 sm:flex-none px-2 sm:px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors border whitespace-nowrap ${
                 filtro === f
                   ? "bg-dorado text-black border-dorado"
                   : "bg-[#1a1a1a] text-[#CCCCCC] border-[#2a2a2a] hover:bg-[#2a2a2a]"
