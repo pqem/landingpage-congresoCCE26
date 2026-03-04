@@ -78,14 +78,14 @@ export default function AdminDashboard() {
     if (session) refreshData();
   }, [session, refreshData]);
 
-  const handleEstadoAlojamiento = async (id: number, estado: string) => {
+  const handleEstadoAlojamiento = async (id: number, estado: string, nota: string) => {
     try {
       await fetch(`/api/admin/inscripciones/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ estado }),
+        body: JSON.stringify({ estado, nota }),
       });
-      fetchInscriptos();
+      fetchAlojamiento();
     } catch (err) {
       console.error("Error actualizando estado:", err);
     }
@@ -209,6 +209,7 @@ export default function AdminDashboard() {
         {activeTab === "alojamiento" && (
           <AlojamientoTab
             inscriptos={inscriptosAlojamiento}
+            userRol={session.user?.rol ?? "observador"}
             onEstadoChange={handleEstadoAlojamiento}
           />
         )}

@@ -23,6 +23,7 @@ export interface Inscripto {
   iglesia: string;
   necesita_alojamiento: number;
   alojamiento_estado: "pendiente" | "confirmado" | "asignado";
+  alojamiento_nota: string | null;
   created_at: string;
   cantidad_familiares: number;
   familiares: Familiar[];
