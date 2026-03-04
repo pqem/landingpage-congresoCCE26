@@ -22,7 +22,7 @@ export interface Inscripto {
   ciudad: string;
   iglesia: string;
   necesita_alojamiento: number;
-  alojamiento_estado: "pendiente" | "confirmado" | "asignado";
+  alojamiento_estado: "pendiente" | "asignado";
   alojamiento_nota: string | null;
   created_at: string;
   cantidad_familiares: number;

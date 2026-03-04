@@ -3,24 +3,21 @@
 import { useState, useCallback } from "react";
 import type { Inscripto } from "./types";
 
-type Estado = "pendiente" | "confirmado" | "asignado";
+type Estado = "pendiente" | "asignado";
 
 const ESTADO_LABELS: Record<Estado, string> = {
   pendiente: "Pendiente",
-  confirmado: "Confirmado",
-  asignado: "Asignado",
+  asignado:  "Asignado",
 };
 
 const ESTADO_STYLES: Record<Estado, string> = {
   pendiente: "bg-yellow-500/15 text-yellow-400 border-yellow-500/30",
-  confirmado: "bg-blue-500/15 text-blue-400 border-blue-500/30",
-  asignado:   "bg-green-500/15 text-green-400 border-green-500/30",
+  asignado:  "bg-green-500/15 text-green-400 border-green-500/30",
 };
 
 const ESTADO_PRINT: Record<Estado, string> = {
   pendiente: "print-estado-pendiente",
-  confirmado: "print-estado-confirmado",
-  asignado:   "print-estado-asignado",
+  asignado:  "print-estado-asignado",
 };
 
 interface Props {
@@ -33,13 +30,12 @@ function SummaryBar({ inscriptos }: { inscriptos: Inscripto[] }) {
   const totalFamilias = inscriptos.length;
   const totalPersonas = inscriptos.reduce((acc, i) => acc + 1 + (i.cantidad_familiares || 0), 0);
   const porEstado = {
-    pendiente:  inscriptos.filter((i) => (i.alojamiento_estado ?? "pendiente") === "pendiente").length,
-    confirmado: inscriptos.filter((i) => i.alojamiento_estado === "confirmado").length,
-    asignado:   inscriptos.filter((i) => i.alojamiento_estado === "asignado").length,
+    pendiente: inscriptos.filter((i) => (i.alojamiento_estado ?? "pendiente") === "pendiente").length,
+    asignado:  inscriptos.filter((i) => i.alojamiento_estado === "asignado").length,
   };
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 mb-6 print:hidden">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6 print:hidden">
       <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4 text-center">
         <p className="text-2xl font-bold text-white">{totalFamilias}</p>
         <p className="text-[#666666] text-xs mt-1">Familias</p>
@@ -52,11 +48,7 @@ function SummaryBar({ inscriptos }: { inscriptos: Inscripto[] }) {
         <p className="text-2xl font-bold text-yellow-400">{porEstado.pendiente}</p>
         <p className="text-[#666666] text-xs mt-1">Pendiente</p>
       </div>
-      <div className="bg-[#1a1a1a] border border-blue-500/20 rounded-xl p-4 text-center">
-        <p className="text-2xl font-bold text-blue-400">{porEstado.confirmado}</p>
-        <p className="text-[#666666] text-xs mt-1">Confirmado</p>
-      </div>
-      <div className="bg-[#1a1a1a] border border-green-500/20 rounded-xl p-4 text-center col-span-2 sm:col-span-1">
+      <div className="bg-[#1a1a1a] border border-green-500/20 rounded-xl p-4 text-center">
         <p className="text-2xl font-bold text-green-400">{porEstado.asignado}</p>
         <p className="text-[#666666] text-xs mt-1">Asignado</p>
       </div>
@@ -124,7 +116,6 @@ function FilaEditor({ i, idx, loading, onGuardar }: {
             className={`text-xs font-semibold px-2 py-1 rounded-full border cursor-pointer bg-transparent transition-colors disabled:opacity-50 ${ESTADO_STYLES[estado]}`}
           >
             <option value="pendiente">Pendiente</option>
-            <option value="confirmado">Confirmado</option>
             <option value="asignado">Asignado</option>
           </select>
           {dirty && (
@@ -177,7 +168,7 @@ function CardEditor({ i, loading, onGuardar }: {
         className="w-full bg-[#111] border border-[#2a2a2a] rounded-lg px-3 py-2 text-sm text-[#CCCCCC] placeholder-[#444] focus:outline-none focus:border-dorado/50 mb-3"
       />
       <div className="flex gap-1.5 pt-2 border-t border-[#2a2a2a]">
-        {(["pendiente", "confirmado", "asignado"] as Estado[]).map((e) => (
+        {(["pendiente", "asignado"] as Estado[]).map((e) => (
           <button
             key={e}
             disabled={loading === i.id}
@@ -254,7 +245,7 @@ function CardObservador({ i }: { i: Inscripto }) {
 }
 
 export function AlojamientoTab({ inscriptos, userRol, onEstadoChange }: Props) {
-  const [filtro, setFiltro] = useState<"todos" | Estado>("todos");
+  const [filtro, setFiltro] = useState<"todos" | "pendiente" | "asignado">("todos");
   const [loading, setLoading] = useState<number | null>(null);
   const esEditor = userRol === "editor";
 
@@ -285,7 +276,7 @@ export function AlojamientoTab({ inscriptos, userRol, onEstadoChange }: Props) {
       {/* Toolbar */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 print:hidden">
         <div className="flex gap-1.5 w-full sm:w-auto">
-          {(["todos", "pendiente", "confirmado", "asignado"] as const).map((f) => (
+          {(["todos", "pendiente", "asignado"] as const).map((f) => (
             <button
               key={f}
               onClick={() => setFiltro(f)}
