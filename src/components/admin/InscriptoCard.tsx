@@ -14,28 +14,25 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: In
       className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4"
       onClick={onToggle}
     >
-      <div className="flex justify-between items-start mb-2">
+      <div className="flex justify-between items-start mb-1">
         <h4 className="font-semibold text-white">{i.nombre_apellido}</h4>
-        <span className="text-[#999999] text-xs">
+        <span className="text-[#999999] text-xs shrink-0 ml-2">
           {new Date(i.created_at).toLocaleDateString("es-AR")}
         </span>
       </div>
+      <p className="text-sm text-[#CCCCCC] mb-2">{i.telefono}</p>
       <div className="grid grid-cols-2 gap-y-1.5 text-sm">
         <div>
           <span className="text-[#666666]">Edad: </span>
           <span className="text-[#CCCCCC]">{i.edad}</span>
         </div>
         <div>
-          <span className="text-[#666666]">Tel: </span>
-          <span className="text-[#CCCCCC]">{i.telefono}</span>
+          <span className="text-[#666666]">Iglesia: </span>
+          <span className="text-[#CCCCCC]">{i.iglesia}</span>
         </div>
         <div>
           <span className="text-[#666666]">Ciudad: </span>
           <span className="text-[#CCCCCC]">{i.ciudad}</span>
-        </div>
-        <div>
-          <span className="text-[#666666]">Iglesia: </span>
-          <span className="text-[#CCCCCC]">{i.iglesia}</span>
         </div>
         <div>
           <span className="text-[#666666]">Aloj: </span>
@@ -45,10 +42,12 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: In
             <span className="text-[#666666]">No</span>
           )}
         </div>
-        <div>
-          <span className="text-[#666666]">Familiares: </span>
-          <span className="text-[#CCCCCC]">{i.cantidad_familiares || 0}</span>
-        </div>
+        {(i.cantidad_familiares || 0) > 0 && (
+          <div>
+            <span className="text-[#666666]">Familiares: </span>
+            <span className="text-[#CCCCCC]">{i.cantidad_familiares}</span>
+          </div>
+        )}
       </div>
 
       {expanded && i.familiares && i.familiares.length > 0 && (
