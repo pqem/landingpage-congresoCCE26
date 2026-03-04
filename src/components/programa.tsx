@@ -8,7 +8,7 @@ const dias = [
     dia: "VIERNES 20",
     fecha: "Viernes 20 de Marzo",
     actividades: [
-      { hora: "09:00", titulo: "Retiro de Pastores", detalle: "Merienda · Adoración · Palabra" },
+      { hora: "09:00", titulo: "Retiro de Pastores" },
       { hora: "19:30", titulo: "1º Plenaria" },
       { hora: "", titulo: "Cena y tiempo libre" },
       { hora: "", titulo: "Fogón juvenil" },
