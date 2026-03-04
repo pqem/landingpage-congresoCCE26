@@ -25,8 +25,6 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"dashboard" | "inscriptos" | "alojamiento">("dashboard");
   const [expandedId, setExpandedId] = useState<number | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
-  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/admin/login");
@@ -68,10 +66,7 @@ export default function AdminDashboard() {
   }, []);
 
   const refreshData = useCallback(async () => {
-    setRefreshing(true);
     await Promise.all([fetchStats(), fetchInscriptos(), fetchAlojamiento()]);
-    setLastUpdated(new Date());
-    setRefreshing(false);
   }, [fetchStats, fetchInscriptos, fetchAlojamiento]);
 
   useEffect(() => {
@@ -98,7 +93,6 @@ export default function AdminDashboard() {
       if (res.ok) {
         fetchInscriptos();
         fetchStats();
-        setLastUpdated(new Date());
       }
     } catch (err) {
       console.error("Error eliminando:", err);
