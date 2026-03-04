@@ -1,47 +1,16 @@
 "use client";
 
-import Image from "next/image";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function AdminLogin() {
   const { data: session, status } = useSession();
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (session) {
-      router.push("/admin");
-    }
+    if (session) router.push("/admin");
   }, [session, router]);
-
-  const handleGoogleLogin = () => {
-    signIn("google", { callbackUrl: "/admin" });
-  };
-
-  const handleCredentialsLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
-
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-    });
-
-    setLoading(false);
-
-    if (result?.error) {
-      setError("Email o contraseña incorrectos, o no tenés permisos de admin.");
-    } else {
-      router.push("/admin");
-    }
-  };
 
   if (status === "loading") {
     return (
@@ -59,7 +28,7 @@ export default function AdminLogin() {
           <img
             src="/Logo_cce_color_svg.svg"
             alt="CCE"
-            style={{ height: '100px', width: 'auto' }}
+            style={{ height: "100px", width: "auto" }}
             className="mx-auto mb-4"
           />
           <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
@@ -69,7 +38,7 @@ export default function AdminLogin() {
 
         <div className="bg-[#1a1a1a] rounded-xl p-8 shadow-[0_0_40px_color-mix(in_srgb,var(--color-dorado)_8%,transparent)] border border-[#2a2a2a]">
           <button
-            onClick={handleGoogleLogin}
+            onClick={() => signIn("google", { callbackUrl: "/admin" })}
             className="w-full flex items-center justify-center gap-3 bg-white text-gray-900 font-medium py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24">
@@ -80,56 +49,6 @@ export default function AdminLogin() {
             </svg>
             Iniciar sesión con Google
           </button>
-
-          <div className="flex items-center my-6">
-            <div className="flex-1 border-t border-[#2a2a2a]"></div>
-            <span className="px-4 text-[#CCCCCC] text-sm">o con credenciales</span>
-            <div className="flex-1 border-t border-[#2a2a2a]"></div>
-          </div>
-
-          <form onSubmit={handleCredentialsLogin} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-[#CCCCCC] mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dorado focus:border-dorado"
-                placeholder="tu@email.com"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-[#CCCCCC] mb-1">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="w-full bg-[#111111] border border-[#2a2a2a] rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-dorado focus:border-dorado"
-                placeholder="••••••••"
-                required
-              />
-            </div>
-
-            {error && (
-              <p className="text-red-400 text-sm bg-red-900/20 p-3 rounded-lg">
-                {error}
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full bg-dorado text-black font-semibold py-3 px-4 rounded-lg hover:bg-dorado-claro transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? "Verificando..." : "Iniciar sesión"}
-            </button>
-          </form>
         </div>
 
         <p className="text-center text-[#4a4a4a] text-xs mt-4">

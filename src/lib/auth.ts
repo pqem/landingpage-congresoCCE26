@@ -1,6 +1,5 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -8,66 +7,30 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
-    CredentialsProvider({
-      name: "Credenciales",
-      credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Contraseña", type: "password" },
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
-        try {
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/admin/verify`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-API-Key": process.env.ADMIN_API_KEY!,
-              },
-              body: JSON.stringify({ email: credentials.email }),
-            }
-          );
-          const data = await res.json();
-          if (data.authorized) {
-            return {
-              id: data.email,
-              email: data.email,
-              name: data.nombre,
-            };
-          }
-          return null;
-        } catch (error) {
-          console.error("Error verificando admin:", error);
-          return null;
-        }
-      },
-    }),
+    // CredentialsProvider eliminado: el endpoint /api/admin/verify no validaba
+    // la contraseña — cualquier email admin podía entrar sin password.
+    // Solo Google OAuth garantiza autenticación real.
   ],
   callbacks: {
     async signIn({ user, account }) {
-      if (account?.provider === "google") {
-        try {
-          const res = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/api/admin/verify`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-API-Key": process.env.ADMIN_API_KEY!,
-              },
-              body: JSON.stringify({ email: user.email }),
-            }
-          );
-          const data = await res.json();
-          return data.authorized === true;
-        } catch {
-          return false;
-        }
+      if (account?.provider !== "google") return false;
+      try {
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/admin/verify`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "X-API-Key": process.env.ADMIN_API_KEY!,
+            },
+            body: JSON.stringify({ email: user.email }),
+          }
+        );
+        const data = await res.json();
+        return data.authorized === true;
+      } catch {
+        return false;
       }
-      return true;
     },
     async session({ session, token }) {
       if (session.user) {
