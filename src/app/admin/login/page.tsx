@@ -31,8 +31,10 @@ export default function AdminLogin() {
             style={{ width: "90px", height: "auto" }}
             className="mx-auto mb-4"
           />
-          <h1 className="text-lg font-bold text-white tracking-widest uppercase">Panel Administrador</h1>
-          <p className="text-[#666666] text-xs mt-1 tracking-widest uppercase">Inscripciones Congreso CCEARG2026</p>
+          <div className="border border-[#2a2a2a] px-6 py-3 mt-2 w-full">
+            <h1 className="text-lg font-bold text-white tracking-widest uppercase text-center">Panel Administrador</h1>
+            <p className="text-[#666666] text-xs mt-1 tracking-widest uppercase text-center">Inscripciones Congreso CCEARG2026</p>
+          </div>
         </div>
 
         <div className="bg-[#1a1a1a] rounded-xl p-8 shadow-[0_0_40px_color-mix(in_srgb,var(--color-dorado)_8%,transparent)] border border-[#2a2a2a]">
