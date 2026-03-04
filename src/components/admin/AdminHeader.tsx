@@ -1,72 +1,80 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { Session } from "next-auth";
-import type { Stats } from "./types";
 
 interface AdminHeaderProps {
   session: Session;
-  stats: Stats | null;
-  mobileMenuOpen: boolean;
-  setMobileMenuOpen: (open: boolean) => void;
 }
 
-export function AdminHeader({ session, stats, mobileMenuOpen, setMobileMenuOpen }: AdminHeaderProps) {
+export function AdminHeader({ session }: AdminHeaderProps) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Cerrar dropdown al hacer clic fuera
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const name = session.user?.name ?? "";
+  const email = session.user?.email ?? "";
+  const image = session.user?.image;
+  // Iniciales como fallback si no hay foto
+  const initials = name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "A";
+
   return (
     <header className="bg-[#1a1a1a] border-b border-[#2a2a2a] px-4 sm:px-6">
       <div className="max-w-7xl mx-auto flex items-stretch justify-between" style={{ height: '60px' }}>
-        <div className="flex items-center gap-3">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/cabecera-admin.svg"
-            alt="Congreso CCE Argentina 2026 — Expansión Sobrenatural"
-            style={{ height: '100%', width: 'auto' }}
-          />
-          {stats && (
-            <span className="ml-1 bg-dorado/15 text-dorado text-xs font-semibold px-2.5 py-1 rounded-full">
-              {stats.total_personas} personas
-            </span>
+
+        {/* Logo */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/cabecera-admin.svg"
+          alt="Congreso CCE Argentina 2026 — Expansión Sobrenatural"
+          style={{ height: '100%', width: 'auto' }}
+        />
+
+        {/* Avatar con dropdown (desktop y mobile) */}
+        <div className="flex items-center" ref={dropdownRef}>
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="relative w-9 h-9 rounded-full overflow-hidden ring-2 ring-transparent hover:ring-dorado transition-all focus:outline-none"
+            aria-label="Menú de usuario"
+          >
+            {image ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={image} alt={name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            ) : (
+              <span className="w-full h-full flex items-center justify-center bg-dorado text-black text-sm font-bold">
+                {initials}
+              </span>
+            )}
+          </button>
+
+          {/* Dropdown */}
+          {dropdownOpen && (
+            <div className="absolute right-4 sm:right-6 top-[68px] w-56 bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl shadow-xl z-50 overflow-hidden">
+              <div className="px-4 py-3 border-b border-[#2a2a2a]">
+                {name && <p className="text-white text-sm font-medium truncate">{name}</p>}
+                <p className="text-[#999999] text-xs truncate">{email}</p>
+              </div>
+              <button
+                onClick={() => signOut({ callbackUrl: "/admin/login" })}
+                className="w-full text-left px-4 py-3 text-sm text-[#CCCCCC] hover:bg-[#2a2a2a] hover:text-white transition-colors"
+              >
+                Cerrar sesión
+              </button>
+            </div>
           )}
         </div>
-
-        {/* Desktop nav */}
-        <div className="hidden sm:flex items-center gap-4">
-          <span className="text-[#999999] text-sm truncate max-w-[200px]">{session.user?.email}</span>
-          <button
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
-            className="text-sm border border-[#2a2a2a] bg-transparent hover:bg-[#2a2a2a] text-[#CCCCCC] px-4 py-2 rounded-lg transition-colors"
-          >
-            Salir
-          </button>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="sm:hidden p-2 text-[#CCCCCC] hover:text-white self-center"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            {mobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
       </div>
-
-      {/* Mobile menu dropdown */}
-      {mobileMenuOpen && (
-        <div className="sm:hidden mt-3 pt-3 border-t border-[#2a2a2a] space-y-3">
-          <p className="text-[#999999] text-sm truncate">{session.user?.email}</p>
-          <button
-            onClick={() => signOut({ callbackUrl: "/admin/login" })}
-            className="w-full text-left text-sm text-[#CCCCCC] hover:text-white"
-          >
-            Cerrar sesión
-          </button>
-        </div>
-      )}
     </header>
   );
 }
