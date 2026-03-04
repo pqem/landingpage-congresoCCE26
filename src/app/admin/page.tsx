@@ -162,18 +162,18 @@ export default function AdminDashboard() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Tabs + Refresh */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <div className="flex gap-3 flex-wrap">
+          <div className="flex gap-2 w-full sm:w-auto">
             {(["dashboard", "inscriptos", "alojamiento"] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                className={`flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
                   activeTab === tab
                     ? "bg-dorado text-black font-semibold"
                     : "bg-[#1a1a1a] text-[#CCCCCC] border border-[#2a2a2a] hover:bg-[#2a2a2a]"
                 }`}
               >
-                {tab === "dashboard" ? "Dashboard" : tab === "inscriptos" ? "Inscriptos" : "Alojamiento"}
+                {tab === "dashboard" ? "Dash" : tab === "inscriptos" ? "Inscriptos" : "Alojamiento"}
               </button>
             ))}
           </div>
