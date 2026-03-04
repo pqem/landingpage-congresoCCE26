@@ -28,12 +28,11 @@ export default function AdminLogin() {
           <img
             src="/Logo_cce_color_svg.svg"
             alt="CCE"
-            style={{ width: "180px", height: "auto" }}
+            style={{ width: "90px", height: "auto" }}
             className="mx-auto mb-4"
           />
-          <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
-          <p className="text-dorado mt-2">Expansión Sobrenatural</p>
-          <p className="text-[#CCCCCC] mt-1">Congreso CCE Argentina 2026</p>
+          <h1 className="text-lg font-bold text-white tracking-widest uppercase">Panel Administrador</h1>
+          <p className="text-[#666666] text-xs mt-1 tracking-widest uppercase">Inscripciones Congreso CCEARG2026</p>
         </div>
 
         <div className="bg-[#1a1a1a] rounded-xl p-8 shadow-[0_0_40px_color-mix(in_srgb,var(--color-dorado)_8%,transparent)] border border-[#2a2a2a]">
