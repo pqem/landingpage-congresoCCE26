@@ -162,7 +162,7 @@ export function OradoresPuzzle() {
           strokeWidth={1143}
           viewBox="0 0 18718 28729.7"
           scrollRange={[0.25, 0.6]}
-          className="absolute -left-[40%] top-[58%] z-[1] h-[100%] pointer-events-none sm:top-[15%] md:top-[10%] sm:-left-[35%] md:-left-[26%]"
+          className="absolute -left-[32%] top-[58%] z-[1] h-[100%] pointer-events-none sm:top-[15%] md:top-[10%] sm:-left-[27%] md:-left-[18%]"
           svgClassName="h-[55%] w-auto opacity-90 sm:h-[100%] md:h-[120%]"
           preserveAspectRatio="xMinYMin meet"
         />
