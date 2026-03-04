@@ -13,14 +13,14 @@ interface AdminHeaderProps {
 
 export function AdminHeader({ session, stats, mobileMenuOpen, setMobileMenuOpen }: AdminHeaderProps) {
   return (
-    <header className="bg-[#1a1a1a] border-b border-[#2a2a2a] px-4 sm:px-6 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
+    <header className="bg-[#1a1a1a] border-b border-[#2a2a2a] px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto flex items-stretch justify-between" style={{ height: '60px' }}>
         <div className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/cabecera-admin.svg"
             alt="Congreso CCE Argentina 2026 — Expansión Sobrenatural"
-            style={{ height: '44px', width: 'auto' }}
+            style={{ height: '100%', width: 'auto' }}
           />
           {stats && (
             <span className="ml-1 bg-dorado/15 text-dorado text-xs font-semibold px-2.5 py-1 rounded-full">
@@ -43,7 +43,7 @@ export function AdminHeader({ session, stats, mobileMenuOpen, setMobileMenuOpen 
         {/* Mobile hamburger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="sm:hidden p-2 text-[#CCCCCC] hover:text-white"
+          className="sm:hidden p-2 text-[#CCCCCC] hover:text-white self-center"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             {mobileMenuOpen ? (
