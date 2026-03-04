@@ -26,9 +26,9 @@ export default function AdminLogin() {
         <div className="text-center mb-8">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/Logo_cce_blanco_svg.svg"
+            src="/Logo_cce_color_svg.svg"
             alt="CCE"
-            style={{ width: "120px", height: "auto" }}
+            style={{ width: "360px", height: "auto" }}
             className="mx-auto mb-4"
           />
           <h1 className="text-3xl font-bold text-white">Panel Admin</h1>
