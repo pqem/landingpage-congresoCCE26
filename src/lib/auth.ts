@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
         const data = await res.json() as { authorized: boolean; rol?: string };
         if (!data.authorized) return false;
         // Guardar rol en el objeto user para que jwt() lo capture
-        (user as Record<string, unknown>).rol = data.rol ?? "observador";
+        (user as unknown as Record<string, unknown>).rol = data.rol ?? "observador";
         return true;
       } catch {
         return false;
@@ -45,7 +45,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.email = user.email;
-        token.rol = (user as Record<string, unknown>).rol as "editor" | "observador" ?? "observador";
+        token.rol = (user as unknown as Record<string, unknown>).rol as "editor" | "observador" ?? "observador";
       }
       return token;
     },
