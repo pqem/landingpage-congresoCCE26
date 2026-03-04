@@ -120,12 +120,25 @@ export function DashboardCharts({ stats, recentInscriptos = [] }: DashboardChart
     cantidad: d.cantidad,
   }));
 
-  const maxCiudad = Math.max(...stats.por_ciudad.map((d) => d.cantidad), 1);
   const maxIglesia = Math.max(...stats.por_iglesia.map((d) => d.cantidad), 1);
 
   return (
     <>
-      {/* Fila 1: Alojamiento ring + Tendencia temporal */}
+      {/* Fila 1: CCE Ciudad */}
+      <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
+        <h3 className="text-dorado font-semibold mb-4">CCE Ciudad</h3>
+        {stats.por_iglesia.length === 0 ? (
+          <p className="text-[#666666] text-center py-8 text-sm">Sin datos aún</p>
+        ) : (
+          <div className="space-y-0.5">
+            {[...stats.por_iglesia].sort((a, b) => b.cantidad - a.cantidad).map((d) => (
+              <CSSBar key={d.iglesia} label={d.iglesia} count={d.cantidad} max={maxIglesia} gold />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Fila 2: Alojamiento ring + Tendencia temporal */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
           <h3 className="text-dorado font-semibold mb-4">Alojamiento</h3>
@@ -157,35 +170,6 @@ export function DashboardCharts({ stats, recentInscriptos = [] }: DashboardChart
                   <Area type="monotone" dataKey="cantidad" stroke={GOLD} fillOpacity={1} fill="url(#goldGradient)" strokeWidth={2} />
                 </AreaChart>
               </ResponsiveContainer>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Fila 2: Por ciudad + Por localidad */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-dorado font-semibold mb-4">Por ciudad</h3>
-          {stats.por_ciudad.length === 0 ? (
-            <p className="text-[#666666] text-center py-8 text-sm">Sin datos aún</p>
-          ) : (
-            <div className="space-y-0.5">
-              {[...stats.por_ciudad].sort((a, b) => b.cantidad - a.cantidad).map((d) => (
-                <CSSBar key={d.ciudad} label={d.ciudad} count={d.cantidad} max={maxCiudad} gold />
-              ))}
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-5">
-          <h3 className="text-dorado font-semibold mb-4">Por localidad de iglesia</h3>
-          {stats.por_iglesia.length === 0 ? (
-            <p className="text-[#666666] text-center py-8 text-sm">Sin datos aún</p>
-          ) : (
-            <div className="space-y-0.5">
-              {[...stats.por_iglesia].sort((a, b) => b.cantidad - a.cantidad).map((d) => (
-                <CSSBar key={d.iglesia} label={d.iglesia} count={d.cantidad} max={maxIglesia} gold={false} />
-              ))}
             </div>
           )}
         </div>
