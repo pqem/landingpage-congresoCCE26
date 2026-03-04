@@ -18,6 +18,22 @@ export async function GET() {
     }
   );
 
-  const data = await res.json();
-  return NextResponse.json(data, { status: res.status });
+  const raw = await res.json() as {
+    inscriptos: Record<string, unknown>[];
+    familiares: { inscripto_id: number; nombre_apellido: string; edad: number; parentesco: string }[];
+  };
+
+  // Adjuntar familiares a cada inscripto
+  const familiaresMap = (raw.familiares ?? []).reduce<Record<number, typeof raw.familiares>>((acc, f) => {
+    if (!acc[f.inscripto_id]) acc[f.inscripto_id] = [];
+    acc[f.inscripto_id].push(f);
+    return acc;
+  }, {});
+
+  const data = (raw.inscriptos ?? []).map((i) => ({
+    ...i,
+    familiares: familiaresMap[(i.id as number)] ?? [],
+  }));
+
+  return NextResponse.json({ data }, { status: res.status });
 }

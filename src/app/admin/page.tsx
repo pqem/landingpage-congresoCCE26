@@ -85,20 +85,33 @@ export default function AdminDashboard() {
     try {
       const res = await fetch("/api/admin/export");
       const { data } = await res.json();
-      const headers = ["ID", "Nombre", "Edad", "Teléfono", "Ciudad", "Iglesia", "Alojamiento", "Familiares", "Fecha"];
-      const rows = data.map((i: Inscripto) => [
-        i.id, i.nombre_apellido, i.edad, i.telefono, i.ciudad, i.iglesia,
+      const headers = ["ID", "Nombre y Apellido", "Edad", "Teléfono", "Ciudad", "Localidad Iglesia", "Necesita Alojamiento", "Cant. Familiares", "Familiares", "Fecha de Inscripción"];
+      const rows = (data as Inscripto[]).map((i) => [
+        i.id,
+        i.nombre_apellido,
+        i.edad,
+        i.telefono,
+        i.ciudad,
+        i.iglesia,
         i.necesita_alojamiento ? "Sí" : "No",
-        i.familiares?.map((f) => `${f.nombre_apellido} (${f.parentesco})`).join("; ") || "-",
+        i.familiares?.length ?? 0,
+        i.familiares?.map((f) => `${f.nombre_apellido} (${f.parentesco})`).join(" | ") || "-",
         new Date(i.created_at).toLocaleDateString("es-AR"),
       ]);
-      const csv = [headers.join(","), ...rows.map((r: (string | number)[]) => r.map((v) => `"${v}"`).join(","))].join("\n");
-      const blob = new Blob([csv], { type: "text/csv" });
+      // BOM UTF-8 para que Excel argentino abra los acentos correctamente
+      // Punto y coma como separador (estándar de Excel en configuración española/argentina)
+      const sep = ";";
+      const csv = "\uFEFF" + [
+        headers.join(sep),
+        ...rows.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(sep))
+      ].join("\n");
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = `inscriptos-congreso-cce-${new Date().toISOString().split("T")[0]}.csv`;
       a.click();
+      URL.revokeObjectURL(url);
     } catch (err) {
       console.error("Error exportando:", err);
     }
