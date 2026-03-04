@@ -14,39 +14,37 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete }: In
       className="bg-[#1a1a1a] border border-[#2a2a2a] rounded-xl p-4"
       onClick={onToggle}
     >
-      <div className="flex justify-between items-start mb-1">
+      <div className="flex justify-between items-start mb-3">
         <h4 className="font-semibold text-white">{i.nombre_apellido}</h4>
         <span className="text-[#999999] text-xs shrink-0 ml-2">
           {new Date(i.created_at).toLocaleDateString("es-AR")}
         </span>
       </div>
-      <p className="text-sm text-[#CCCCCC] mb-2">{i.telefono}</p>
-      <div className="grid grid-cols-2 gap-y-1.5 text-sm">
-        <div>
+      <div className="space-y-1.5 text-sm">
+        <p className="text-[#CCCCCC]">{i.telefono}</p>
+        <p>
           <span className="text-[#666666]">Edad: </span>
           <span className="text-[#CCCCCC]">{i.edad}</span>
-        </div>
-        <div>
-          <span className="text-[#666666]">Iglesia: </span>
-          <span className="text-[#CCCCCC]">{i.iglesia}</span>
-        </div>
-        <div>
-          <span className="text-[#666666]">Ciudad: </span>
-          <span className="text-[#CCCCCC]">{i.ciudad}</span>
-        </div>
-        <div>
-          <span className="text-[#666666]">Aloj: </span>
+        </p>
+        <p>
+          <span className="text-[#666666]">CCE: </span>
+          <span className="text-[#CCCCCC]">
+            {i.iglesia === "Otros" && i.ciudad ? `Otros (${i.ciudad})` : i.iglesia}
+          </span>
+        </p>
+        <p>
+          <span className="text-[#666666]">Alojamiento: </span>
           {i.necesita_alojamiento ? (
             <span className="text-dorado">Sí</span>
           ) : (
             <span className="text-[#666666]">No</span>
           )}
-        </div>
+        </p>
         {(i.cantidad_familiares || 0) > 0 && (
-          <div>
+          <p>
             <span className="text-[#666666]">Familiares: </span>
             <span className="text-[#CCCCCC]">{i.cantidad_familiares}</span>
-          </div>
+          </p>
         )}
       </div>
 

@@ -133,11 +133,6 @@ export default function InscripcionPage() {
               </div>
 
               <div>
-                <label htmlFor="ciudad" className={labelClassName}>Ciudad</label>
-                <input id="ciudad" name="ciudad" type="text" required placeholder="Ciudad" className={inputClassName} value={ciudad} onChange={(e) => setCiudad(e.target.value)} />
-              </div>
-
-              <div>
                 <label htmlFor="iglesia" className={labelClassName}>Localidad de tu iglesia</label>
                 <select
                   id="iglesia"
@@ -145,7 +140,7 @@ export default function InscripcionPage() {
                   required
                   className={`${inputClassName} cursor-pointer`}
                   value={iglesia}
-                  onChange={(e) => setIglesia(e.target.value)}
+                  onChange={(e) => { setIglesia(e.target.value); setCiudad(""); }}
                 >
                   <option value="" disabled>Seleccioná tu localidad</option>
                   <option value="Plottier">Plottier</option>
@@ -162,6 +157,13 @@ export default function InscripcionPage() {
                   <option value="Otros">Otros</option>
                 </select>
               </div>
+
+              {iglesia === "Otros" && (
+                <div>
+                  <label htmlFor="ciudad" className={labelClassName}>¿De qué ciudad venís?</label>
+                  <input id="ciudad" name="ciudad" type="text" required placeholder="Tu ciudad" className={inputClassName} value={ciudad} onChange={(e) => setCiudad(e.target.value)} />
+                </div>
+              )}
 
               <AlojamientoToggle
                 value={alojamiento}
