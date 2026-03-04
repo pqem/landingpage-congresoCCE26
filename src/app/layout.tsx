@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   description,
   keywords: ['congreso', 'cce', 'esperanza', 'argentina', '2026', 'expansión sobrenatural'],
   metadataBase: new URL('https://congreso.ccesperanza.org'),
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'CCE 2026',
+  },
   alternates: {
     canonical: '/',
   },
@@ -43,6 +49,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
+      <head>
+        <link rel="apple-touch-icon" href="/images/logo-cce-color.png" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#000000" />
+      </head>
       <body className="antialiased">
         <SessionProvider>{children}</SessionProvider>
       </body>
