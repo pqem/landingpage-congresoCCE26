@@ -17,13 +17,13 @@ export function AdminHeader({ session, stats, mobileMenuOpen, setMobileMenuOpen 
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <div className="flex items-center gap-3">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Logo_cce_color_svg.svg" alt="CCE" style={{ height: '48px', width: 'auto' }} />
-          <div className="hidden sm:block">
-            <h1 className="text-lg sm:text-xl font-bold">Congreso CCE 2026</h1>
-            <p className="text-dorado text-xs">Expansión Sobrenatural</p>
-          </div>
+          <img
+            src="/cabecera-admin.svg"
+            alt="Congreso CCE Argentina 2026 — Expansión Sobrenatural"
+            style={{ height: '44px', width: 'auto' }}
+          />
           {stats && (
-            <span className="ml-2 bg-dorado/15 text-dorado text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span className="ml-1 bg-dorado/15 text-dorado text-xs font-semibold px-2.5 py-1 rounded-full">
               {stats.total_personas} personas
             </span>
           )}
