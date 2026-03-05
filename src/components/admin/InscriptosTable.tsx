@@ -9,13 +9,10 @@ interface InscriptosTableProps {
   onToggleExpand: (id: number) => void;
   onDelete: (id: number) => void;
   userRol: string;
-  vista?: "compacta" | "expandida";
 }
 
-export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete, userRol, vista = "compacta" }: InscriptosTableProps) {
+export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete, userRol }: InscriptosTableProps) {
   const esEditor = userRol === "editor";
-  // En vista expandida, mostrar todos los familiares por defecto
-  const debeExpandir = (id: number) => vista === "expandida" || expandedId === id;
   return (
     <>
     {!esEditor && (
@@ -46,14 +43,10 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
         <tbody>
           {inscriptos.map((i) => {
             const hayFamiliares = i.familiares && i.familiares.length > 0;
-            const expandido = debeExpandir(i.id);
+            const expandido = expandedId === i.id;
             return (
               <Fragment key={i.id}>
-                <tr
-                  className="border-b border-[#2a2a2a]/50 hover:bg-[#1a1a1a]/50 cursor-pointer transition-colors"
-                  onClick={() => onToggleExpand(i.id)}
-                  title={hayFamiliares ? "Click para ver familiares" : ""}
-                >
+                <tr className="border-b border-[#2a2a2a]/50 hover:bg-[#1a1a1a]/50 transition-colors">
                   <td className="py-3 px-4 font-medium">{i.nombre_apellido}</td>
                   <td className="py-3 px-4">{i.edad}</td>
                   <td className="py-3 px-4">
@@ -61,7 +54,6 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                       href={waLink(i.telefono, i.nombre_apellido)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
                       className="text-[#CCCCCC] hover:text-green-400 transition-colors"
                     >
                       {i.telefono}
@@ -76,21 +68,21 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                       <span className="text-[#666666]">No</span>
                     )}
                   </td>
-                  <td
-                    className={`py-3 px-4 font-medium ${
-                      hayFamiliares
-                        ? "text-dorado cursor-pointer hover:text-dorado-claro"
-                        : "text-[#CCCCCC]"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      {hayFamiliares && (
-                        <span className="text-xs leading-none">
+                  <td className="py-3 px-4">
+                    {hayFamiliares ? (
+                      <button
+                        onClick={() => onToggleExpand(i.id)}
+                        className="flex items-center gap-2 text-dorado hover:text-dorado-claro transition-colors cursor-pointer font-medium"
+                        title="Click para ver/ocultar familiares"
+                      >
+                        <span className="text-sm leading-none">
                           {expandido ? "▼" : "▶"}
                         </span>
-                      )}
-                      <span>{i.cantidad_familiares || 0}</span>
-                    </div>
+                        <span>{i.cantidad_familiares || 0}</span>
+                      </button>
+                    ) : (
+                      <span className="text-[#CCCCCC]">{i.cantidad_familiares || 0}</span>
+                    )}
                   </td>
                   <td className="py-3 px-4 text-[#999999] text-sm">
                     {new Date(i.created_at).toLocaleDateString("es-AR")}
@@ -98,10 +90,7 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                   <td className="py-3 px-4">
                     {esEditor && (
                       <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onDelete(i.id);
-                        }}
+                        onClick={() => onDelete(i.id)}
                         className="text-red-400 hover:text-red-300 text-sm"
                       >
                         Eliminar
