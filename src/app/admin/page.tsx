@@ -25,6 +25,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"dashboard" | "inscriptos" | "alojamiento">("dashboard");
   const [expandedId, setExpandedId] = useState<number | null>(null);
+  const [vistaInscriptos, setVistaInscriptos] = useState<"compacta" | "expandida">("compacta");
 
   useEffect(() => {
     if (status === "unauthenticated") router.push("/admin/login");
@@ -193,11 +194,35 @@ export default function AdminDashboard() {
         {/* Inscriptos Tab */}
         {activeTab === "inscriptos" && (
           <div>
-            <SearchBar
-              search={search}
-              onSearchChange={(v) => { setSearch(v); setPage(1); }}
-              onExportCSV={handleExportCSV}
-            />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+              <SearchBar
+                search={search}
+                onSearchChange={(v) => { setSearch(v); setPage(1); }}
+                onExportCSV={handleExportCSV}
+              />
+              <div className="flex gap-2 bg-[#1a1a1a] rounded-lg p-1">
+                <button
+                  onClick={() => setVistaInscriptos("compacta")}
+                  className={`px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
+                    vistaInscriptos === "compacta"
+                      ? "bg-dorado text-black"
+                      : "text-[#CCCCCC] hover:bg-[#2a2a2a]"
+                  }`}
+                >
+                  Compacta
+                </button>
+                <button
+                  onClick={() => setVistaInscriptos("expandida")}
+                  className={`px-3 py-2 rounded text-xs sm:text-sm font-medium transition-colors whitespace-nowrap ${
+                    vistaInscriptos === "expandida"
+                      ? "bg-dorado text-black"
+                      : "text-[#CCCCCC] hover:bg-[#2a2a2a]"
+                  }`}
+                >
+                  Expandida
+                </button>
+              </div>
+            </div>
 
             {loading ? (
               <div className="flex items-center justify-center py-12">
@@ -214,6 +239,7 @@ export default function AdminDashboard() {
                   onToggleExpand={(id) => setExpandedId(expandedId === id ? null : id)}
                   onDelete={handleDelete}
                   userRol={session.user?.rol ?? "observador"}
+                  vista={vistaInscriptos}
                 />
 
                 <div className="md:hidden space-y-3">

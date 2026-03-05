@@ -9,10 +9,13 @@ interface InscriptosTableProps {
   onToggleExpand: (id: number) => void;
   onDelete: (id: number) => void;
   userRol: string;
+  vista?: "compacta" | "expandida";
 }
 
-export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete, userRol }: InscriptosTableProps) {
+export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDelete, userRol, vista = "compacta" }: InscriptosTableProps) {
   const esEditor = userRol === "editor";
+  // En vista expandida, mostrar todos los familiares por defecto
+  const debeExpandir = (id: number) => vista === "expandida" || expandedId === id;
   return (
     <>
     {!esEditor && (
@@ -41,61 +44,81 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
           </tr>
         </thead>
         <tbody>
-          {inscriptos.map((i) => (
-            <Fragment key={i.id}>
-              <tr
-                className="border-b border-[#2a2a2a]/50 hover:bg-[#1a1a1a]/50 cursor-pointer transition-colors"
-                onClick={() => onToggleExpand(i.id)}
-              >
-                <td className="py-3 px-4 font-medium">{i.nombre_apellido}</td>
-                <td className="py-3 px-4">{i.edad}</td>
-                <td className="py-3 px-4">
-                  <a
-                    href={waLink(i.telefono, i.nombre_apellido)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-[#CCCCCC] hover:text-green-400 transition-colors"
-                  >
-                    {i.telefono}
-                  </a>
-                </td>
-                <td className="py-3 px-4 text-[#CCCCCC]">{i.ciudad}</td>
-                <td className="py-3 px-4 text-[#CCCCCC]">{i.iglesia}</td>
-                <td className="py-3 px-4">
-                  {i.necesita_alojamiento ? (
-                    <span className="text-dorado">Sí</span>
-                  ) : (
-                    <span className="text-[#666666]">No</span>
-                  )}
-                </td>
-                <td className="py-3 px-4">{i.cantidad_familiares || 0}</td>
-                <td className="py-3 px-4 text-[#999999] text-sm">
-                  {new Date(i.created_at).toLocaleDateString("es-AR")}
-                </td>
-                <td className="py-3 px-4">
-                  {esEditor && (
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        onDelete(i.id);
-                      }}
-                      className="text-red-400 hover:text-red-300 text-sm"
+          {inscriptos.map((i) => {
+            const hayFamiliares = i.familiares && i.familiares.length > 0;
+            const expandido = debeExpandir(i.id);
+            return (
+              <Fragment key={i.id}>
+                <tr
+                  className="border-b border-[#2a2a2a]/50 hover:bg-[#1a1a1a]/50 cursor-pointer transition-colors"
+                  onClick={() => onToggleExpand(i.id)}
+                  title={hayFamiliares ? "Click para ver familiares" : ""}
+                >
+                  <td className="py-3 px-4 font-medium">{i.nombre_apellido}</td>
+                  <td className="py-3 px-4">{i.edad}</td>
+                  <td className="py-3 px-4">
+                    <a
+                      href={waLink(i.telefono, i.nombre_apellido)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-[#CCCCCC] hover:text-green-400 transition-colors"
                     >
-                      Eliminar
-                    </button>
-                  )}
-                </td>
-              </tr>
-              {expandedId === i.id && i.familiares && i.familiares.length > 0 && (
-                <tr>
-                  <td colSpan={9} className="bg-[#0a0a0a] px-8 py-3">
-                    <FamiliaresDetail familiares={i.familiares} />
+                      {i.telefono}
+                    </a>
+                  </td>
+                  <td className="py-3 px-4 text-[#CCCCCC]">{i.ciudad}</td>
+                  <td className="py-3 px-4 text-[#CCCCCC]">{i.iglesia}</td>
+                  <td className="py-3 px-4">
+                    {i.necesita_alojamiento ? (
+                      <span className="text-dorado">Sí</span>
+                    ) : (
+                      <span className="text-[#666666]">No</span>
+                    )}
+                  </td>
+                  <td
+                    className={`py-3 px-4 font-medium ${
+                      hayFamiliares
+                        ? "text-dorado cursor-pointer hover:text-dorado-claro"
+                        : "text-[#CCCCCC]"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2">
+                      {hayFamiliares && (
+                        <span className="text-xs leading-none">
+                          {expandido ? "▼" : "▶"}
+                        </span>
+                      )}
+                      <span>{i.cantidad_familiares || 0}</span>
+                    </div>
+                  </td>
+                  <td className="py-3 px-4 text-[#999999] text-sm">
+                    {new Date(i.created_at).toLocaleDateString("es-AR")}
+                  </td>
+                  <td className="py-3 px-4">
+                    {esEditor && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDelete(i.id);
+                        }}
+                        className="text-red-400 hover:text-red-300 text-sm"
+                      >
+                        Eliminar
+                      </button>
+                    )}
                   </td>
                 </tr>
-              )}
-            </Fragment>
-          ))}
+                {expandido && hayFamiliares && (
+                  <tr>
+                    <td colSpan={9} className="bg-[#0a0a0a] px-8 py-3">
+                      <FamiliaresDetail familiares={i.familiares} />
+                    </td>
+                  </tr>
+                )}
+              </Fragment>
+            );
+          })}
         </tbody>
       </table>
     </div>
