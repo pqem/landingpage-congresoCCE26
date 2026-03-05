@@ -113,7 +113,7 @@ export default function InscripcionPage() {
               </h1>
               <div className="mt-4 h-px w-full bg-gradient-to-r from-transparent via-dorado to-transparent" />
               <p className="mt-4 font-mono text-sm text-gris-texto">
-                Al enviar tu inscripción recibirás un mensaje de WhatsApp de confirmación
+                Te contactaremos por WhatsApp para confirmar tu inscripción
               </p>
             </header>
 

@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import type { Inscripto } from "./types";
 import { FamiliaresDetail } from "./FamiliaresDetail";
+import { waLink } from "./waLink";
 
 interface InscriptosTableProps {
   inscriptos: Inscripto[];
@@ -48,7 +49,17 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
               >
                 <td className="py-3 px-4 font-medium">{i.nombre_apellido}</td>
                 <td className="py-3 px-4">{i.edad}</td>
-                <td className="py-3 px-4 text-[#CCCCCC]">{i.telefono}</td>
+                <td className="py-3 px-4">
+                  <a
+                    href={waLink(i.telefono, i.nombre_apellido)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-[#CCCCCC] hover:text-green-400 transition-colors"
+                  >
+                    {i.telefono}
+                  </a>
+                </td>
                 <td className="py-3 px-4 text-[#CCCCCC]">{i.ciudad}</td>
                 <td className="py-3 px-4 text-[#CCCCCC]">{i.iglesia}</td>
                 <td className="py-3 px-4">

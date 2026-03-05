@@ -1,5 +1,6 @@
 import type { Inscripto } from "./types";
 import { FamiliaresDetail } from "./FamiliaresDetail";
+import { waLink } from "./waLink";
 
 interface InscriptoCardProps {
   inscripto: Inscripto;
@@ -23,7 +24,15 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete, user
         </span>
       </div>
       <div className="space-y-1.5 text-sm">
-        <p className="text-[#CCCCCC]">{i.telefono}</p>
+        <a
+          href={waLink(i.telefono, i.nombre_apellido)}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="text-[#CCCCCC] hover:text-green-400 transition-colors"
+        >
+          {i.telefono}
+        </a>
         <p>
           <span className="text-[#666666]">Edad: </span>
           <span className="text-[#CCCCCC]">{i.edad}</span>
