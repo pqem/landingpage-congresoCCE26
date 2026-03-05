@@ -8,7 +8,7 @@ export function SobreEvento() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section id="evento" className="bg-negro-fondo py-16 sm:py-20 md:py-32">
+    <section id="evento" data-sobre-evento className="bg-negro-fondo py-16 sm:py-20 md:py-32">
       <div ref={ref} className="mx-auto max-w-4xl px-4 lg:px-8">
         {/* Section title */}
         <motion.h2

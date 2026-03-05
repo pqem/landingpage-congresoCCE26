@@ -12,6 +12,7 @@ import { Ubicacion } from "@/components/ubicacion";
 import { Inscripcion } from "@/components/inscripcion";
 import { RedesSociales } from "@/components/redes-sociales";
 import { Footer } from "@/components/footer";
+import { FloatingInscripcionCTA } from "@/components/floating-inscripcion-cta";
 
 export default function Home() {
   return (
@@ -45,6 +46,9 @@ export default function Home() {
 
       {/* Header: hidden until scroll past hero */}
       <Header />
+
+      {/* Floating CTA button for inscripción */}
+      <FloatingInscripcionCTA />
 
     </>
   );
