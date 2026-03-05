@@ -8,7 +8,8 @@ export interface Stats {
   por_dia: { fecha: string; cantidad: number }[];
   grupos_etarios?: {
     bebes: number;
-    ninos_adol_jovenes: number;
+    ninos: number;
+    jovenes_adolescentes: number;
     matrimonios: number;
   };
 }
