@@ -54,7 +54,12 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete, user
         {(i.cantidad_familiares || 0) > 0 && (
           <p>
             <span className="text-[#666666]">Familiares: </span>
-            <span className="text-[#CCCCCC]">{i.cantidad_familiares}</span>
+            <span className="text-dorado font-medium">
+              <span className="text-sm mr-1">
+                {expanded ? "▼" : "▶"}
+              </span>
+              {i.cantidad_familiares}
+            </span>
           </p>
         )}
       </div>
