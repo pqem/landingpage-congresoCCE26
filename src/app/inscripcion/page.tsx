@@ -21,6 +21,9 @@ export default function InscripcionPage() {
   const [alojamientoError, setAlojamientoError] = useState("");
   const [success, setSuccess] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [aceptaPrivacidad, setAceptaPrivacidad] = useState(false);
+  const [aceptaMenor, setAceptaMenor] = useState(false);
+  const esMenor = Number(edad) > 0 && Number(edad) < 18;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,6 +31,16 @@ export default function InscripcionPage() {
 
     if (!alojamiento) {
       setAlojamientoError("Seleccioná si necesitás alojamiento.");
+      return;
+    }
+
+    if (!aceptaPrivacidad) {
+      setSubmitError("Debés aceptar la política de privacidad para continuar.");
+      return;
+    }
+
+    if (esMenor && !aceptaMenor) {
+      setSubmitError("Si sos menor de edad debés confirmar que tenés autorización de tu tutor.");
       return;
     }
 
@@ -173,6 +186,37 @@ export default function InscripcionPage() {
               />
 
               <FamiliaresSection familiares={familiares} onChange={setFamiliares} />
+
+              {/* Consentimiento menor */}
+              {esMenor && (
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={aceptaMenor}
+                    onChange={(e) => setAceptaMenor(e.target.checked)}
+                    className="mt-0.5 shrink-0 accent-dorado"
+                  />
+                  <span className="font-mono text-xs text-gris-texto">
+                    Soy menor de edad y cuento con autorización de mi padre, madre o tutor legal para participar del congreso y para el tratamiento de mis datos personales.
+                  </span>
+                </label>
+              )}
+
+              {/* Consentimiento privacidad */}
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={aceptaPrivacidad}
+                  onChange={(e) => setAceptaPrivacidad(e.target.checked)}
+                  className="mt-0.5 shrink-0 accent-dorado"
+                />
+                <span className="font-mono text-xs text-gris-texto">
+                  Acepto que CCE Esperanza almacene mis datos para gestionar mi inscripción y enviarme comunicaciones del evento.{" "}
+                  <a href="/privacidad" target="_blank" className="text-dorado hover:underline">
+                    Política de Privacidad
+                  </a>
+                </span>
+              </label>
 
               {submitError && (
                 <p className="font-mono text-sm text-red-400">{submitError}</p>
