@@ -167,7 +167,7 @@ export default function AdminDashboard() {
                     : "bg-[#1a1a1a] text-[#CCCCCC] border border-[#2a2a2a] hover:bg-[#2a2a2a]"
                 }`}
               >
-                {tab === "dashboard" ? "Dash" : tab === "inscriptos" ? "Inscriptos" : "Alojamiento"}
+                {tab === "dashboard" ? "Métricas" : tab === "inscriptos" ? "Inscriptos" : "Alojamiento"}
               </button>
             ))}
           </div>
