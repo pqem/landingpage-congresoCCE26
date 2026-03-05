@@ -7,6 +7,7 @@ import type { Stats, Inscripto, PaginatedResponse } from "@/components/admin/typ
 import { AdminHeader } from "@/components/admin/AdminHeader";
 import { StatCards } from "@/components/admin/StatCards";
 import { DashboardCharts } from "@/components/admin/DashboardCharts";
+import { GruposEtariosCard } from "@/components/admin/GruposEtariosCard";
 import { SearchBar } from "@/components/admin/SearchBar";
 import { InscriptosTable } from "@/components/admin/InscriptosTable";
 import { InscriptoCard } from "@/components/admin/InscriptoCard";
@@ -177,6 +178,7 @@ export default function AdminDashboard() {
         {activeTab === "dashboard" && stats && (
           <div className="space-y-6">
             <StatCards stats={stats} />
+            <GruposEtariosCard stats={stats} />
             <DashboardCharts stats={stats} recentInscriptos={inscriptos?.data ?? []} />
           </div>
         )}

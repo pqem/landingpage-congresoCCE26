@@ -6,6 +6,11 @@ export interface Stats {
   por_ciudad: { ciudad: string; cantidad: number }[];
   por_iglesia: { iglesia: string; cantidad: number }[];
   por_dia: { fecha: string; cantidad: number }[];
+  grupos_etarios?: {
+    bebes: number;
+    ninos_adol_jovenes: number;
+    matrimonios: number;
+  };
 }
 
 export interface Familiar {
