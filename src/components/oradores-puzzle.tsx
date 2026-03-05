@@ -169,7 +169,7 @@ export function OradoresPuzzle() {
         <div className="mx-auto max-w-5xl px-4 lg:px-8">
           {/* Desktop puzzle */}
           <motion.div
-            className="relative hidden w-full md:block"
+            className="relative z-[2] hidden w-full md:block"
             style={{ aspectRatio: "2189 / 1940", opacity, y }}
           >
             <Image
