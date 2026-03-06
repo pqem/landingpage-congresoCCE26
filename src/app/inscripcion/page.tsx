@@ -264,73 +264,71 @@ export default function InscripcionPage() {
                   {/* STEP 1: Datos Personales */}
                   {currentStep === 1 && (
                     <>
-                      <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                        <div>
-                          <label htmlFor="nombre" className={labelClassName}>
-                            Nombre
-                          </label>
-                          <input
-                            id="nombre"
-                            name="nombre"
-                            type="text"
-                            required
-                            placeholder="Nombre"
-                            className={inputClassName}
-                            value={nombre}
-                            onChange={(e) => setNombre(e.target.value)}
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="apellido" className={labelClassName}>
-                            Apellido
-                          </label>
-                          <input
-                            id="apellido"
-                            name="apellido"
-                            type="text"
-                            required
-                            placeholder="Apellido"
-                            className={inputClassName}
-                            value={apellido}
-                            onChange={(e) => setApellido(e.target.value)}
-                          />
-                        </div>
+                      <div>
+                        <label htmlFor="nombre" className={labelClassName}>
+                          Nombre
+                        </label>
+                        <input
+                          id="nombre"
+                          name="nombre"
+                          type="text"
+                          required
+                          placeholder="Nombre"
+                          className={inputClassName}
+                          value={nombre}
+                          onChange={(e) => setNombre(e.target.value)}
+                        />
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                        <div className="col-span-1">
-                          <label htmlFor="edad" className={labelClassName}>
-                            Edad
-                          </label>
-                          <input
-                            id="edad"
-                            name="edad"
-                            type="number"
-                            required
-                            min={1}
-                            max={99}
-                            placeholder="Edad"
-                            className={inputClassName}
-                            value={edad}
-                            onChange={(e) => setEdad(e.target.value)}
-                          />
-                        </div>
-                        <div className="col-span-2">
-                          <label htmlFor="telefono" className={labelClassName}>
-                            Teléfono
-                          </label>
-                          <input
-                            id="telefono"
-                            name="telefono"
-                            type="tel"
-                            required
-                            placeholder="+54 9 XXXX XXXXX"
-                            autoComplete="off"
-                            className={inputClassName}
-                            value={telefono}
-                            onChange={(e) => setTelefono(formatPhoneInput(e.target.value))}
-                          />
-                        </div>
+                      <div>
+                        <label htmlFor="apellido" className={labelClassName}>
+                          Apellido
+                        </label>
+                        <input
+                          id="apellido"
+                          name="apellido"
+                          type="text"
+                          required
+                          placeholder="Apellido"
+                          className={inputClassName}
+                          value={apellido}
+                          onChange={(e) => setApellido(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="edad" className={labelClassName}>
+                          Edad
+                        </label>
+                        <input
+                          id="edad"
+                          name="edad"
+                          type="number"
+                          required
+                          min={1}
+                          max={99}
+                          placeholder="Edad"
+                          className={inputClassName}
+                          value={edad}
+                          onChange={(e) => setEdad(e.target.value)}
+                        />
+                      </div>
+
+                      <div>
+                        <label htmlFor="telefono" className={labelClassName}>
+                          Teléfono
+                        </label>
+                        <input
+                          id="telefono"
+                          name="telefono"
+                          type="tel"
+                          required
+                          placeholder="+54 9 XXXX XXXXX"
+                          autoComplete="off"
+                          className={inputClassName}
+                          value={telefono}
+                          onChange={(e) => setTelefono(formatPhoneInput(e.target.value))}
+                        />
                       </div>
 
                       {stepErrors[1] && (
