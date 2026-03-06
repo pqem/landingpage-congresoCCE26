@@ -49,7 +49,7 @@ export function FamiliaresSection({ familiares, onChange }: FamiliaresSectionPro
       <button
         type="button"
         onClick={addFamiliar}
-        className="mt-4 min-h-11 border border-dorado px-4 py-2.5 font-sans text-xs font-bold tracking-wider text-dorado transition-all hover:bg-dorado hover:text-black"
+        className="mt-4 w-full min-h-11 border border-dorado px-4 py-2.5 font-sans text-xs font-bold tracking-wider text-dorado transition-all hover:bg-dorado hover:text-black"
       >
         + Agregar familiar
       </button>
