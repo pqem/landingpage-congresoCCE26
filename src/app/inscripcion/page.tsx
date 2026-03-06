@@ -160,13 +160,17 @@ export default function InscripcionPage() {
                   <option value="Centenario">Centenario</option>
                   <option value="Neuquén">Neuquén</option>
                   <option value="Senillosa">Senillosa</option>
+                  <option value="Zapala">Zapala</option>
                   <option value="Viedma">Viedma</option>
                   <option value="Puerto Madryn">Puerto Madryn</option>
                   <option value="Trelew">Trelew</option>
                   <option value="Gaiman">Gaiman</option>
                   <option value="Esquel">Esquel</option>
+                  <option value="Trevelin">Trevelin</option>
+                  <option value="Caleta Olivia">Caleta Olivia</option>
                   <option value="La Plata">La Plata</option>
                   <option value="Mar del Plata">Mar del Plata</option>
+                  <option value="Santa Fe">Santa Fe</option>
                   <option value="Otros">Otros</option>
                 </select>
               </div>
