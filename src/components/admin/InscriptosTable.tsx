@@ -40,14 +40,18 @@ export function InscriptosTable({ inscriptos, expandedId, onToggleExpand, onDele
                   <td className="py-3 px-4 font-medium">{i.nombre_apellido}</td>
                   <td className="py-3 px-4">{i.edad}</td>
                   <td className="py-3 px-4">
-                    <a
-                      href={waLink(i.telefono, i.nombre_apellido)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[#CCCCCC] hover:text-green-400 transition-colors"
-                    >
-                      {i.telefono}
-                    </a>
+                    {esEditor ? (
+                      <a
+                        href={waLink(i.telefono, i.nombre_apellido)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#CCCCCC] hover:text-green-400 transition-colors"
+                      >
+                        {i.telefono}
+                      </a>
+                    ) : (
+                      <span className="text-[#CCCCCC]">{i.telefono}</span>
+                    )}
                   </td>
                   <td className="py-3 px-4 text-[#CCCCCC]">{i.ciudad}</td>
                   <td className="py-3 px-4 text-[#CCCCCC]">{i.iglesia}</td>

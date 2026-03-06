@@ -205,8 +205,8 @@ function FilaObservador({ i, idx }: { i: Inscripto; idx: number }) {
     <tr className="border-b border-[#1f1f1f] print:border-gray-300">
       <td className="py-3 px-2 text-[#666666] print:text-gray-500">{idx + 1}</td>
       <td className="py-3 px-2 text-white print:text-black font-medium">{i.nombre_apellido}</td>
-      <td className="py-3 px-2 print:text-black">
-        <a href={waLink(i.telefono, i.nombre_apellido)} target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-green-400 transition-colors print:text-black print:no-underline">{i.telefono}</a>
+      <td className="py-3 px-2 print:text-black text-[#CCCCCC]">
+        {i.telefono}
       </td>
       <td className="py-3 px-2 text-[#CCCCCC] print:text-black">
         {i.iglesia === "Otros" && i.ciudad ? `Otros (${i.ciudad})` : i.iglesia}
@@ -238,7 +238,7 @@ function CardObservador({ i }: { i: Inscripto }) {
         </span>
       </div>
       <div className="space-y-1 text-sm">
-        <a href={waLink(i.telefono, i.nombre_apellido)} target="_blank" rel="noopener noreferrer" className="text-[#CCCCCC] hover:text-green-400 transition-colors">{i.telefono}</a>
+        <p className="text-[#CCCCCC]">{i.telefono}</p>
         <p><span className="text-[#666666]">CCE: </span><span className="text-[#CCCCCC]">{i.iglesia === "Otros" && i.ciudad ? `Otros (${i.ciudad})` : i.iglesia}</span></p>
         <p><span className="text-[#666666]">Personas: </span><span className="text-dorado font-semibold">{totalPersonas}</span></p>
         {i.alojamiento_nota && (

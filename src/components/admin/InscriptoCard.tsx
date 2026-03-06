@@ -24,15 +24,19 @@ export function InscriptoCard({ inscripto: i, expanded, onToggle, onDelete, user
         </span>
       </div>
       <div className="space-y-1.5 text-sm">
-        <a
-          href={waLink(i.telefono, i.nombre_apellido)}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="text-[#CCCCCC] hover:text-green-400 transition-colors"
-        >
-          {i.telefono}
-        </a>
+        {esEditor ? (
+          <a
+            href={waLink(i.telefono, i.nombre_apellido)}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="text-[#CCCCCC] hover:text-green-400 transition-colors"
+          >
+            {i.telefono}
+          </a>
+        ) : (
+          <p className="text-[#CCCCCC]">{i.telefono}</p>
+        )}
         <p>
           <span className="text-[#666666]">Edad: </span>
           <span className="text-[#CCCCCC]">{i.edad}</span>
