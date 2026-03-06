@@ -25,6 +25,12 @@ export async function GET() {
     por_ciudad: { ciudad: string; total: number }[];
     por_iglesia: { iglesia: string; total: number }[];
     por_dia: { dia: string; total: number }[];
+    grupos_etarios?: {
+      bebes: number;
+      ninos: number;
+      jovenes_adolescentes: number;
+      matrimonios: number;
+    };
   };
 
   const transformed = {
@@ -37,6 +43,7 @@ export async function GET() {
     por_dia: (data.por_dia ?? [])
       .map((d) => ({ fecha: d.dia, cantidad: d.total }))
       .sort((a, b) => a.fecha.localeCompare(b.fecha)),
+    grupos_etarios: data.grupos_etarios,
   };
 
   return NextResponse.json(transformed, { status: res.status });
