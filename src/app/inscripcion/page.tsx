@@ -9,6 +9,46 @@ import { SuccessScreen } from "@/components/inscripcion/SuccessScreen";
 import { AlojamientoToggle } from "@/components/inscripcion/AlojamientoToggle";
 import { FamiliaresSection } from "@/components/inscripcion/FamiliaresSection";
 
+// Funciones helper para validación de teléfono argentino
+function extractDigits(value: string): string {
+  return value.replace(/\D/g, "");
+}
+
+function formatPhoneInput(value: string): string {
+  const digits = extractDigits(value);
+
+  // Limitar a máximo 11 dígitos para Argentina
+  if (digits.length > 11) {
+    return formatPhoneInput(digits.slice(0, 11));
+  }
+
+  // Si no hay dígitos, retornar prefijo
+  if (digits.length === 0) return "+54 9 ";
+
+  // Formatear según cantidad de dígitos:
+  // 1-2 dígitos: +54 9 X...
+  // 3-4 dígitos: +54 9 XX...
+  // 5-8 dígitos: +54 9 XXXX XXXX
+  // 9-11 dígitos: +54 9 XXXX XXXXX o +54 9XX XXXXX XXXXX
+
+  if (digits.length <= 2) {
+    return `+54 9 ${digits}`;
+  } else if (digits.length <= 4) {
+    return `+54 9 ${digits}`;
+  } else if (digits.length <= 8) {
+    return `+54 9 ${digits.slice(0, 4)} ${digits.slice(4)}`;
+  } else {
+    // 9-11 dígitos
+    return `+54 9 ${digits.slice(0, 4)} ${digits.slice(4)}`;
+  }
+}
+
+function isValidPhoneDigits(value: string): boolean {
+  const digits = extractDigits(value);
+  // Argentina: teléfonos válidos tienen 10 o 11 dígitos
+  return digits.length === 10 || digits.length === 11;
+}
+
 export default function InscripcionPage() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
@@ -39,7 +79,7 @@ export default function InscripcionPage() {
       if (!nombre.trim() || nombre.trim().length < 2) errors[1] = "Nombre debe tener al menos 2 caracteres";
       if (!apellido.trim() || apellido.trim().length < 2) errors[1] = errors[1] || "Apellido debe tener al menos 2 caracteres";
       if (!edad || Number(edad) < 1 || Number(edad) > 99) errors[1] = errors[1] || "Edad debe estar entre 1 y 99";
-      if (!telefono.trim() || telefono.trim().length < 6) errors[1] = errors[1] || "Teléfono no válido";
+      if (!isValidPhoneDigits(telefono)) errors[1] = errors[1] || "Teléfono debe tener 10 o 11 dígitos";
     }
 
     if (step === 2) {
@@ -293,10 +333,10 @@ export default function InscripcionPage() {
                             name="telefono"
                             type="tel"
                             required
-                            placeholder="+54 9 299 000-0000"
+                            placeholder="+54 9 XXXX XXXXX"
                             className={inputClassName}
                             value={telefono}
-                            onChange={(e) => setTelefono(e.target.value)}
+                            onChange={(e) => setTelefono(formatPhoneInput(e.target.value))}
                           />
                         </div>
                       </div>
