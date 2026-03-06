@@ -167,26 +167,26 @@ export default function InscripcionPage() {
                   onChange={(e) => { setIglesia(e.target.value); setCiudad(""); }}
                 >
                   <option value="" disabled>Seleccioná tu localidad</option>
-                  <option value="Plottier">Plottier</option>
-                  <option value="Centenario">Centenario</option>
-                  <option value="Neuquén">Neuquén</option>
-                  <option value="Senillosa">Senillosa</option>
-                  <option value="Zapala">Zapala</option>
-                  <option value="Viedma">Viedma</option>
-                  <option value="Puerto Madryn">Puerto Madryn</option>
-                  <option value="Trelew">Trelew</option>
-                  <option value="Gaiman">Gaiman</option>
-                  <option value="Esquel">Esquel</option>
-                  <option value="Trevelin">Trevelin</option>
                   <option value="Caleta Olivia">Caleta Olivia</option>
+                  <option value="Centenario">Centenario</option>
+                  <option value="Esquel">Esquel</option>
+                  <option value="Gaiman">Gaiman</option>
                   <option value="La Plata">La Plata</option>
                   <option value="Mar del Plata">Mar del Plata</option>
+                  <option value="Neuquén">Neuquén</option>
+                  <option value="Plottier">Plottier</option>
+                  <option value="Puerto Madryn">Puerto Madryn</option>
                   <option value="Santa Fe">Santa Fe</option>
-                  <option value="Otros">Otros</option>
+                  <option value="Senillosa">Senillosa</option>
+                  <option value="Trelew">Trelew</option>
+                  <option value="Trevelin">Trevelin</option>
+                  <option value="Viedma">Viedma</option>
+                  <option value="Zapala">Zapala</option>
+                  <option value="Otra">Otra</option>
                 </select>
               </div>
 
-              {iglesia === "Otros" && (
+              {iglesia === "Otra" && (
                 <div>
                   <label htmlFor="ciudad" className={labelClassName}>¿De qué ciudad venís?</label>
                   <input id="ciudad" name="ciudad" type="text" required placeholder="Tu ciudad" className={inputClassName} value={ciudad} onChange={(e) => setCiudad(e.target.value)} />
