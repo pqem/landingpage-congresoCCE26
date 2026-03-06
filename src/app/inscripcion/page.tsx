@@ -9,34 +9,46 @@ import { SuccessScreen } from "@/components/inscripcion/SuccessScreen";
 import { AlojamientoToggle } from "@/components/inscripcion/AlojamientoToggle";
 import { FamiliaresSection } from "@/components/inscripcion/FamiliaresSection";
 
-// Funciones helper para validación de teléfono argentino
+// Configuración de países
+const COUNTRIES = {
+  ar: { name: "Argentina", prefix: "+54 9", minDigits: 10, maxDigits: 11, placeholder: "XXXX XXXXX" },
+  cl: { name: "Chile", prefix: "+56 9", minDigits: 8, maxDigits: 8, placeholder: "XXXX XXXX" },
+  es: { name: "España", prefix: "+34", minDigits: 9, maxDigits: 9, placeholder: "XXX XXXXX XX" },
+} as const;
+
+type CountryCode = keyof typeof COUNTRIES;
+
+// Funciones helper para validación de teléfono multpaís
 function extractDigits(value: string): string {
   return value.replace(/\D/g, "");
 }
 
-function formatPhoneDisplay(value: string): string {
+function formatPhoneDisplay(value: string, countryCode: CountryCode): string {
   // Solo muestra dígitos sin prefijo para evitar conflictos de autocompletado
   const digits = extractDigits(value);
+  const country = COUNTRIES[countryCode];
 
-  // Limitar a máximo 11 dígitos para Argentina
-  if (digits.length > 11) {
-    return digits.slice(0, 11);
+  // Limitar a máximo dígitos según país
+  if (digits.length > country.maxDigits) {
+    return digits.slice(0, country.maxDigits);
   }
 
   return digits;
 }
 
-function formatPhoneForSubmit(digits: string): string {
+function formatPhoneForSubmit(digits: string, countryCode: CountryCode): string {
   // Agrega el prefijo solo al enviar
   const cleanDigits = extractDigits(digits);
+  const country = COUNTRIES[countryCode];
+
   if (cleanDigits.length === 0) return "";
-  return `+54 9 ${cleanDigits}`;
+  return `${country.prefix} ${cleanDigits}`;
 }
 
-function isValidPhoneDigits(value: string): boolean {
+function isValidPhoneDigits(value: string, countryCode: CountryCode): boolean {
   const digits = extractDigits(value);
-  // Argentina: teléfonos válidos tienen 10 o 11 dígitos
-  return digits.length === 10 || digits.length === 11;
+  const country = COUNTRIES[countryCode];
+  return digits.length >= country.minDigits && digits.length <= country.maxDigits;
 }
 
 function limitAge(value: string): string {
@@ -50,6 +62,7 @@ export default function InscripcionPage() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [edad, setEdad] = useState("");
+  const [pais, setPais] = useState<CountryCode>("ar");
   const [telefono, setTelefono] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [iglesia, setIglesia] = useState("");
@@ -76,7 +89,10 @@ export default function InscripcionPage() {
       if (!nombre.trim() || nombre.trim().length < 2) errors[1] = "Nombre debe tener al menos 2 caracteres";
       if (!apellido.trim() || apellido.trim().length < 2) errors[1] = errors[1] || "Apellido debe tener al menos 2 caracteres";
       if (!edad || Number(edad) < 1 || Number(edad) > 99) errors[1] = errors[1] || "Edad debe estar entre 1 y 99";
-      if (!isValidPhoneDigits(telefono)) errors[1] = errors[1] || "Teléfono debe tener 10 o 11 dígitos";
+      if (!isValidPhoneDigits(telefono, pais)) {
+        const country = COUNTRIES[pais];
+        errors[1] = errors[1] || `Teléfono debe tener ${country.minDigits}-${country.maxDigits} dígitos`;
+      }
     }
 
     if (step === 2) {
@@ -126,7 +142,8 @@ export default function InscripcionPage() {
         body: JSON.stringify({
           nombre_apellido: `${nombre.trim()} ${apellido.trim()}`,
           edad: Number(edad),
-          telefono: formatPhoneForSubmit(telefono),
+          pais: pais,
+          telefono: formatPhoneForSubmit(telefono, pais),
           ciudad: ciudad.trim(),
           iglesia: iglesia.trim(),
           necesita_alojamiento: alojamiento === "si",
@@ -321,6 +338,29 @@ export default function InscripcionPage() {
                       </div>
 
                       <div>
+                        <label htmlFor="pais" className={labelClassName}>
+                          País
+                        </label>
+                        <select
+                          id="pais"
+                          name="pais"
+                          required
+                          className={`${inputClassName} cursor-pointer`}
+                          value={pais}
+                          onChange={(e) => {
+                            setPais(e.target.value as CountryCode);
+                            setTelefono(""); // Limpiar teléfono al cambiar país
+                          }}
+                        >
+                          {Object.entries(COUNTRIES).map(([code, country]) => (
+                            <option key={code} value={code}>
+                              {country.name} ({country.prefix})
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <div>
                         <label htmlFor="telefono" className={labelClassName}>
                           Teléfono
                         </label>
@@ -329,12 +369,12 @@ export default function InscripcionPage() {
                           name="telefono"
                           type="tel"
                           required
-                          placeholder="XXXX XXXXX"
+                          placeholder={COUNTRIES[pais].placeholder}
                           inputMode="numeric"
                           autoComplete="off"
                           className={inputClassName}
                           value={telefono}
-                          onChange={(e) => setTelefono(formatPhoneDisplay(e.target.value))}
+                          onChange={(e) => setTelefono(formatPhoneDisplay(e.target.value, pais))}
                         />
                       </div>
 
