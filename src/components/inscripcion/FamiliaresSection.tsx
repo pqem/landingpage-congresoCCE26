@@ -25,6 +25,8 @@ export function FamiliaresSection({ familiares, onChange }: FamiliaresSectionPro
     onChange(familiares.map((f) => (f.id === id ? { ...f, [key]: value } : f)));
   };
 
+  const hasSpouse = familiares.some((f) => f.parentesco === "Esposo/a");
+
   return (
     <div className="border-t border-gris-oscuro pt-6">
       <h2 className="font-serif text-xl text-dorado">Familiares</h2>
@@ -39,6 +41,7 @@ export function FamiliaresSection({ familiares, onChange }: FamiliaresSectionPro
             index={idx}
             onUpdate={updateFamiliar}
             onRemove={removeFamiliar}
+            hasSpouse={hasSpouse}
           />
         ))}
       </div>

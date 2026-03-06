@@ -6,9 +6,10 @@ interface FamiliarFormProps {
   index: number;
   onUpdate: (id: number, key: keyof Omit<Familiar, "id">, value: string) => void;
   onRemove: (id: number) => void;
+  hasSpouse?: boolean;
 }
 
-export function FamiliarForm({ familiar, index, onUpdate, onRemove }: FamiliarFormProps) {
+export function FamiliarForm({ familiar, index, onUpdate, onRemove, hasSpouse = false }: FamiliarFormProps) {
   return (
     <div className="relative border-l-2 border-dorado/40 bg-negro-fondo/60 p-5">
       <div className="mb-4 flex items-center justify-between">
@@ -56,7 +57,7 @@ export function FamiliarForm({ familiar, index, onUpdate, onRemove }: FamiliarFo
               value={familiar.parentesco}
               onChange={(e) => onUpdate(familiar.id, "parentesco", e.target.value)}
             >
-              <option value="Esposo/a">Esposo/a</option>
+              {!hasSpouse && <option value="Esposo/a">Esposo/a</option>}
               <option value="Hijo/a">Hijo/a</option>
               <option value="Otro">Otro</option>
             </select>
