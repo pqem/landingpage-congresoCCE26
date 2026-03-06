@@ -39,6 +39,13 @@ function isValidPhoneDigits(value: string): boolean {
   return digits.length === 10 || digits.length === 11;
 }
 
+function limitAge(value: string): string {
+  // Solo permite números, máximo 99
+  const numValue = parseInt(value, 10) || 0;
+  if (numValue > 99) return "99";
+  return String(numValue);
+}
+
 export default function InscripcionPage() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
@@ -309,7 +316,7 @@ export default function InscripcionPage() {
                           placeholder="Edad"
                           className={inputClassName}
                           value={edad}
-                          onChange={(e) => setEdad(e.target.value)}
+                          onChange={(e) => setEdad(limitAge(e.target.value))}
                         />
                       </div>
 
