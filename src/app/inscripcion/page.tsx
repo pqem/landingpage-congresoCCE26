@@ -74,6 +74,10 @@ export default function InscripcionPage() {
         throw new Error("Demasiadas solicitudes, intentá más tarde.");
       }
 
+      if (response.status === 409) {
+        throw new Error("¡Ya estás inscripto!");
+      }
+
       const data = (await response.json()) as { success?: boolean; error?: string; message?: string; detalles?: string[] };
 
       if (!response.ok || !data.success) {
