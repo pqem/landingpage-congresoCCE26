@@ -57,7 +57,7 @@ export function FamiliarForm({ familiar, index, onUpdate, onRemove, hasSpouse = 
               value={familiar.parentesco}
               onChange={(e) => onUpdate(familiar.id, "parentesco", e.target.value)}
             >
-              {!hasSpouse && <option value="Esposo/a">Esposo/a</option>}
+              {(!hasSpouse || familiar.parentesco === "Esposo/a") && <option value="Esposo/a">Esposo/a</option>}
               <option value="Hijo/a">Hijo/a</option>
               <option value="Otro">Otro</option>
             </select>
