@@ -325,6 +325,7 @@ export default function InscripcionPage() {
                             type="tel"
                             required
                             placeholder="+54 9 XXXX XXXXX"
+                            autoComplete="off"
                             className={inputClassName}
                             value={telefono}
                             onChange={(e) => setTelefono(formatPhoneInput(e.target.value))}
