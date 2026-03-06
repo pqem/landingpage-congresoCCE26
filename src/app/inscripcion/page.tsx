@@ -22,23 +22,14 @@ function formatPhoneInput(value: string): string {
     return formatPhoneInput(digits.slice(0, 11));
   }
 
-  // Si no hay dígitos, retornar prefijo
-  if (digits.length === 0) return "+54 9 ";
+  // Si no hay dígitos, retornar vacío
+  if (digits.length === 0) return "";
 
-  // Formatear según cantidad de dígitos:
-  // 1-2 dígitos: +54 9 X...
-  // 3-4 dígitos: +54 9 XX...
-  // 5-8 dígitos: +54 9 XXXX XXXX
-  // 9-11 dígitos: +54 9 XXXX XXXXX o +54 9XX XXXXX XXXXX
-
-  if (digits.length <= 2) {
+  // Formatear según cantidad de dígitos
+  if (digits.length <= 4) {
     return `+54 9 ${digits}`;
-  } else if (digits.length <= 4) {
-    return `+54 9 ${digits}`;
-  } else if (digits.length <= 8) {
-    return `+54 9 ${digits.slice(0, 4)} ${digits.slice(4)}`;
   } else {
-    // 9-11 dígitos
+    // 5-11 dígitos: +54 9 XXXX XXXXX
     return `+54 9 ${digits.slice(0, 4)} ${digits.slice(4)}`;
   }
 }
@@ -53,7 +44,7 @@ export default function InscripcionPage() {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [edad, setEdad] = useState("");
-  const [telefono, setTelefono] = useState("+54 9 ");
+  const [telefono, setTelefono] = useState("");
   const [ciudad, setCiudad] = useState("");
   const [iglesia, setIglesia] = useState("");
   const [alojamiento, setAlojamiento] = useState<Alojamiento>("");
