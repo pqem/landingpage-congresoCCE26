@@ -10,6 +10,7 @@ import { FamiliaresSection } from "@/components/inscripcion/FamiliaresSection";
 
 export default function InscripcionPage() {
   const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
   const [edad, setEdad] = useState("");
   const [telefono, setTelefono] = useState("+54 9 ");
   const [ciudad, setCiudad] = useState("");
@@ -53,7 +54,7 @@ export default function InscripcionPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombre_apellido: nombre.trim(),
+          nombre_apellido: `${nombre.trim()} ${apellido.trim()}`,
           edad: Number(edad),
           telefono: telefono.trim(),
           ciudad: ciudad.trim(),
@@ -134,9 +135,15 @@ export default function InscripcionPage() {
                 />
               </div>
 
-              <div>
-                <label htmlFor="nombre" className={labelClassName}>Nombre y Apellido</label>
-                <input id="nombre" name="nombre" type="text" required placeholder="Nombre y Apellido" className={inputClassName} value={nombre} onChange={(e) => setNombre(e.target.value)} />
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                <div>
+                  <label htmlFor="nombre" className={labelClassName}>Nombre</label>
+                  <input id="nombre" name="nombre" type="text" required placeholder="Nombre" className={inputClassName} value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                </div>
+                <div>
+                  <label htmlFor="apellido" className={labelClassName}>Apellido</label>
+                  <input id="apellido" name="apellido" type="text" required placeholder="Apellido" className={inputClassName} value={apellido} onChange={(e) => setApellido(e.target.value)} />
+                </div>
               </div>
 
               <div>
