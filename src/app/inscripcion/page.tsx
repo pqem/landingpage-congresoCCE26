@@ -14,24 +14,23 @@ function extractDigits(value: string): string {
   return value.replace(/\D/g, "");
 }
 
-function formatPhoneInput(value: string): string {
+function formatPhoneDisplay(value: string): string {
+  // Solo muestra dígitos sin prefijo para evitar conflictos de autocompletado
   const digits = extractDigits(value);
 
   // Limitar a máximo 11 dígitos para Argentina
   if (digits.length > 11) {
-    return formatPhoneInput(digits.slice(0, 11));
+    return digits.slice(0, 11);
   }
 
-  // Si no hay dígitos, retornar vacío
-  if (digits.length === 0) return "";
+  return digits;
+}
 
-  // Formatear según cantidad de dígitos
-  if (digits.length <= 4) {
-    return `+54 9 ${digits}`;
-  } else {
-    // 5-11 dígitos: +54 9 XXXX XXXXX
-    return `+54 9 ${digits.slice(0, 4)} ${digits.slice(4)}`;
-  }
+function formatPhoneForSubmit(digits: string): string {
+  // Agrega el prefijo solo al enviar
+  const cleanDigits = extractDigits(digits);
+  if (cleanDigits.length === 0) return "";
+  return `+54 9 ${cleanDigits}`;
 }
 
 function isValidPhoneDigits(value: string): boolean {
@@ -120,7 +119,7 @@ export default function InscripcionPage() {
         body: JSON.stringify({
           nombre_apellido: `${nombre.trim()} ${apellido.trim()}`,
           edad: Number(edad),
-          telefono: telefono.trim(),
+          telefono: formatPhoneForSubmit(telefono),
           ciudad: ciudad.trim(),
           iglesia: iglesia.trim(),
           necesita_alojamiento: alojamiento === "si",
@@ -323,11 +322,12 @@ export default function InscripcionPage() {
                           name="telefono"
                           type="tel"
                           required
-                          placeholder="+54 9 XXXX XXXXX"
+                          placeholder="XXXX XXXXX"
+                          inputMode="numeric"
                           autoComplete="off"
                           className={inputClassName}
                           value={telefono}
-                          onChange={(e) => setTelefono(formatPhoneInput(e.target.value))}
+                          onChange={(e) => setTelefono(formatPhoneDisplay(e.target.value))}
                         />
                       </div>
 
