@@ -194,7 +194,7 @@ export default function InscripcionPage() {
         ) : (
           <section className="mt-8 rounded-none bg-negro-suave p-6 sm:p-8">
             {/* Header */}
-            <header>
+            <header className="text-center">
               <h1 className="font-serif text-3xl text-dorado sm:text-4xl">
                 INSCRIPCIÓN
               </h1>
@@ -306,8 +306,8 @@ export default function InscripcionPage() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                        <div>
+                      <div className="grid grid-cols-3 gap-3 sm:gap-4">
+                        <div className="col-span-1">
                           <label htmlFor="edad" className={labelClassName}>
                             Edad
                           </label>
@@ -324,7 +324,7 @@ export default function InscripcionPage() {
                             onChange={(e) => setEdad(e.target.value)}
                           />
                         </div>
-                        <div>
+                        <div className="col-span-2">
                           <label htmlFor="telefono" className={labelClassName}>
                             Teléfono
                           </label>
@@ -414,15 +414,12 @@ export default function InscripcionPage() {
                   {/* STEP 3: Alojamiento y Familiares */}
                   {currentStep === 3 && (
                     <>
-                      <div>
-                        <label className={labelClassName}>¿Necesitás alojamiento?</label>
-                        <AlojamientoToggle
-                          value={alojamiento}
-                          onChange={setAlojamiento}
-                          error={alojamientoError}
-                          onClearError={() => setAlojamientoError("")}
-                        />
-                      </div>
+                      <AlojamientoToggle
+                        value={alojamiento}
+                        onChange={setAlojamiento}
+                        error={alojamientoError}
+                        onClearError={() => setAlojamientoError("")}
+                      />
 
                       <FamiliaresSection familiares={familiares} onChange={setFamiliares} />
 
